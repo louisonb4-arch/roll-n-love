@@ -1,0 +1,304 @@
+# ============================================================================
+# Decap CMS — config
+# Docs: https://decapcms.org/docs/configuration-options/
+# ----------------------------------------------------------------------------
+# Replace REPLACE_ME_OWNER/REPLACE_ME_REPO below with your GitHub repo path
+# (e.g. "louisonb4/roll-in-love"). Auth is Netlify Identity + Git Gateway.
+# ============================================================================
+
+backend:
+  name: git-gateway
+  branch: main
+  # If you want to test locally without Netlify Identity, switch to:
+  # name: github
+  # repo: REPLACE_ME_OWNER/REPLACE_ME_REPO
+  # branch: main
+
+# Save uploaded media files here
+media_folder: assets/images
+public_folder: assets/images
+
+# Show "Live" preview link in the editor
+site_url: https://roll-in-love.netlify.app
+display_url: https://roll-in-love.netlify.app
+logo_url: /assets/images/logo.png
+
+locale: fr
+
+collections:
+  # ── MENU ────────────────────────────────────────────────────────────────
+  - name: menu
+    label: La Carte
+    label_singular: Catégorie
+    files:
+      - name: menu
+        label: Menu complet
+        file: data/menu.json
+        format: json
+        fields:
+          - label: Rolls
+            name: rolls
+            widget: object
+            fields:
+              - { label: Image, name: image, widget: image }
+              - label: Sections
+                name: sections
+                widget: list
+                summary: '{{fields.title.fr}}'
+                fields:
+                  - label: Titre
+                    name: title
+                    widget: object
+                    fields:
+                      - { label: 'FR', name: fr, widget: string }
+                      - { label: 'EN', name: en, widget: string }
+                  - label: Items
+                    name: items
+                    widget: list
+                    summary: '{{fields.name.fr}} — {{fields.price}}'
+                    fields:
+                      - label: Nom
+                        name: name
+                        widget: object
+                        fields:
+                          - { label: 'FR', name: fr, widget: string }
+                          - { label: 'EN', name: en, widget: string }
+                      - label: Description
+                        name: desc
+                        widget: object
+                        required: false
+                        fields:
+                          - { label: 'FR', name: fr, widget: string, required: false }
+                          - { label: 'EN', name: en, widget: string, required: false }
+                      - { label: Prix, name: price, widget: string, required: false }
+                      - { label: Vendée, name: vendee, widget: boolean, required: false, default: false }
+                      - label: Badges
+                        name: badges
+                        widget: select
+                        multiple: true
+                        required: false
+                        options: [bio]
+
+          - label: Boissons Chaudes
+            name: boissons-chaudes
+            widget: object
+            fields:
+              - { label: Image, name: image, widget: image }
+              - label: Sections
+                name: sections
+                widget: list
+                summary: '{{fields.title.fr}}'
+                fields:
+                  - label: Titre
+                    name: title
+                    widget: object
+                    fields:
+                      - { label: 'FR', name: fr, widget: string }
+                      - { label: 'EN', name: en, widget: string }
+                  - label: Items
+                    name: items
+                    widget: list
+                    summary: '{{fields.name.fr}} — {{fields.price}}'
+                    fields:
+                      - label: Nom
+                        name: name
+                        widget: object
+                        fields:
+                          - { label: 'FR', name: fr, widget: string }
+                          - { label: 'EN', name: en, widget: string }
+                      - label: Description
+                        name: desc
+                        widget: object
+                        required: false
+                        fields:
+                          - { label: 'FR', name: fr, widget: string, required: false }
+                          - { label: 'EN', name: en, widget: string, required: false }
+                      - { label: Prix, name: price, widget: string, required: false }
+                      - { label: Vendée, name: vendee, widget: boolean, required: false, default: false }
+                      - label: Badges
+                        name: badges
+                        widget: select
+                        multiple: true
+                        required: false
+                        options: [bio]
+
+          - label: Boissons Froides
+            name: boissons-froides
+            widget: object
+            fields:
+              - { label: Image, name: image, widget: image }
+              - label: Sections
+                name: sections
+                widget: list
+                summary: '{{fields.title.fr}}'
+                fields:
+                  - label: Titre
+                    name: title
+                    widget: object
+                    fields:
+                      - { label: 'FR', name: fr, widget: string }
+                      - { label: 'EN', name: en, widget: string }
+                  - label: Items
+                    name: items
+                    widget: list
+                    summary: '{{fields.name.fr}} — {{fields.price}}'
+                    fields:
+                      - label: Nom
+                        name: name
+                        widget: object
+                        fields:
+                          - { label: 'FR', name: fr, widget: string }
+                          - { label: 'EN', name: en, widget: string }
+                      - label: Description
+                        name: desc
+                        widget: object
+                        required: false
+                        fields:
+                          - { label: 'FR', name: fr, widget: string, required: false }
+                          - { label: 'EN', name: en, widget: string, required: false }
+                      - { label: Prix, name: price, widget: string, required: false }
+                      - { label: Vendée, name: vendee, widget: boolean, required: false, default: false }
+                      - label: Badges
+                        name: badges
+                        widget: select
+                        multiple: true
+                        required: false
+                        options: [bio]
+
+          - label: Sandwichs
+            name: sandwichs
+            widget: object
+            fields:
+              - { label: Image, name: image, widget: image }
+              - label: Sections
+                name: sections
+                widget: list
+                summary: '{{fields.title.fr}}'
+                fields:
+                  - label: Titre
+                    name: title
+                    widget: object
+                    fields:
+                      - { label: 'FR', name: fr, widget: string }
+                      - { label: 'EN', name: en, widget: string }
+                  - label: Items
+                    name: items
+                    widget: list
+                    summary: '{{fields.name.fr}} — {{fields.price}}'
+                    fields:
+                      - label: Nom
+                        name: name
+                        widget: object
+                        fields:
+                          - { label: 'FR', name: fr, widget: string }
+                          - { label: 'EN', name: en, widget: string }
+                      - label: Description
+                        name: desc
+                        widget: object
+                        required: false
+                        fields:
+                          - { label: 'FR', name: fr, widget: string, required: false }
+                          - { label: 'EN', name: en, widget: string, required: false }
+                      - { label: Prix, name: price, widget: string, required: false }
+                      - { label: Vendée, name: vendee, widget: boolean, required: false, default: false }
+
+          - label: Glaces
+            name: glaces
+            widget: object
+            fields:
+              - { label: Image, name: image, widget: image }
+              - label: Sections
+                name: sections
+                widget: list
+                summary: '{{fields.title.fr}}'
+                fields:
+                  - label: Titre
+                    name: title
+                    widget: object
+                    fields:
+                      - { label: 'FR', name: fr, widget: string }
+                      - { label: 'EN', name: en, widget: string }
+                  - label: Items
+                    name: items
+                    widget: list
+                    summary: '{{fields.name.fr}} — {{fields.price}}'
+                    fields:
+                      - label: Nom
+                        name: name
+                        widget: object
+                        fields:
+                          - { label: 'FR', name: fr, widget: string }
+                          - { label: 'EN', name: en, widget: string }
+                      - label: Description
+                        name: desc
+                        widget: object
+                        required: false
+                        fields:
+                          - { label: 'FR', name: fr, widget: string, required: false }
+                          - { label: 'EN', name: en, widget: string, required: false }
+                      - { label: Prix, name: price, widget: string, required: false }
+
+  # ── AVIS CLIENTS ────────────────────────────────────────────────────────
+  - name: testimonials
+    label: Avis Clients
+    files:
+      - name: testimonials
+        label: Avis
+        file: data/testimonials.json
+        format: json
+        fields:
+          - label: Ligne 1 (défile vers la gauche)
+            name: row1
+            widget: list
+            summary: '{{fields.author}} — {{fields.text}}'
+            fields:
+              - { label: Étoiles, name: stars, widget: number, default: 5, min: 1, max: 5 }
+              - { label: Texte, name: text, widget: text }
+              - { label: Auteur, name: author, widget: string }
+
+          - label: Ligne 2 (défile vers la droite)
+            name: row2
+            widget: list
+            summary: '{{fields.author}} — {{fields.text}}'
+            fields:
+              - { label: Étoiles, name: stars, widget: number, default: 5, min: 1, max: 5 }
+              - { label: Texte, name: text, widget: text }
+              - { label: Auteur, name: author, widget: string }
+
+  # ── TRADUCTIONS ─────────────────────────────────────────────────────────
+  - name: translations
+    label: Traductions UI
+    files:
+      - name: fr
+        label: 🇫🇷 Français
+        file: lang/fr.json
+        format: json
+        fields:
+          - { label: 'Brut JSON', name: 'raw', widget: 'object', collapsed: false, summary: 'Édite chaque section ci-dessous',
+              fields: [
+                { label: Navigation, name: nav, widget: object, fields: [
+                  { name: accueil, label: Accueil, widget: string },
+                  { name: carte, label: Carte, widget: string },
+                  { name: offres, label: Offres, widget: string },
+                  { name: avis, label: Avis, widget: string },
+                  { name: apropos, label: 'À Propos', widget: string },
+                  { name: contact, label: Contact, widget: string }
+                ]}
+              ]}
+
+      - name: en
+        label: 🇬🇧 English
+        file: lang/en.json
+        format: json
+        fields:
+          - { label: 'Raw JSON', name: 'raw', widget: 'object', collapsed: false, summary: 'Edit each section below',
+              fields: [
+                { label: Navigation, name: nav, widget: object, fields: [
+                  { name: accueil, label: Home, widget: string },
+                  { name: carte, label: Menu, widget: string },
+                  { name: offres, label: Deals, widget: string },
+                  { name: avis, label: Reviews, widget: string },
+                  { name: apropos, label: About, widget: string },
+                  { name: contact, label: Contact, widget: string }
+                ]}
+              ]}

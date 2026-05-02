@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roll in Love — Cinnamon rolls artisanaux à Saint-Jean-de-Monts</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Cinnamon rolls maison, boissons gourmandes et coffee shop cosy à Saint-Jean-de-Monts. Rolls sucrés et salés préparés chaque jour avec amour. Ouvert du lundi au vendredi.">
+  <meta name="keywords" content="cinnamon roll, coffee shop, Saint-Jean-de-Monts, Vendée, café, boulangerie artisanale, fait maison, rolls sucrés, brunch">
+  <meta name="author" content="Roll in Love">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="Roll in Love — Cinnamon rolls artisanaux">
+  <meta property="og:description" content="Coffee shop chaleureux à Saint-Jean-de-Monts. Rolls maison, boissons gourmandes, ambiance cocooning. Fait avec amour ♡">
+  <meta property="og:image" content="assets/images/logo.png">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Roll in Love">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Roll in Love — Cinnamon rolls à Saint-Jean-de-Monts">
+  <meta name="twitter:description" content="Rolls artisanaux et boissons gourmandes au cœur de Saint-Jean-de-Monts. ♡">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="apple-touch-icon" href="assets/images/logo.png">
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Roll in Love",
+    "image": "assets/images/logo.png",
+    "description": "Coffee shop artisanal spécialisé dans les cinnamon rolls maison et boissons gourmandes",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "32 Rue Neuve",
+      "addressLocality": "Saint-Jean-de-Monts",
+      "postalCode": "85160",
+      "addressCountry": "FR"
+    },
+    "telephone": "+33 2 59 15 26 97",
+    "email": "roll.inlove@outlook.com",
+    "priceRange": "€",
+    "servesCuisine": "Coffee Shop, Pâtisserie",
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "11:00",
+      "closes": "18:00"
+    }],
+    "sameAs": ["https://www.instagram.com/roll_in_love"]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <nav>
+    <a href="#accueil"><img src="assets/images/logo.png" alt="Roll in Love" class="logo-img"></a>
+    <ul class="nav-links">
+      <li><a href="#accueil" data-i18n="nav.accueil">Accueil</a></li>
+      <li><a href="#carte" data-i18n="nav.carte">Carte</a></li>
+      <li><a href="#offres" data-i18n="nav.offres">Offres</a></li>
+      <li><a href="#avis" data-i18n="nav.avis">Avis</a></li>
+      <li><a href="#apropos" data-i18n="nav.apropos">À Propos</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switch" role="group" aria-label="Language switch">
+        <button data-lang="fr" type="button" aria-label="Français">FR</button>
+        <button data-lang="en" type="button" aria-label="English">EN</button>
+      </div>
+      <button class="hamburger" type="button" aria-label="Menu" style="display:none;background:none;border:none;font-size:22px;cursor:pointer;color:#42200C;">☰</button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="accueil" style="scroll-margin-top:0;margin-top:0;padding-top:0;">
+    <div class="hero-section">
+      <div class="hero-left">
+        <h1 class="hero-heading">
+          <span class="line1" data-i18n="hero.headingLine1">Fait avec Am♥ur,</span>
+          <span class="line2" data-i18n="hero.headingLine2">Roulé à la Main</span>
+        </h1>
+        <p class="hero-sub" data-i18n-html="hero.sub">Rolls gourmands, boissons chaudes et froides,<br>sandwichs salés et offres sur-mesure.</p>
+        <div class="hero-ctas">
+          <button class="btn-primary" type="button" onclick="document.getElementById('carte').scrollIntoView({behavior:'smooth'})" data-i18n="hero.ctaCarte">Découvrir la carte</button>
+          <button class="btn-outline" type="button" onclick="document.getElementById('offres').scrollIntoView({behavior:'smooth'})" data-i18n="hero.ctaOffres">Nos offres</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <span class="heart-deco h1">
+          <div style="width:60px;height:65px;overflow:hidden;position:relative;mix-blend-mode:multiply;">
+            <img src="assets/images/coeurs.png" style="position:absolute;left:0;top:-10px;width:130px;height:auto;" alt="">
+          </div>
+        </span>
+        <span class="heart-deco h2">
+          <div style="width:60px;height:65px;overflow:hidden;position:relative;mix-blend-mode:multiply;">
+            <img src="assets/images/coeurs.png" style="position:absolute;left:-70px;top:-10px;width:130px;height:auto;" alt="">
+          </div>
+        </span>
+        <img src="assets/images/hero.png" alt="Roll in Love" class="hero-img">
+        <div class="badge-gourmand">
+          <svg viewBox="0 0 100 100" width="95" height="95">
+            <path d="M50,5.25 Q53.48,8.27 57.27,7.28 Q60.73,6.38 63.18,9.14 Q65.55,11.81 69.11,11.86 Q72.58,11.91 74.04,15.15 Q75.44,18.27 78.74,19.35 Q81.93,20.39 82.26,23.87 Q82.57,27.22 85.42,29.22 Q88.17,31.16 87.35,34.54 Q86.56,37.79 88.71,40.52 Q90.78,43.17 88.86,46.18 Q87.01,49.09 88.27,52.37 Q89.47,55.54 86.60,57.88 Q83.82,60.15 84.17,63.58 Q84.50,66.88 81.23,68.32 Q78.08,69.71 77.47,73.10 Q76.89,76.38 73.43,76.79 Q70.10,77.18 68.47,80.14 Q66.90,82.99 63.50,82.35 Q60.23,81.73 57.73,84.12 Q55.33,86.41 52.00,84.80 Q48.79,83.24 45.53,84.88 Q42.39,86.47 39.97,84.18 Q37.64,81.98 34.38,82.64 Q31.24,83.27 29.67,80.43 Q28.15,77.70 24.82,77.28 Q21.60,76.88 20.98,73.55 Q20.39,70.34 17.27,68.88 Q14.26,67.47 14.56,64.14 Q14.85,60.93 12.08,58.69 Q9.40,56.52 10.55,53.25 Q11.65,50.10 9.87,47.15 Q8.14,44.30 10.07,41.47 Q11.93,38.73 11.14,35.48 Q10.37,32.32 12.93,30.19 Q15.39,28.13 15.70,24.81 Q16.00,21.61 18.94,20.28 Q21.77,19.00 22.93,15.85 Q24.05,12.80 27.26,12.56 Q30.34,12.33 32.44,9.77 Q34.47,7.28 37.66,7.93 Q40.73,8.56 43.28,6.68 Q45.72,4.87 48.76,5.74 Q50.00,5.25 50,5.25Z" fill="#42200C"/>
+            <text x="50" y="45" text-anchor="middle" font-family="Scripter, cursive" font-size="19" fill="#FFEEDC" data-i18n="hero.badgeGourmand1">100%</text>
+            <text x="50" y="62" text-anchor="middle" font-family="Scripter, cursive" font-size="13" fill="#FFEEDC" data-i18n="hero.badgeGourmand2">GOURMAND</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 44" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path class="wave-anim-1" d="M0,22 C240,44 480,0 720,22 C960,44 1200,6 1440,22 L1440,44 L0,44 Z" fill="#FEF7EC"/>
+      </svg>
+    </div>
+
+    <div class="categories">
+      <div class="categories-grid">
+        <div class="cat-card" data-tab="rolls">
+          <div class="cat-img-wrap">
+            <img src="assets/images/rolls.png" alt="Rolls" class="cat-photo" data-cat="rolls" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <span class="cat-photo-fallback">🍥</span>
+          </div>
+          <div class="cat-title" data-i18n="categories.rollsTitle">Rolls</div>
+          <div class="cat-desc" data-i18n="categories.rollsDesc">Sucrés, gourmands, irrésistibles.</div>
+        </div>
+        <div class="cat-card" data-tab="boissons-chaudes">
+          <div class="cat-img-wrap">
+            <img src="assets/images/boisson_chaude.png" alt="Boissons Chaudes" class="cat-photo" data-cat="boissons-chaudes" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <span class="cat-photo-fallback">☕</span>
+          </div>
+          <div class="cat-title" data-i18n="categories.boissonsChaudesTitle">Boissons Chaudes</div>
+          <div class="cat-desc" data-i18n="categories.boissonsChaudesDesc">Café, chocolat, thé… à savourer chaud.</div>
+        </div>
+        <div class="cat-card" data-tab="boissons-froides">
+          <div class="cat-img-wrap">
+            <img src="assets/images/boisson_froide.png" alt="Boissons Froides" class="cat-photo" data-cat="boissons-froides" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <span class="cat-photo-fallback">🥤</span>
+          </div>
+          <div class="cat-title" data-i18n="categories.boissonsFroidesTitle">Boissons Froides</div>
+          <div class="cat-desc" data-i18n="categories.boissonsFroidesDesc">Frappés, glacés, fruités et frais.</div>
+        </div>
+        <div class="cat-card" data-tab="sandwichs">
+          <div class="cat-img-wrap">
+            <img src="assets/images/sandwich.png" alt="Sandwichs" class="cat-photo" data-cat="sandwichs" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <span class="cat-photo-fallback">🥪</span>
+          </div>
+          <div class="cat-title" data-i18n="categories.sandwichsTitle">Sandwichs</div>
+          <div class="cat-desc" data-i18n="categories.sandwichsDesc">Salés, frais et préparés avec amour.</div>
+        </div>
+        <div class="cat-card" data-tab="glaces">
+          <div class="cat-img-wrap">
+            <img src="assets/images/glaces.png" alt="Glaces" class="cat-photo" data-cat="glaces" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <span class="cat-photo-fallback">🍦</span>
+          </div>
+          <div class="cat-title" data-i18n="categories.glacesTitle">Glaces</div>
+          <div class="cat-desc" data-i18n="categories.glacesDesc">Boules, affogatos et coupes signature.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="values-bar fade-up">
+      <div class="value-item"><div class="value-icon">♡</div><div class="value-text"><strong data-i18n="values.faitMaisonTitle">Fait Maison</strong><p data-i18n="values.faitMaisonDesc">Préparé chaque jour avec passion.</p></div></div>
+      <div class="value-item"><div class="value-icon">🌿</div><div class="value-text"><strong data-i18n="values.qualiteTitle">Ingrédients de Qualité</strong><p data-i18n="values.qualiteDesc">Produits frais sélectionnés.</p></div></div>
+      <div class="value-item"><div class="value-icon">😊</div><div class="value-text"><strong data-i18n="values.gourmandTitle">100% Gourmand</strong><p data-i18n="values.gourmandDesc">Recettes généreuses.</p></div></div>
+      <div class="value-item"><div class="value-icon">🥡</div><div class="value-text"><strong data-i18n="values.emporterTitle">À Emporter</strong><p data-i18n="values.emporterDesc">Sur place ou à emporter.</p></div></div>
+    </div>
+
+    <div style="line-height:0;overflow:hidden;margin-top:-2px;">
+      <svg viewBox="0 0 1440 44" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:44px;">
+        <path d="M0,22 C240,44 480,0 720,22 C960,44 1200,6 1440,22 L1440,44 L0,44 Z" fill="#FFEEDC"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ── CARTE ── -->
+  <section id="carte">
+    <div class="page-header"><h2 data-i18n="carte.title">La Carte</h2><div class="heart-line">♡</div></div>
+    <div class="carte-tabs">
+      <button class="tab-btn active" data-tab="rolls" type="button" data-i18n="carte.tabRolls">Rolls</button>
+      <button class="tab-btn" data-tab="boissons-chaudes" type="button" data-i18n="carte.tabBoissonsChaudes">Boissons Chaudes</button>
+      <button class="tab-btn" data-tab="boissons-froides" type="button" data-i18n="carte.tabBoissonsFroides">Boissons Froides</button>
+      <button class="tab-btn" data-tab="sandwichs" type="button" data-i18n="carte.tabSandwichs">Sandwichs</button>
+      <button class="tab-btn" data-tab="glaces" type="button" data-i18n="carte.tabGlaces">Glaces</button>
+    </div>
+
+    <div id="tab-rolls" class="carte-panel active">
+      <div class="carte-layout">
+        <div class="carte-img-col"><div class="carte-img-nuage-large"><img src="assets/images/rolls.png" alt="Rolls"></div></div>
+        <div class="carte-right"><div class="menu-cols"></div></div>
+      </div>
+      <div class="personalise-box">
+        <div class="personalise-header"><h3 data-i18n="carte.rollsTagline">Fait maison chaque jour ♡</h3></div>
+      </div>
+    </div>
+
+    <div id="tab-boissons-chaudes" class="carte-panel">
+      <div class="carte-layout">
+        <div class="carte-img-col"><div class="carte-img-nuage-large"><img src="assets/images/boisson_chaude.png" alt="Boissons Chaudes"></div></div>
+        <div class="carte-right"><div class="menu-cols"></div></div>
+      </div>
+      <div class="personalise-box">
+        <div class="personalise-header"><h3 data-i18n="carte.personalise">Personnalise ta boisson ♡</h3></div>
+      </div>
+    </div>
+
+    <div id="tab-boissons-froides" class="carte-panel">
+      <div class="carte-layout">
+        <div class="carte-img-col"><div class="carte-img-nuage-large"><img src="assets/images/boisson_froide.png" alt="Boissons Froides"></div></div>
+        <div class="carte-right"><div class="menu-cols"></div></div>
+      </div>
+      <div class="personalise-box">
+        <div class="personalise-header"><h3 data-i18n="carte.personalise">Personnalise ta boisson ♡</h3></div>
+      </div>
+    </div>
+
+    <div id="tab-sandwichs" class="carte-panel">
+      <div class="carte-layout">
+        <div class="carte-img-col"><div class="carte-img-nuage-large"><img src="assets/images/sandwich.png" alt="Sandwichs"></div></div>
+        <div class="carte-right"><div class="menu-cols"></div></div>
+      </div>
+      <div class="personalise-box">
+        <div class="personalise-header"><h3 data-i18n="carte.sandwichsTagline">Pain brioché fait maison ♡</h3></div>
+      </div>
+    </div>
+
+    <div id="tab-glaces" class="carte-panel">
+      <div class="carte-layout">
+        <div class="carte-img-col"><div class="carte-img-nuage-large"><img src="assets/images/glaces.png" alt="Glaces"></div></div>
+        <div class="carte-right"><div class="menu-cols"></div></div>
+      </div>
+      <div class="personalise-box">
+        <div class="personalise-header"><h3 data-i18n="carte.glacesTagline">Glaces &amp; coupes — l'été chez Roll ♡</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <div style="line-height:0;overflow:hidden;">
+    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;">
+      <path class="wave-anim-1" d="M0,25 C200,50 400,0 600,25 C800,50 1000,5 1200,30 C1320,42 1400,20 1440,25 L1440,50 L0,50 Z" fill="#FEF7EC"/>
+    </svg>
+  </div>
+
+  <!-- ── OFFRES ── -->
+  <section id="offres">
+    <div class="page-header"><h2 data-i18n="offres.title">Nos Offres</h2><div class="heart-line">♡</div></div>
+    <p class="offres-subtitle" data-i18n="offres.subtitle">Des formules pensées pour toutes les envies, seul ou à partager.</p>
+    <div class="offres-grid fade-up">
+      <div class="offre-card">
+        <h3 data-i18n="offres.plaisirTitle">Formule Plaisir</h3>
+        <div class="offre-icons">🥐 + ☕</div>
+        <div class="offre-desc" data-i18n-html="offres.plaisirDesc">1 Sandwich salé ou sucré<br>+ 1 Boisson*</div>
+        <div class="offre-price">12€</div>
+        <div class="offre-note" data-i18n="offres.plaisirNote">*Hors smoothie et thé matcha</div>
+      </div>
+      <div class="offre-card featured">
+        <div class="featured-badge" data-i18n="offres.douceurBadge">♡ Coup de cœur</div>
+        <h3 data-i18n="offres.douceurTitle">Formule Douceur</h3>
+        <div class="offre-icons">🍥 + ☕</div>
+        <div class="offre-desc" data-i18n-html="offres.douceurDesc">Entre 16h et 18h<br>1 Roll sucré + 1 Boisson*<br><small>Hors Choco Création</small></div>
+        <div class="offre-price">6,50€</div>
+        <div class="offre-note" data-i18n="offres.douceurNote">*Hors smoothie et thé matcha</div>
+      </div>
+      <div class="offre-card">
+        <h3 data-i18n="offres.boxesTitle">Nos Boxes</h3>
+        <div class="offre-icons">📦</div>
+        <div class="box-list">
+          <div class="box-row"><span data-i18n="offres.boxOriginal">Box Originale (4 cannelle)</span><span class="box-price-pill">14€</span></div>
+          <div class="box-row"><span data-i18n="offres.boxMixteX4">Box Mixte x4</span><span class="box-price-pill">16€</span></div>
+          <div class="box-row"><span data-i18n="offres.boxMixteX6">Box Mixte x6</span><span class="box-price-pill">24€</span></div>
+          <div class="box-row"><span data-i18n="offres.boxMixteX8">Box Mixte x8</span><span class="box-price-pill">30€</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="offres-footnote" data-i18n="offres.footnote">*Voir suppléments en bas de page de la carte.</p>
+  </section>
+
+  <div style="line-height:0;overflow:hidden;">
+    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;">
+      <path class="wave-anim-2" d="M0,10 C300,50 600,5 900,40 C1100,60 1300,15 1440,30 L1440,50 L0,50 Z" fill="#FEF7EC"/>
+    </svg>
+  </div>
+
+  <!-- ── TESTIMONIALS ── -->
+  <section id="avis" class="testimonials-section">
+    <div class="page-header">
+      <h2 data-i18n="avis.title">Avis Clients</h2>
+      <div class="heart-line">♡</div>
+    </div>
+    <div class="testimonials-track-wrap">
+      <div class="testimonials-track row-1"></div>
+      <div class="testimonials-track row-2"></div>
+    </div>
+  </section>
+
+  <div style="line-height:0;overflow:hidden;">
+    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;">
+      <path class="wave-anim-3" d="M0,40 C150,10 350,50 600,20 C850,0 1100,45 1440,15 L1440,50 L0,50 Z" fill="#FFEEDC"/>
+    </svg>
+  </div>
+
+  <!-- ── A PROPOS ── -->
+  <section id="apropos" style="overflow:visible;">
+    <div class="apropos-layout fade-up">
+      <div class="apropos-text">
+        <h2 data-i18n="apropos.title">À Propos</h2>
+        <div class="apropos-divider"></div>
+        <p data-i18n="apropos.p1">Roll in Love, c'est avant tout une aventure mère-fille, née d'une passion pour la gourmandise et le fait maison.</p>
+        <p data-i18n="apropos.p2">Depuis 2025, nous vous accueillons dans un lieu chaleureux et cocooning à Saint-Jean-de-Monts, avec une seule envie : vous faire plaisir.</p>
+        <p data-i18n="apropos.p3">Chaque jour, nos rolls sont préparés à la main avec des ingrédients de qualité, frais et soigneusement sélectionnés, pour vous offrir un vrai moment de douceur.</p>
+        <p data-i18n="apropos.p4">Ici, rien n'est industriel — tout est fait avec le cœur, avec amour. ♡</p>
+        <div class="apropos-stats">
+          <div class="apropos-stat">
+            <div class="apropos-stat-num">2025</div>
+            <div class="apropos-stat-label" data-i18n="apropos.statOuvertureLabel">Ouverture</div>
+          </div>
+          <div class="apropos-stat">
+            <div class="apropos-stat-num">100%</div>
+            <div class="apropos-stat-label" data-i18n="apropos.statFaitMaisonLabel">Fait maison</div>
+          </div>
+          <div class="apropos-stat">
+            <div class="apropos-stat-num">♡ 2</div>
+            <div class="apropos-stat-label" data-i18n="apropos.statMereFilleLabel">Mère & fille</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="apropos-stories-wrap">
+        <div class="apropos-stories-track" id="storiesTrack">
+          <div class="apropos-story"><img src="assets/images/apropos-1.jpg" alt="Café Roll in Love"></div>
+          <div class="apropos-story"><img src="assets/images/apropos-2.jpg" alt="Rolls maison"></div>
+          <div class="apropos-story"><img src="assets/images/apropos-3.jpg" alt="L'ambiance"></div>
+          <div class="apropos-story"><img src="assets/images/apropos-4.jpg" alt="Chez nous"></div>
+          <div class="apropos-story"><img src="assets/images/apropos-5.jpg" alt="Rolls glacés"></div>
+          <div class="apropos-story"><img src="assets/images/apropos-6.jpg" alt="Boissons chaudes"></div>
+          <div class="apropos-story"><img src="assets/images/apropos-7.jpg" alt="Le plateau"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="line-height:0;overflow:hidden;">
+    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;">
+      <path class="wave-anim-3" d="M0,40 C150,10 350,50 600,20 C850,0 1100,45 1440,15 L1440,50 L0,50 Z" fill="#FEF7EC"/>
+    </svg>
+  </div>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="page-header"><h2 data-i18n="contact.title">Contact & Accès</h2><div class="heart-line">♡</div></div>
+    <div class="contact-layout">
+      <div>
+        <div class="contact-info-card">
+          <div class="contact-info-label" data-i18n="contact.infoLabel">Informations</div>
+          <div class="contact-list">
+            <div class="contact-row">
+              <span class="icon">📍</span>
+              <div><div class="label" data-i18n="contact.addressLabel">Adresse</div><div class="value" data-i18n-html="contact.addressValue">32 Rue Neuve<br>85160 Saint-Jean-de-Monts</div></div>
+            </div>
+            <div class="contact-row">
+              <span class="icon">🕐</span>
+              <div><div class="label" data-i18n="contact.horairesLabel">Horaires</div><div class="value" data-i18n-html="contact.horairesValue">Lun – Ven · 11h00 – 18h00</div></div>
+            </div>
+            <div class="contact-row">
+              <span class="icon">📞</span>
+              <div><div class="label" data-i18n="contact.telLabel">Téléphone</div><a href="tel:+33259152697">+33 2 59 15 26 97</a></div>
+            </div>
+            <div class="contact-row">
+              <span class="icon">✉️</span>
+              <div><div class="label" data-i18n="contact.emailLabel">Email</div><a href="mailto:roll.inlove@outlook.com">roll.inlove@outlook.com</a></div>
+            </div>
+            <div class="contact-row">
+              <span class="icon">📸</span>
+              <div><div class="label" data-i18n="contact.instaLabel">Instagram</div><a href="https://www.instagram.com/roll_in_love" target="_blank" rel="noopener">@roll_in_love</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2703.1!2d-2.054700!3d46.794700!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48028e3b9d9f4b6b%3A0x9e0e5a5a5a5a5a5a!2s32+Rue+Neuve%2C+85160+Saint-Jean-de-Monts!5e0!3m2!1sfr!2sfr!4v1"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Roll in Love — 32 Rue Neuve, Saint-Jean-de-Monts"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span data-i18n="footer.copyright">© 2025 Roll in Love — Tous droits réservés</span>
+    <span data-i18n="footer.tagline">Fait avec ♡ à Saint-Jean-de-Monts</span>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/testimonials.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
