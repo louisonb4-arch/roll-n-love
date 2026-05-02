@@ -7,20 +7,21 @@
 # ============================================================================
 
 backend:
-  name: git-gateway
+  name: github
+  repo: louisonb4-arch/roll-n-love
   branch: main
-  # If you want to test locally without Netlify Identity, switch to:
-  # name: github
-  # repo: REPLACE_ME_OWNER/REPLACE_ME_REPO
-  # branch: main
+  # base_url is your Vercel deployment URL (where /api/auth + /api/callback live).
+  # Update this AFTER your first Vercel deploy with the real URL.
+  base_url: https://REPLACE_ME.vercel.app
+  auth_endpoint: api/auth
 
-# Save uploaded media files here
+# Where uploaded media is stored / served from
 media_folder: assets/images
-public_folder: assets/images
+public_folder: /assets/images
 
 # Show "Live" preview link in the editor
-site_url: https://roll-in-love.netlify.app
-display_url: https://roll-in-love.netlify.app
+site_url: https://REPLACE_ME.vercel.app
+display_url: https://REPLACE_ME.vercel.app
 logo_url: /assets/images/logo.png
 
 locale: fr
