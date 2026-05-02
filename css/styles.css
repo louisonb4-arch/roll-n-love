@@ -743,27 +743,8 @@ section { scroll-margin-top: 75px; }
 }
 .testi-divider { height: 1px; background: var(--beige-border); }
 
-/* ==========================================================================
-   WAVE ANIMATIONS
-   ========================================================================== */
-@keyframes waveMove1 {
-  0%   { d: path("M0,25 C200,50 400,0 600,25 C800,50 1000,5 1200,30 C1320,42 1400,20 1440,25 L1440,50 L0,50 Z"); }
-  50%  { d: path("M0,5 C200,48 450,2 650,40 C850,50 1050,0 1250,35 C1360,46 1410,8 1440,10 L1440,50 L0,50 Z"); }
-  100% { d: path("M0,25 C200,50 400,0 600,25 C800,50 1000,5 1200,30 C1320,42 1400,20 1440,25 L1440,50 L0,50 Z"); }
-}
-@keyframes waveMove2 {
-  0%   { d: path("M0,10 C300,50 600,5 900,40 C1100,60 1300,15 1440,30 L1440,50 L0,50 Z"); }
-  50%  { d: path("M0,40 C280,5 580,48 880,8 C1080,2 1280,45 1440,15 L1440,50 L0,50 Z"); }
-  100% { d: path("M0,10 C300,50 600,5 900,40 C1100,60 1300,15 1440,30 L1440,50 L0,50 Z"); }
-}
-@keyframes waveMove3 {
-  0%   { d: path("M0,40 C150,10 350,50 600,20 C850,0 1100,45 1440,15 L1440,50 L0,50 Z"); }
-  50%  { d: path("M0,8 C180,46 380,4 620,44 C870,50 1120,2 1440,38 L1440,50 L0,50 Z"); }
-  100% { d: path("M0,40 C150,10 350,50 600,20 C850,0 1100,45 1440,15 L1440,50 L0,50 Z"); }
-}
-.wave-anim-1 { animation: waveMove1 4s ease-in-out infinite; }
-.wave-anim-2 { animation: waveMove2 5s ease-in-out infinite; }
-.wave-anim-3 { animation: waveMove3 6s ease-in-out infinite; }
+/* Wave animations are inline as SVG <animate> elements (universal browser support).
+   No CSS keyframes needed. */
 
 /* ==========================================================================
    FOOTER
@@ -816,7 +797,8 @@ footer span { opacity: 0.6; }
     top: 8px;
     right: 24px;
   }
-  .heart-deco { display: none; }
+  .heart-deco.h1 { top: -16px; left: 32px; }
+  .heart-deco.h2 { top: -10px; right: 64px; }
   .hero-wave { margin-top: 0; }
   .hero-wave svg { height: 20px; }
 
