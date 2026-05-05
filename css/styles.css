@@ -124,6 +124,7 @@ nav {
   margin-bottom: 12px;
 }
 .hero-heading .line1, .hero-heading .line2 { display: block; }
+.mobile-br { display: none; }
 .hero-sub {
   font-size: 14.5px;
   text-transform: uppercase;
@@ -770,37 +771,98 @@ footer span { opacity: 0.6; }
   .btn-commander { font-size: 12px; padding: 7px 14px; }
 
   .hero-section {
-    grid-template-columns: 1fr;
-    padding: 20px 16px 0;
+    grid-template-columns: 1.1fr 0.9fr;
+    padding: 16px 10px 10px;
     min-height: auto;
     overflow: visible;
+    gap: 4px;
+    align-items: center;
   }
-  .hero-left { padding: 12px 16px 16px 16px; order: 1; }
-  .hero-heading { font-size: 38px; }
-  .hero-sub { font-size: 12px; margin-bottom: 14px; max-width: none; }
-  .btn-primary, .btn-outline { font-size: 13px; padding: 9px 18px; }
+  .hero-left {
+    padding: 6px 0 6px 10px;
+    order: 1;
+  }
+  .hero-heading {
+    font-size: 21px;
+    line-height: 1.05;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .hero-left { min-width: 0; }
+  .hero-right { min-width: 0; }
+  .hero-heart {
+    display: inline-block;
+    color: #E84545;
+    font-size: 0.85em;
+    vertical-align: -0.05em;
+  }
+  .mobile-br { display: inline; }
+  .hero-sub {
+    font-size: 10.5px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+    max-width: none;
+    letter-spacing: 0.04em;
+  }
+  .hero-ctas {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .btn-primary {
+    font-size: 12.5px;
+    padding: 10px 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary::after {
+    content: '→';
+    font-size: 1em;
+    line-height: 1;
+  }
+  .btn-outline {
+    font-size: 11.5px;
+    padding: 8px 18px;
+    border-width: 2px;
+  }
   .hero-right {
     order: 2;
     padding: 0;
     height: auto;
     overflow: visible;
     justify-content: center;
-    margin-top: 8px;
+    align-items: center;
+    margin-top: 0;
+    position: relative;
   }
   .hero-img {
-    max-width: 260px;
-    transform: none;
+    max-width: 100%;
+    width: 100%;
+    transform: scale(1.15);
+    transform-origin: center;
   }
   .badge-gourmand {
-    width: 64px;
-    height: 64px;
-    top: 8px;
-    right: 24px;
+    width: 76px;
+    height: 76px;
+    top: 18px;
+    right: 4px;
   }
-  .heart-deco.h1 { top: -16px; left: 32px; }
-  .heart-deco.h2 { top: -10px; right: 64px; }
+  .heart-deco { z-index: 4; }
+  .heart-deco div { display: none; }
+  .heart-deco::before {
+    content: '♡';
+    font-family: 'Times New Roman', serif;
+    font-size: 36px;
+    color: var(--brown);
+    font-weight: 400;
+    display: block;
+    line-height: 1;
+  }
+  .heart-deco.h1 { top: -8px; left: 0; }
+  .heart-deco.h2 { top: auto; bottom: 18px; right: auto; left: -4px; }
   .hero-wave { margin-top: 0; }
-  .hero-wave svg { height: 20px; }
+  .hero-wave svg { height: 22px; }
 
   .categories { padding: 14px 12px; }
   .categories-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
@@ -865,6 +927,5 @@ footer span { opacity: 0.6; }
 }
 
 @media (max-width: 480px) {
-  .hero-heading { font-size: 32px; }
   .categories-grid { grid-template-columns: repeat(2, 1fr); }
 }

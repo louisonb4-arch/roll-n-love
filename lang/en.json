@@ -8,7 +8,7 @@
     "contact": "Contact"
   },
   "hero": {
-    "headingLine1": "Made with L♥ve,",
+    "headingLine1": "Made with<br class=\"mobile-br\"> L<span class=\"hero-heart\">♥</span>ve,",
     "headingLine2": "Rolled by Hand",
     "sub": "Indulgent rolls, hot and cold drinks,<br>savory sandwiches and tailor-made deals.",
     "ctaCarte": "Discover the menu",

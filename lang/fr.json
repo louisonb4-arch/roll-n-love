@@ -8,7 +8,7 @@
     "contact": "Contact"
   },
   "hero": {
-    "headingLine1": "Fait avec Am♥ur,",
+    "headingLine1": "Fait avec<br class=\"mobile-br\"> Am<span class=\"hero-heart\">♥</span>ur,",
     "headingLine2": "Roulé à la Main",
     "sub": "Rolls gourmands, boissons chaudes et froides,<br>sandwichs salés et offres sur-mesure.",
     "ctaCarte": "Découvrir la carte",
