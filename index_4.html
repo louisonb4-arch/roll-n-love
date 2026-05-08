@@ -344,14 +344,14 @@
       }
       .hero-left {
         width: 78%;
-        padding: 16px 0 110px 16px;
+        padding: calc(16px + 2cm) 0 110px 16px;
         position: relative;
         z-index: 2;
       }
       .hero-heading { font-size: 32px; line-height: 1.02; margin-bottom: 10px; letter-spacing: -0.01em; }
       .hero-sub { font-size: 9.5px; margin-bottom: 16px; max-width: 100%; line-height: 1.55; }
-      .hero-ctas { flex-direction: column; gap: 8px; align-items: stretch; max-width: 180px; }
-      .btn-primary, .btn-outline { font-size: 10px; padding: 9px 12px; width: 100%; }
+      .hero-ctas { flex-direction: column; gap: 5px; align-items: stretch; max-width: 140px; }
+      .btn-primary, .btn-outline { font-size: 10px; padding: 5px 6px; width: 100%; }
       .hero-right {
         position: absolute;
         right: -8px;
@@ -368,11 +368,11 @@
         height: auto;
       }
       .hero-img { width: 100%; max-width: none; transform: translateY(-75px); display: block; }
-      .badge-gourmand { width: 60px; height: 60px; top: 120px; right: 6px; z-index: 3; }
+      .badge-gourmand { width: 60px; height: 60px; top: calc(120px + 2cm); right: 6px; z-index: 3; }
       .badge-gourmand svg { width: 60px !important; height: 60px !important; }
       .heart-deco { transform: scale(0.7); transform-origin: top right; }
-      .heart-deco.h1 { right: 6px; left: auto; top: 18px; }
-      .heart-deco.h2 { right: 44px; left: auto; top: 68px; }
+      .heart-deco.h1 { right: calc(6px + 3cm); left: auto; top: calc(18px + 4cm); }
+      .heart-deco.h2 { right: 44px; left: auto; top: calc(68px + 4cm); }
 
       /* WAVE */
       .hero-wave { margin-top: -50px; position: relative; z-index: 3; }
