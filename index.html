@@ -416,7 +416,7 @@
 
       /* CARTE */
       .carte-tabs { padding: 0 12px 14px; gap: 6px; }
-      .tab-btn { font-size: 12px; padding: 6px 12px; }
+      .tab-btn { font-size: 14px; padding: 6px 12px; }
       .carte-layout { grid-template-columns: 1fr; padding: 0 16px; }
       .carte-img-col { display: none; }
       .menu-cols { grid-template-columns: 1fr; }
@@ -424,7 +424,6 @@
       .menu-item-price { font-size: 16px; }
       .menu-item-desc { font-size: 13px; }
       .menu-section-title { font-size: 16px; }
-      .tab-btn { font-size: 14px; }
       .personalise-box { margin: 12px 16px 20px; }
       .personalise-rows { grid-template-columns: 1fr; }
 
@@ -443,12 +442,6 @@
       /* FOOTER */
       footer { padding: 14px 16px !important; flex-direction: column; gap: 6px; text-align: center; font-size: 11px !important; }
 
-      /* A PROPOS */
-      .apropos-layout {
-        grid-template-columns: 1fr;
-        padding: 24px 16px;
-        gap: 20px;
-      }
       /* CONTACT */
       .contact-layout {
         grid-template-columns: 1fr;
@@ -664,7 +657,7 @@
           <path class="wave-anim-1" d="M0,25 C200,50 400,0 600,25 C800,50 1000,5 1200,30 C1320,42 1400,20 1440,25 L1440,50 L0,50 Z" fill="#FEF7EC"/>
         </svg>
       </div>
-      <div style="text-align:center;font-family:'Scripter',cursive;font-size:22px;color:var(--brown);letter-spacing:0.08em;padding-bottom:14px;opacity:0.9;">♡ Nos Délices ♡</div>
+      <div style="text-align:center;font-family:'Scripter',cursive;font-size:22px;font-weight:900;color:var(--brown);letter-spacing:0.08em;padding-bottom:14px;opacity:0.9;">♡ Nos Délices ♡</div>
       <div class="categories-grid">
         <div class="cat-card" onclick="document.getElementById('carte').scrollIntoView({behavior:'smooth'});showTab('rolls')">
           <div class="cat-img-wrap"><img src="rolls.png" alt="Rolls" class="cat-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="cat-photo-fallback">🍥</span></div>
@@ -1178,8 +1171,6 @@
       panel.style.cssText = 'position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:99999;background:#42200C;color:#FFEEDC;font-family:monospace;font-size:12px;padding:10px 14px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.4);min-width:280px;text-align:center;';
       panel.innerHTML = '<div style="font-weight:bold;margin-bottom:6px;">✏️ MODE ÉDITION HERO</div><div id="edit-coords" style="opacity:0.8;line-height:1.8;white-space:pre;text-align:left;"></div><button id="edit-copy" style="margin-top:8px;background:#FFEEDC;color:#42200C;border:none;padding:5px 14px;border-radius:8px;cursor:pointer;font-family:monospace;font-weight:bold;">📋 Copier les positions</button>';
       document.body.appendChild(panel);
-
-      var positions = {};
 
       function updatePanel() {
         var lines = [];
