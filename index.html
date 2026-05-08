@@ -1156,6 +1156,102 @@
         });
       });
     })();
+
+    // ── MODE ÉDITION HERO (URL ?edit) ──
+    (function() {
+      if (!location.search.includes('edit')) return;
+
+      var targets = [
+        { sel: '.hero-img',        label: 'Photo' },
+        { sel: '.heart-deco.h1',   label: 'Cœur 1' },
+        { sel: '.heart-deco.h2',   label: 'Cœur 2' },
+        { sel: '.badge-gourmand',  label: 'Badge' }
+      ];
+
+      // UI panel
+      var panel = document.createElement('div');
+      panel.style.cssText = 'position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:99999;background:#42200C;color:#FFEEDC;font-family:monospace;font-size:12px;padding:10px 14px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.4);min-width:280px;text-align:center;';
+      panel.innerHTML = '<div style="font-weight:bold;margin-bottom:6px;">✏️ MODE ÉDITION HERO</div><div id="edit-coords" style="opacity:0.8;line-height:1.8;white-space:pre;text-align:left;"></div><button id="edit-copy" style="margin-top:8px;background:#FFEEDC;color:#42200C;border:none;padding:5px 14px;border-radius:8px;cursor:pointer;font-family:monospace;font-weight:bold;">📋 Copier les positions</button>';
+      document.body.appendChild(panel);
+
+      var positions = {};
+
+      function updatePanel() {
+        var lines = [];
+        targets.forEach(function(t) {
+          var el = document.querySelector(t.sel);
+          if (!el) return;
+          var s = el.style;
+          var pos = t.sel === '.hero-img'
+            ? 'transform: ' + (s.transform || 'none')
+            : 'top:' + (s.top || '?') + '  right:' + (s.right || '?') + '  left:' + (s.left || '?');
+          lines.push(t.label + ':\n  ' + pos);
+        });
+        document.getElementById('edit-coords').textContent = lines.join('\n');
+      }
+
+      document.getElementById('edit-copy').addEventListener('click', function() {
+        var text = document.getElementById('edit-coords').textContent;
+        navigator.clipboard.writeText(text).then(function() {
+          document.getElementById('edit-copy').textContent = '✅ Copié !';
+          setTimeout(function() { document.getElementById('edit-copy').textContent = '📋 Copier les positions'; }, 2000);
+        });
+      });
+
+      targets.forEach(function(t) {
+        var el = document.querySelector(t.sel);
+        if (!el) return;
+        el.style.cursor = 'grab';
+        el.style.userSelect = 'none';
+        if (t.sel !== '.hero-img') el.style.position = 'absolute';
+
+        var startX, startY, origLeft, origTop, origRight, origTransform;
+
+        function onDown(e) {
+          e.preventDefault();
+          var pt = e.touches ? e.touches[0] : e;
+          startX = pt.clientX;
+          startY = pt.clientY;
+          var cs = el.getBoundingClientRect();
+          var ps = el.offsetParent ? el.offsetParent.getBoundingClientRect() : {left:0,top:0};
+          origLeft = cs.left - ps.left;
+          origTop  = cs.top  - ps.top;
+          el.style.cursor = 'grabbing';
+          el.style.right = 'auto';
+          el.style.left  = Math.round(origLeft) + 'px';
+          el.style.top   = Math.round(origTop)  + 'px';
+          document.addEventListener('mousemove', onMove);
+          document.addEventListener('mouseup',   onUp);
+          document.addEventListener('touchmove', onMove, {passive:false});
+          document.addEventListener('touchend',  onUp);
+        }
+
+        function onMove(e) {
+          e.preventDefault();
+          var pt = e.touches ? e.touches[0] : e;
+          var dx = pt.clientX - startX;
+          var dy = pt.clientY - startY;
+          el.style.left = Math.round(origLeft + dx) + 'px';
+          el.style.top  = Math.round(origTop  + dy) + 'px';
+          if (t.sel === '.hero-img') el.style.transform = 'translateY(' + Math.round(origTop + dy) + 'px)';
+          updatePanel();
+        }
+
+        function onUp() {
+          el.style.cursor = 'grab';
+          document.removeEventListener('mousemove', onMove);
+          document.removeEventListener('mouseup',   onUp);
+          document.removeEventListener('touchmove', onMove);
+          document.removeEventListener('touchend',  onUp);
+          updatePanel();
+        }
+
+        el.addEventListener('mousedown',  onDown);
+        el.addEventListener('touchstart', onDown, {passive:false});
+      });
+
+      updatePanel();
+    })();
   </script>
 </body>
 </html>
