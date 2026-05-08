@@ -350,7 +350,7 @@
       }
       .hero-heading { font-size: 32px; line-height: 1.02; margin-bottom: 10px; margin-top: -1.5cm; letter-spacing: -0.01em; }
       .hero-sub { font-size: 9.5px; margin-bottom: 16px; margin-top: 0; max-width: 100%; line-height: 1.55; }
-      .hero-ctas { flex-direction: column; gap: 5px; align-items: stretch; max-width: 140px; margin-top: 0; }
+      .hero-ctas { flex-direction: column; gap: 5px; align-items: stretch; max-width: 140px; margin-top: -0.26cm; }
       .btn-primary, .btn-outline { font-size: 10px; padding: 5px 6px; width: 100%; }
       .btn-outline { padding: 2px 3px; width: 50%; }
       .hero-right {
@@ -368,7 +368,7 @@
         padding: 0;
         height: auto;
       }
-      .hero-img { width: 100%; max-width: none; transform: translateY(-75px); display: block; }
+      .hero-img { width: 100%; max-width: none; transform: translateY(calc(-75px - 1cm)); display: block; }
       .badge-gourmand { width: 60px; height: 60px; top: calc(120px + 2cm); right: 6px; z-index: 3; }
       .badge-gourmand svg { width: 60px !important; height: 60px !important; }
       .heart-deco { transform: scale(0.7); transform-origin: top right; }
@@ -466,7 +466,8 @@
     @media (max-width: 480px) {
       .hero-heading { font-size: 32px; }
       .categories-grid { grid-template-columns: repeat(4, 1fr); gap: 5px; }
-      .cat-card { min-height: 120px; padding: 8px 4px 8px; }
+      .cat-card { min-height: 140px; padding: 8px 4px 8px; overflow: visible; }
+      .cat-img-wrap { transform: scale(1.5); transform-origin: center top; }
     }
 
     @media (max-width: 768px) {
