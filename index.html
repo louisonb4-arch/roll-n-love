@@ -1114,6 +1114,45 @@
         track.scrollLeft = scrollLeft - (x - startX);
       }, {passive: true});
     })();
+
+    // Wave animation — SMIL fallback for Safari iOS
+    (function() {
+      var waveDefs = {
+        'wave-anim-1': { dur: 4, frames: [
+          'M0,25 C200,50 400,0 600,25 C800,50 1000,5 1200,30 C1320,42 1400,20 1440,25 L1440,50 L0,50 Z',
+          'M0,5 C200,48 450,2 650,40 C850,50 1050,0 1250,35 C1360,46 1410,8 1440,10 L1440,50 L0,50 Z',
+          'M0,25 C200,50 400,0 600,25 C800,50 1000,5 1200,30 C1320,42 1400,20 1440,25 L1440,50 L0,50 Z'
+        ]},
+        'wave-anim-2': { dur: 5, frames: [
+          'M0,10 C300,50 600,5 900,40 C1100,60 1300,15 1440,30 L1440,50 L0,50 Z',
+          'M0,40 C280,5 580,48 880,8 C1080,2 1280,45 1440,15 L1440,50 L0,50 Z',
+          'M0,10 C300,50 600,5 900,40 C1100,60 1300,15 1440,30 L1440,50 L0,50 Z'
+        ]},
+        'wave-anim-3': { dur: 6, frames: [
+          'M0,40 C150,10 350,50 600,20 C850,0 1100,45 1440,15 L1440,50 L0,50 Z',
+          'M0,8 C180,46 380,4 620,44 C870,50 1120,2 1440,38 L1440,50 L0,50 Z',
+          'M0,40 C150,10 350,50 600,20 C850,0 1100,45 1440,15 L1440,50 L0,50 Z'
+        ]},
+        'wave-anim-4': { dur: 7, frames: [
+          'M0,20 C120,45 240,5 480,30 C720,50 840,10 1080,35 C1260,50 1380,15 1440,25 L1440,50 L0,50 Z',
+          'M0,45 C140,4 260,48 500,6 C740,2 860,46 1100,12 C1280,2 1390,40 1440,10 L1440,50 L0,50 Z',
+          'M0,20 C120,45 240,5 480,30 C720,50 840,10 1080,35 C1260,50 1380,15 1440,25 L1440,50 L0,50 Z'
+        ]}
+      };
+      Object.keys(waveDefs).forEach(function(cls) {
+        var def = waveDefs[cls];
+        document.querySelectorAll('.' + cls).forEach(function(path) {
+          var anim = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+          anim.setAttribute('attributeName', 'd');
+          anim.setAttribute('dur', def.dur + 's');
+          anim.setAttribute('repeatCount', 'indefinite');
+          anim.setAttribute('calcMode', 'spline');
+          anim.setAttribute('keySplines', '0.45 0 0.55 1;0.45 0 0.55 1');
+          anim.setAttribute('values', def.frames.join(';'));
+          path.appendChild(anim);
+        });
+      });
+    })();
   </script>
 </body>
 </html>
