@@ -376,11 +376,11 @@
       .heart-deco.h2 { right: calc(44px + 1.5cm); left: auto; top: calc(68px + 3cm); }
 
       /* WAVE */
-      .hero-wave { margin-top: 0px; position: relative; z-index: 3; }
+      .hero-wave { margin-top: 0; position: relative; z-index: 3; }
       .hero-wave svg { height: 22px; }
 
       /* CATEGORIES */
-      .categories { padding: 12px 8px 20px; margin-top: calc(-10px - 1.5cm); }
+      .categories { padding: 0 8px 20px; margin-top: 0; }
       .categories-grid { grid-template-columns: repeat(4, 1fr); gap: 7px; }
       .categories-grid .cat-card:nth-child(5) { display: none; }
       .cat-card {
@@ -657,13 +657,12 @@
       </div>
     </div>
 
-    <div class="hero-wave">
-      <svg viewBox="0 0 1440 44" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path class="wave-anim-1" d="M0,22 C240,44 480,0 720,22 C960,44 1200,6 1440,22 L1440,44 L0,44 Z" fill="#FEF7EC"/>
-      </svg>
-    </div>
-
     <div class="categories">
+      <div class="hero-wave" style="margin:0 -24px 0 -24px;">
+        <svg viewBox="0 0 1440 44" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path class="wave-anim-1" d="M0,22 C240,44 480,0 720,22 C960,44 1200,6 1440,22 L1440,44 L0,44 Z" fill="#FEF7EC"/>
+        </svg>
+      </div>
       <div style="text-align:center;font-family:'Scripter',cursive;font-size:22px;color:var(--brown);letter-spacing:0.08em;padding-bottom:14px;opacity:0.9;">♡ Nos Délices ♡</div>
       <div class="categories-grid">
         <div class="cat-card" onclick="document.getElementById('carte').scrollIntoView({behavior:'smooth'});showTab('rolls')">
