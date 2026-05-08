@@ -1,0 +1,21 @@
+{
+  "row1": [
+    { "stars": 5, "text": "Pause gourmande vraiment délicieuse, avec cinnamon rolls maison et boissons élaborées. Adresse chaleureuse, ça vaut clairement le détour.", "author": "Zoé G." },
+    { "stars": 5, "text": "Coffee shop chaleureux avec une belle déco. Cinnamon rolls excellents et copieux. Personnel souriant et agréable.", "author": "Carole G." },
+    { "stars": 5, "text": "Accueil très chaleureux. Tout est appétissant et très bon. Endroit parfait pour se poser dans une ambiance cosy.", "author": "Valentin C." },
+    { "stars": 5, "text": "Roll incroyablement bon ! Serveuse adorable, je recommande vivement.", "author": "Amandine C." },
+    { "stars": 5, "text": "Très belle découverte. Boissons de qualité, rolls généreux et gourmands. Parfait en famille.", "author": "Barbara G." },
+    { "stars": 5, "text": "Les rolls sont excellents, mention spéciale au spéculoos qui est incroyable ! Je recommande sans hésiter.", "author": "Jade N." },
+    { "stars": 5, "text": "Super adresse ! Produits de qualité, faits maison. On se sent tout de suite à l'aise.", "author": "Olivia C." },
+    { "stars": 5, "text": "Accueil très agréable et produits excellents. Très bonne découverte.", "author": "Frédéric B." }
+  ],
+  "row2": [
+    { "stars": 5, "text": "Accueil hyper agréable, produits de qualité. Les cinnamon rolls sont exceptionnels.", "author": "Reyhane N." },
+    { "stars": 5, "text": "Chocolat chaud délicieux, prix doux et déco chaleureuse. Je reviendrai sans hésiter.", "author": "Júliska T." },
+    { "stars": 5, "text": "Super endroit, je recommande.", "author": "Pierre L." },
+    { "stars": 5, "text": "Endroit cosy et cocooning. Pâtisseries excellentes et boissons au top.", "author": "Laura M." },
+    { "stars": 5, "text": "Du fait maison beau et bon. Lieu très cocooning, accueil parfait.", "author": "Mary B." },
+    { "stars": 5, "text": "Coffee shop spacieux et agréable. Boissons excellentes, rolls copieux et délicieux.", "author": "Cam T." },
+    { "stars": 5, "text": "Ambiance hyper cosy, boissons savoureuses et gâteaux excellents.", "author": "Sofiane S." }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "accueil": "Accueil",
+    "carte": "Carte",
+    "offres": "Offres",
+    "avis": "Avis",
+    "apropos": "À Propos",
+    "contact": "Contact"
+  },
+  "hero": {
+    "headingLine1": "Fait avec<br class=\"mobile-br\"> Am<span class=\"hero-heart\">♥</span>ur,",
+    "headingLine2": "Roulé à la Main",
+    "sub": "Rolls gourmands, boissons chaudes et froides,<br>sandwichs salés et offres sur-mesure.",
+    "ctaCarte": "Découvrir la carte",
+    "ctaOffres": "Nos offres",
+    "badgeGourmand1": "100%",
+    "badgeGourmand2": "GOURMAND"
+  },
+  "categories": {
+    "rollsTitle": "Rolls",
+    "rollsDesc": "Sucrés, gourmands, irrésistibles.",
+    "boissonsChaudesTitle": "Boissons Chaudes",
+    "boissonsChaudesDesc": "Café, chocolat, thé… à savourer chaud.",
+    "boissonsFroidesTitle": "Boissons Froides",
+    "boissonsFroidesDesc": "Frappés, glacés, fruités et frais.",
+    "sandwichsTitle": "Sandwichs",
+    "sandwichsDesc": "Salés, frais et préparés avec amour.",
+    "glacesTitle": "Glaces",
+    "glacesDesc": "Boules, affogatos et coupes signature."
+  },
+  "values": {
+    "faitMaisonTitle": "Fait Maison",
+    "faitMaisonDesc": "Préparé chaque jour avec passion.",
+    "qualiteTitle": "Ingrédients de Qualité",
+    "qualiteDesc": "Produits frais sélectionnés.",
+    "gourmandTitle": "100% Gourmand",
+    "gourmandDesc": "Recettes généreuses.",
+    "emporterTitle": "À Emporter",
+    "emporterDesc": "Sur place ou à emporter."
+  },
+  "carte": {
+    "title": "La Carte",
+    "tabRolls": "Rolls",
+    "tabBoissonsChaudes": "Boissons Chaudes",
+    "tabBoissonsFroides": "Boissons Froides",
+    "tabSandwichs": "Sandwichs",
+    "tabGlaces": "Glaces",
+    "personalise": "Personnalise ta boisson ♡",
+    "rollsTagline": "Fait maison chaque jour ♡",
+    "sandwichsTagline": "Pain brioché fait maison ♡",
+    "glacesTagline": "Glaces & coupes — l'été chez Roll ♡"
+  },
+  "offres": {
+    "title": "Nos Offres",
+    "subtitle": "Des formules pensées pour toutes les envies, seul ou à partager.",
+    "footnote": "*Voir suppléments en bas de page de la carte.",
+    "plaisirTitle": "Formule Plaisir",
+    "plaisirDesc": "1 Sandwich salé ou sucré<br>+ 1 Boisson*",
+    "plaisirNote": "*Hors smoothie et thé matcha",
+    "douceurBadge": "♡ Coup de cœur",
+    "douceurTitle": "Formule Douceur",
+    "douceurDesc": "Entre 16h et 18h<br>1 Roll sucré + 1 Boisson*<br><small>Hors Choco Création</small>",
+    "douceurNote": "*Hors smoothie et thé matcha",
+    "boxesTitle": "Nos Boxes",
+    "boxOriginal": "Box Originale (4 cannelle)",
+    "boxMixteX4": "Box Mixte x4",
+    "boxMixteX6": "Box Mixte x6",
+    "boxMixteX8": "Box Mixte x8"
+  },
+  "avis": {
+    "title": "Avis Clients"
+  },
+  "apropos": {
+    "title": "À Propos",
+    "p1": "Roll in Love, c'est avant tout une aventure mère-fille, née d'une passion pour la gourmandise et le fait maison.",
+    "p2": "Depuis 2026, nous vous accueillons dans un lieu chaleureux et cocooning à Saint-Jean-de-Monts, avec une seule envie : vous faire plaisir.",
+    "p3": "Chaque jour, nos rolls sont préparés à la main avec des ingrédients de qualité, frais et soigneusement sélectionnés, pour vous offrir un vrai moment de douceur.",
+    "p4": "Ici, rien n'est industriel — tout est fait avec le cœur, avec amour. ♡",
+    "statOuvertureLabel": "Ouverture",
+    "statFaitMaisonLabel": "Fait maison",
+    "statMereFilleLabel": "Mère & fille"
+  },
+  "contact": {
+    "title": "Contact & Accès",
+    "infoLabel": "Informations",
+    "addressLabel": "Adresse",
+    "addressValue": "32 Rue Neuve<br>85160 Saint-Jean-de-Monts",
+    "horairesLabel": "Horaires",
+    "horairesValue": "Lun – Ven · 11h00 – 18h00<br><span style=\"opacity:0.5;\">Sam – Dim · Fermé</span>",
+    "telLabel": "Téléphone",
+    "emailLabel": "Email",
+    "instaLabel": "Instagram"
+  },
+  "footer": {
+    "copyright": "© 2025 Roll in Love — Tous droits réservés",
+    "tagline": "Fait avec ♡ à Saint-Jean-de-Monts"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "accueil": "Home",
+    "carte": "Menu",
+    "offres": "Deals",
+    "avis": "Reviews",
+    "apropos": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "headingLine1": "Made with<br class=\"mobile-br\"> L<span class=\"hero-heart\">♥</span>ve,",
+    "headingLine2": "Rolled by Hand",
+    "sub": "Indulgent rolls, hot and cold drinks,<br>savory sandwiches and tailor-made deals.",
+    "ctaCarte": "Discover the menu",
+    "ctaOffres": "Our deals",
+    "badgeGourmand1": "100%",
+    "badgeGourmand2": "INDULGENT"
+  },
+  "categories": {
+    "rollsTitle": "Rolls",
+    "rollsDesc": "Sweet, indulgent, irresistible.",
+    "boissonsChaudesTitle": "Hot Drinks",
+    "boissonsChaudesDesc": "Coffee, chocolate, tea… enjoyed warm.",
+    "boissonsFroidesTitle": "Cold Drinks",
+    "boissonsFroidesDesc": "Frappés, iced, fruity and fresh.",
+    "sandwichsTitle": "Sandwiches",
+    "sandwichsDesc": "Savory, fresh and made with love.",
+    "glacesTitle": "Ice Cream",
+    "glacesDesc": "Scoops, affogatos and signature cups."
+  },
+  "values": {
+    "faitMaisonTitle": "Homemade",
+    "faitMaisonDesc": "Prepared each day with passion.",
+    "qualiteTitle": "Quality Ingredients",
+    "qualiteDesc": "Hand-picked fresh produce.",
+    "gourmandTitle": "100% Indulgent",
+    "gourmandDesc": "Generous recipes.",
+    "emporterTitle": "Take-away",
+    "emporterDesc": "Eat in or take out."
+  },
+  "carte": {
+    "title": "The Menu",
+    "tabRolls": "Rolls",
+    "tabBoissonsChaudes": "Hot Drinks",
+    "tabBoissonsFroides": "Cold Drinks",
+    "tabSandwichs": "Sandwiches",
+    "tabGlaces": "Ice Cream",
+    "personalise": "Customize your drink ♡",
+    "rollsTagline": "Homemade every day ♡",
+    "sandwichsTagline": "Homemade brioche bread ♡",
+    "glacesTagline": "Ice cream & cups — summer at Roll ♡"
+  },
+  "offres": {
+    "title": "Our Deals",
+    "subtitle": "Bundles for every craving, alone or to share.",
+    "footnote": "*See add-ons at the bottom of the menu.",
+    "plaisirTitle": "Pleasure Combo",
+    "plaisirDesc": "1 Savory or sweet sandwich<br>+ 1 Drink*",
+    "plaisirNote": "*Excluding smoothie and matcha tea",
+    "douceurBadge": "♡ Favorite",
+    "douceurTitle": "Sweet Combo",
+    "douceurDesc": "Between 4pm and 6pm<br>1 Sweet roll + 1 Drink*<br><small>Excluding Choco Creation</small>",
+    "douceurNote": "*Excluding smoothie and matcha tea",
+    "boxesTitle": "Our Boxes",
+    "boxOriginal": "Original Box (4 cinnamon)",
+    "boxMixteX4": "Mix Box x4",
+    "boxMixteX6": "Mix Box x6",
+    "boxMixteX8": "Mix Box x8"
+  },
+  "avis": {
+    "title": "Customer Reviews"
+  },
+  "apropos": {
+    "title": "About",
+    "p1": "Roll in Love is above all a mother-daughter story, born from a shared love of homemade indulgence.",
+    "p2": "Since 2026, we welcome you in a warm and cozy spot in Saint-Jean-de-Monts, with one wish: to spoil you.",
+    "p3": "Every day, our rolls are hand-rolled with quality, fresh and carefully chosen ingredients, for a true moment of sweetness.",
+    "p4": "Nothing here is industrial — everything is made with heart, with love. ♡",
+    "statOuvertureLabel": "Opened",
+    "statFaitMaisonLabel": "Homemade",
+    "statMereFilleLabel": "Mom & daughter"
+  },
+  "contact": {
+    "title": "Contact & Directions",
+    "infoLabel": "Information",
+    "addressLabel": "Address",
+    "addressValue": "32 Rue Neuve<br>85160 Saint-Jean-de-Monts, France",
+    "horairesLabel": "Hours",
+    "horairesValue": "Mon – Fri · 11:00 – 18:00<br><span style=\"opacity:0.5;\">Sat – Sun · Closed</span>",
+    "telLabel": "Phone",
+    "emailLabel": "Email",
+    "instaLabel": "Instagram"
+  },
+  "footer": {
+    "copyright": "© 2025 Roll in Love — All rights reserved",
+    "tagline": "Made with ♡ in Saint-Jean-de-Monts"
+  }
+}

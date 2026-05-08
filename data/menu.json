@@ -1,0 +1,133 @@
+{
+  "rolls": {
+    "image": "assets/images/rolls.png",
+    "sections": [
+      {
+        "title": { "fr": "Sucré", "en": "Sweet" },
+        "items": [
+          { "name": { "fr": "Roll Original", "en": "Original Roll" }, "desc": { "fr": "Roulé à la cannelle", "en": "Cinnamon roll" }, "price": "3,90€" },
+          { "name": { "fr": "Roll Création", "en": "Creation Roll" }, "desc": { "fr": "Voir sélection du moment", "en": "See current selection" }, "price": "4,50€" },
+          { "name": { "fr": "Banana Bread", "en": "Banana Bread" }, "desc": { "fr": "Cake banane et pépite de chocolat", "en": "Banana cake with chocolate chips" }, "price": "3€" },
+          { "name": { "fr": "Brownie Chocolat", "en": "Chocolate Brownie" }, "desc": { "fr": "Brownie fondant au chocolat", "en": "Soft chocolate brownie" }, "price": "3€" }
+        ]
+      }
+    ]
+  },
+  "boissons-chaudes": {
+    "image": "assets/images/boisson_chaude.png",
+    "sections": [
+      {
+        "title": { "fr": "Cafés & Thés", "en": "Coffee & Tea" },
+        "items": [
+          { "name": { "fr": "Expresso", "en": "Espresso" }, "desc": { "fr": "Shot de café", "en": "Coffee shot" }, "price": "2,20€" },
+          { "name": { "fr": "Double Expresso", "en": "Double Espresso" }, "desc": { "fr": "Double shot de café", "en": "Double coffee shot" }, "price": "3,50€" },
+          { "name": { "fr": "Noisette", "en": "Macchiato" }, "desc": { "fr": "Shot de café, nuage de lait", "en": "Coffee shot with a dash of milk" }, "price": "2,40€" },
+          { "name": { "fr": "Allongé", "en": "Long Black" }, "desc": { "fr": "Shot de café allongé 2 fois", "en": "Coffee shot diluted twice" }, "price": "2,50€" },
+          { "name": { "fr": "Americano", "en": "Americano" }, "desc": { "fr": "Shot de café, eau chaude", "en": "Coffee shot with hot water" }, "price": "2,50€" },
+          { "name": { "fr": "Décaféiné", "en": "Decaf" }, "desc": { "fr": "Shot de café décaféiné", "en": "Decaffeinated coffee shot" }, "price": "2,50€" },
+          { "name": { "fr": "Latte", "en": "Latte" }, "desc": { "fr": "Shot de café, lait, mousse de lait", "en": "Coffee, milk, milk foam" }, "price": "4,50€" },
+          { "name": { "fr": "Flat White", "en": "Flat White" }, "desc": { "fr": "Double shot, micro mousse de lait", "en": "Double shot, micro milk foam" }, "price": "4,50€" },
+          { "name": { "fr": "Cappuccino", "en": "Cappuccino" }, "desc": { "fr": "Shot de café, lait, mousse, cacao", "en": "Coffee, milk, foam, cocoa" }, "price": "4,50€" },
+          { "name": { "fr": "Affogato", "en": "Affogato" }, "desc": { "fr": "Shot de café, boule de glace", "en": "Coffee shot with vanilla ice cream" }, "price": "4,50€" },
+          { "name": { "fr": "Mocha", "en": "Mocha" }, "desc": { "fr": "Shot de café, cacao, lait", "en": "Coffee, cocoa, milk" }, "price": "4,50€" },
+          { "name": { "fr": "Caramel Macchiato", "en": "Caramel Macchiato" }, "desc": { "fr": "Shot de café, lait, sirop de vanille, coulis caramel, crème fouettée", "en": "Coffee, milk, vanilla syrup, caramel sauce, whipped cream" }, "price": "5€" },
+          { "name": { "fr": "Ubé Latte", "en": "Ube Latte" }, "desc": { "fr": "Poudre d'ubé Dioscorea alata, lait", "en": "Ube powder, milk" }, "price": "5€" },
+          { "name": { "fr": "Thé", "en": "Tea" }, "desc": { "fr": "Thé, eau chaude", "en": "Tea, hot water" }, "price": "3,50€" },
+          { "name": { "fr": "Thé Dammann", "en": "Dammann Tea" }, "desc": { "fr": "Sélection Dammann, eau chaude", "en": "Dammann selection, hot water" }, "price": "3,50€" },
+          { "name": { "fr": "Thé Matcha", "en": "Matcha Tea" }, "desc": { "fr": "Thé matcha cérémonial Seijaku, lait — +1€ purée fraise", "en": "Ceremonial Seijaku matcha, milk — +1€ strawberry purée" }, "price": "5€", "badges": ["bio"] },
+          { "name": { "fr": "Chocolat Chaud", "en": "Hot Chocolate" }, "desc": { "fr": "Pur cacao, lait", "en": "Pure cocoa, milk" }, "price": "4,50€" }
+        ]
+      },
+      {
+        "title": { "fr": "Choco Signatures — M 5,50€ / L 6,50€", "en": "Signature Hot Chocolates — M €5.50 / L €6.50" },
+        "items": [
+          { "name": { "fr": "Choco-Kinder", "en": "Choco-Kinder" }, "desc": { "fr": "Cacao, lait, crème fouettée, coulis choco, Kinder", "en": "Cocoa, milk, whipped cream, chocolate sauce, Kinder" } },
+          { "name": { "fr": "Choco-Snickers", "en": "Choco-Snickers" }, "desc": { "fr": "Cacao, lait, crème fouettée, coulis caramel, Snickers", "en": "Cocoa, milk, whipped cream, caramel sauce, Snickers" } },
+          { "name": { "fr": "Choco-Oreo", "en": "Choco-Oreo" }, "desc": { "fr": "Cacao, lait, crème fouettée, coulis choco, Oreo", "en": "Cocoa, milk, whipped cream, chocolate sauce, Oreo" } },
+          { "name": { "fr": "Choco-KitKat", "en": "Choco-KitKat" }, "desc": { "fr": "Cacao, lait, crème fouettée, coulis choco, KitKat", "en": "Cocoa, milk, whipped cream, chocolate sauce, KitKat" } },
+          { "name": { "fr": "Choco-Marshmallow", "en": "Choco-Marshmallow" }, "desc": { "fr": "Cacao, lait, crème fouettée, coulis choco, marshmallow", "en": "Cocoa, milk, whipped cream, chocolate sauce, marshmallow" } }
+        ]
+      }
+    ]
+  },
+  "boissons-froides": {
+    "image": "assets/images/boisson_froide.png",
+    "sections": [
+      {
+        "title": { "fr": "Froids — M / L", "en": "Cold — M / L" },
+        "items": [
+          { "name": { "fr": "Citronnade", "en": "Lemonade" }, "desc": { "fr": "Citron pressé, eau, sucre de canne, glace", "en": "Fresh lemon, water, cane sugar, ice" }, "price": "3,25€ / 4€" },
+          { "name": { "fr": "Thé Glacé", "en": "Iced Tea" }, "desc": { "fr": "Thé noir Laokhowa, sirop, eau, glace", "en": "Laokhowa black tea, syrup, water, ice" }, "price": "3,25€ / 4€", "badges": ["bio"] },
+          { "name": { "fr": "Smoothies", "en": "Smoothies" }, "desc": { "fr": "Fruits du moment, glace", "en": "Seasonal fruits, ice" }, "price": "4,75€ / 5,75€" },
+          { "name": { "fr": "Vendée Cola / Cola Zéro", "en": "Vendée Cola / Cola Zero" }, "desc": { "fr": "Bouteille en verre 25 cl", "en": "25cl glass bottle" }, "price": "4€", "vendee": true },
+          { "name": { "fr": "Vendée Limonade", "en": "Vendée Lemonade" }, "desc": { "fr": "Bouteille en verre 25 cl", "en": "25cl glass bottle" }, "price": "3,50€", "vendee": true },
+          { "name": { "fr": "Vendée Diabolo", "en": "Vendée Diabolo" }, "desc": { "fr": "Vendée limonade, sirop, glace", "en": "Vendée lemonade, syrup, ice" }, "price": "2,50€", "vendee": true }
+        ]
+      },
+      {
+        "title": { "fr": "Cafés Glacés", "en": "Iced Coffees" },
+        "items": [
+          { "name": { "fr": "Latte Glacé", "en": "Iced Latte" }, "desc": { "fr": "Café, lait, mousse, glace", "en": "Coffee, milk, foam, ice" }, "price": "4,50€" },
+          { "name": { "fr": "Flat White Glacé", "en": "Iced Flat White" }, "desc": { "fr": "Double café, micro mousse, glace", "en": "Double coffee, micro foam, ice" }, "price": "4,50€" },
+          { "name": { "fr": "Americano Glacé", "en": "Iced Americano" }, "desc": { "fr": "Café, eau, glace", "en": "Coffee, water, ice" }, "price": "2,50€" },
+          { "name": { "fr": "Mocha Glacé", "en": "Iced Mocha" }, "desc": { "fr": "Café, cacao, lait, glace", "en": "Coffee, cocoa, milk, ice" }, "price": "4,90€" },
+          { "name": { "fr": "Cappuccino Glacé", "en": "Iced Cappuccino" }, "desc": { "fr": "Café, lait, mousse, cacao, glace", "en": "Coffee, milk, foam, cocoa, ice" }, "price": "4,50€" },
+          { "name": { "fr": "Chocolat Glacé", "en": "Iced Hot Chocolate" }, "desc": { "fr": "Pur cacao, lait, glace", "en": "Pure cocoa, milk, ice" }, "price": "4,50€" },
+          { "name": { "fr": "Thé Matcha Glacé", "en": "Iced Matcha Tea" }, "desc": { "fr": "Matcha cérémonial Seijaku, lait, glace — +1€ purée fraise", "en": "Ceremonial Seijaku matcha, milk, ice — +1€ strawberry purée" }, "price": "5€", "badges": ["bio"] },
+          { "name": { "fr": "Ubé Latte Glacé", "en": "Iced Ube Latte" }, "desc": { "fr": "Poudre d'ubé Dioscorea alata, lait, glace", "en": "Ube powder, milk, ice" }, "price": "5€" },
+          { "name": { "fr": "Lait Aromatisé", "en": "Flavored Milk" }, "desc": { "fr": "Lait, sirop, glace", "en": "Milk, syrup, ice" }, "price": "2,90€" }
+        ]
+      },
+      {
+        "title": { "fr": "Suppléments", "en": "Add-ons" },
+        "items": [
+          { "name": { "fr": "Bouteille d'eau 50cl", "en": "50cl water bottle" }, "price": "2,50€" },
+          { "name": { "fr": "Extra sirop / crème / lait de vache", "en": "Extra syrup / cream / cow milk" }, "price": "0,50€" },
+          { "name": { "fr": "Extra topping ou lait végétal", "en": "Extra topping or plant milk" }, "price": "1€" }
+        ]
+      }
+    ]
+  },
+  "sandwichs": {
+    "image": "assets/images/sandwich.png",
+    "sections": [
+      {
+        "title": { "fr": "Salé", "en": "Savory" },
+        "items": [
+          { "name": { "fr": "Le Nordique", "en": "The Nordic" }, "desc": { "fr": "Pain brioché, truite fumée, concombre, cream cheese, ciboulette, roquette", "en": "Brioche bread, smoked trout, cucumber, cream cheese, chives, arugula" }, "price": "7€" },
+          { "name": { "fr": "Le Gourmand", "en": "The Gourmet" }, "desc": { "fr": "Pain brioché, poulet rôti, parmesan, confit d'oignons, mayo, salade", "en": "Brioche bread, roast chicken, parmesan, onion confit, mayo, salad" }, "price": "6,50€" },
+          { "name": { "fr": "Le Vendéen", "en": "The Vendéen" }, "desc": { "fr": "Pain brioché, jambon de Vendée, comté, pesto vert, mâche", "en": "Brioche bread, Vendée ham, comté cheese, green pesto, lamb's lettuce" }, "price": "6,50€", "vendee": true },
+          { "name": { "fr": "Le Méditerranéen", "en": "The Mediterranean" }, "desc": { "fr": "Pain brioché, tomate, mozzarella, pesto vert, salade", "en": "Brioche bread, tomato, mozzarella, green pesto, salad" }, "price": "6€" }
+        ]
+      }
+    ]
+  },
+  "glaces": {
+    "image": "assets/images/glaces.png",
+    "sections": [
+      {
+        "title": { "fr": "Boules", "en": "Scoops" },
+        "items": [
+          { "name": { "fr": "2 Boules", "en": "2 Scoops" }, "desc": { "fr": "Au choix — vanille, caramel, chocolat, fraise, mangue, expresso, amarena", "en": "Choose from — vanilla, caramel, chocolate, strawberry, mango, espresso, amarena" }, "price": "3,50€" },
+          { "name": { "fr": "3 Boules", "en": "3 Scoops" }, "desc": { "fr": "Au choix — vanille, caramel, chocolat, fraise, mangue, expresso, amarena", "en": "Choose from — vanilla, caramel, chocolate, strawberry, mango, espresso, amarena" }, "price": "4,50€" }
+        ]
+      },
+      {
+        "title": { "fr": "Affogatos Créations", "en": "Affogato Creations" },
+        "items": [
+          { "name": { "fr": "Affogato Classique", "en": "Classic Affogato" }, "desc": { "fr": "Shot de café, boule de glace vanille", "en": "Coffee shot, vanilla ice cream scoop" }, "price": "4,50€" },
+          { "name": { "fr": "Dark Affogato", "en": "Dark Affogato" }, "desc": { "fr": "Chocolat, café, expresso, crème fouettée, coulis chocolat, copeaux chocolat noir", "en": "Chocolate, coffee, espresso, whipped cream, chocolate sauce, dark chocolate shavings" }, "price": "6,50€" }
+        ]
+      },
+      {
+        "title": { "fr": "Coupes Créations", "en": "Signature Cups" },
+        "items": [
+          { "name": { "fr": "La Gourmande", "en": "The Gourmet" }, "desc": { "fr": "Vanille, caramel, chocolat, crème fouettée, coulis choco & caramel, éclats Oreo", "en": "Vanilla, caramel, chocolate, whipped cream, chocolate & caramel sauce, Oreo bits" }, "price": "7€" },
+          { "name": { "fr": "La Caramel", "en": "The Caramel" }, "desc": { "fr": "Vanille, 2× caramel, crème fouettée, coulis caramel, éclats spéculoos", "en": "Vanilla, 2× caramel, whipped cream, caramel sauce, speculoos bits" }, "price": "7€" },
+          { "name": { "fr": "La Tropicale", "en": "The Tropical" }, "desc": { "fr": "Vanille, fraise, mangue, crème fouettée, coulis fruits rouges, coco râpée", "en": "Vanilla, strawberry, mango, whipped cream, red fruit sauce, shredded coconut" }, "price": "7€" },
+          { "name": { "fr": "La Amarena", "en": "The Amarena" }, "desc": { "fr": "Vanille, cerise amarena, chocolat, crème fouettée, coulis fruits rouges", "en": "Vanilla, amarena cherry, chocolate, whipped cream, red fruit sauce" }, "price": "7€" }
+        ]
+      }
+    ]
+  }
+}
