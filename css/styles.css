@@ -225,6 +225,17 @@ nav {
 .hero-wave { line-height: 0; overflow: hidden; margin-top: -92px; position: relative; z-index: 2; }
 .hero-wave svg { display: block; width: 100%; height: 38px; }
 
+/* Hero wave band — default invisible (mobile preserved as before) */
+.hero-wave-band svg { display: block; width: 100%; height: 36px; }
+.hero-wave-band svg path { fill: #FEF7EC; }
+
+/* Desktop only — visible curvy waves */
+@media (min-width: 769px) {
+  .hero-wave-band svg { height: 90px; }
+  .hero-wave-band svg path.wave-front { fill: #FFEEDC; }
+  .hero-wave-band svg path.wave-back { fill: #F4E2C5; }
+}
+
 /* ==========================================================================
    CATEGORIES
    ========================================================================== */
