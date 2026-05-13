@@ -3,6 +3,8 @@ node_modules/
 .netlify/
 .vscode/
 .idea/
+.claude/
+**/.claude/
 *.log
 .env
 .env.*
