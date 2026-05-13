@@ -218,7 +218,8 @@ nav {
 }
 .heart-deco { position: absolute; z-index: 2; }
 .heart-deco.h1 { top: 32px; left: 70px; }
-.heart-deco.h2 { top: 24px; right: 337px; }
+.heart-deco.h2 { top: 28px; left: 110px; }
+.heart-deco.h3 { top: 14px; right: 230px; transform: scale(0.85); }
 
 /* WAVES */
 .hero-wave { line-height: 0; overflow: hidden; margin-top: -92px; position: relative; z-index: 2; }
