@@ -124,17 +124,15 @@
     .hero-wave { line-height: 0; overflow: hidden; margin-top: -92px; position: relative; z-index: 2; }
     .hero-wave svg { display: block; width: 100%; height: 38px; }
 
-    /* Hero wave band — mobile keeps invisible (no change), desktop reveals curvy waves */
-    .hero-wave-band svg { display: block; width: 100%; height: 36px; }
-    .hero-wave-band svg path { fill: #FEF7EC; }
+    /* Hero wave band — hidden on mobile (zero space), visible desktop only */
+    .hero-wave-band { display: none; }
     @media (min-width: 769px) {
-      /* Wave compacte, juste au-dessus de "Nos Délices" */
-      .hero-wave-band svg { height: 36px; }
+      .hero-wave-band { display: block; margin-bottom: -4px !important; }
+      .hero-wave-band svg { display: block; width: 100%; height: 36px; }
       .hero-wave-band svg path.wave-front { fill: #FFEEDC; }
       .hero-wave-band svg path.wave-back { fill: #F4E2C5; }
       /* Réduit l'espace au-dessus de "Nos Délices" */
       .categories { padding-top: 0 !important; }
-      .hero-wave-band { margin-bottom: -4px !important; }
       .categories > div:nth-child(2) { padding-top: 0 !important; padding-bottom: 8px !important; }
     }
 
