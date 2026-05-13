@@ -128,9 +128,13 @@
     .hero-wave-band svg { display: block; width: 100%; height: 36px; }
     .hero-wave-band svg path { fill: #FEF7EC; }
     @media (min-width: 769px) {
-      .hero-wave-band svg { height: 90px; }
+      /* Wave compacte, juste au-dessus de "Nos Délices" */
+      .hero-wave-band svg { height: 54px; }
       .hero-wave-band svg path.wave-front { fill: #FFEEDC; }
       .hero-wave-band svg path.wave-back { fill: #F4E2C5; }
+      /* Réduit l'espace au-dessus de "Nos Délices" */
+      .categories { padding-top: 0 !important; }
+      .hero-wave-band { margin-bottom: 6px; }
     }
 
     /* CATEGORIES */
