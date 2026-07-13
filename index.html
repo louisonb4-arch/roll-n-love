@@ -72,6 +72,7 @@
     /* NAV */
     nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 70px; background: var(--cream); border-bottom: 1.5px solid var(--beige-border); overflow: hidden; }
     .logo-img { height: 60px; width: auto; display: block; }
+    @media (min-width: 769px) { nav { height: calc(70px - 0.23cm); } }
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { font-family: 'Scripter', cursive; font-size: 20.0px; text-decoration: none; color: var(--brown); opacity: 0.65; cursor: pointer; }
     .nav-links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
@@ -114,18 +115,34 @@
     }
     .hero-right { position: relative; display: flex; align-items: center; justify-content: center; padding: 0 48px 0 0; overflow: hidden; }
     .hero-img { width: 100%; max-width: 552px; height: auto; object-fit: contain; display: block; position: relative; z-index: 1; transform: translateY(-0.2cm); }
+    /* ── HERO DESKTOP BACKGROUND ── */
+    @media (min-width: 769px) {
+      .logo-img { height: 78px; }
+      .hero-section {
+        background: url('hero-bg.png') 55% center / cover no-repeat;
+        min-height: 520px;
+        grid-template-columns: 55% 45%;
+        margin-top: calc(-12px - 1cm);
+      }
+      .hero-right { display: none; }
+      .hero-left {
+        padding: 40px 40px 60px 3cm;
+        justify-content: center;
+        background: linear-gradient(to right, rgba(255,238,220,0.80) 55%, transparent 100%);
+      }
+    }
     .badge-gourmand { position: absolute; top: 64px; right: 146px; width: 95px; height: 95px; transform: rotate(12deg); z-index: 3; }
     .heart-deco { position: absolute; z-index: 2; }
     .heart-deco.h1 { top: 32px; left: 70px; }
-    .heart-deco.h2 { top: 40px; right: 360px; }
-    .heart-deco.h3 { top: 31px; right: 540px; }
+    .heart-deco.h2 { top: 24px; right: 337px; }
 
     /* WAVE */
-    .hero-wave { line-height: 0; overflow: hidden; margin-top: -50px; position: relative; z-index: 3; }
+    .hero-wave { line-height: 0; overflow: hidden; margin-top: -92px; position: relative; z-index: 2; }
+    .hero-wave svg { display: block; width: 100%; height: 38px; }
 
     /* CATEGORIES */
-    .categories-top-wave { display: none; }
-    .categories { background: var(--beige-card); padding: 18px 24px; position: relative; z-index: 1; margin-top: -10px; }
+    .categories { background: linear-gradient(to bottom, transparent 50px, var(--beige-card) 50px); padding: 18px 24px; position: relative; z-index: 1; margin-top: -50px; }
+    @media (min-width: 769px) { .categories { margin-top: calc(-50px - 0.75cm); } }
     .categories-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
     .cat-card { background: var(--cream); border: 1.5px solid var(--beige-border); border-radius: 14px; padding: 12px 8px 12px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; transition: transform 0.15s; }
     .cat-card .cat-title { order: 1; }
@@ -143,6 +160,12 @@
     .cat-photo-fallback { font-size: 70px; display: none; }
     .cat-title { font-size: 19px; color: var(--brown); line-height: 1.25; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 900; height: 2.5em; display: flex; align-items: center; justify-content: center; width: 100%; }
     .cat-desc { font-size: 15px; color: var(--brown); opacity: 0.6; line-height: 1.4; }
+    @media (min-width: 769px) {
+      .cat-card { padding: 11px 8px 11px; gap: 5px; }
+      .cat-card .cat-img-wrap { margin-top: 4px; }
+      .cat-img-wrap { width: 128px; height: 128px; }
+      .cat-title { height: 2.25em; }
+    }
 
     /* VALUES */
     .values-bar { background: var(--beige-card); border-top: 1.5px solid var(--beige-border); padding: 16px 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -379,11 +402,11 @@
       .heart-deco.h3 { right: calc(44px + 1.1cm); left: auto; top: calc(68px + 0.7cm); transform: scale(0.91); }
 
       /* WAVE */
-      .hero-wave { display: none; }
-      .categories-top-wave { margin: -20px -8px 0; }
+      .hero-wave { margin-top: 0; position: relative; z-index: 3; }
+      .hero-wave svg { height: 22px; }
 
       /* CATEGORIES */
-      .categories { padding: 0 8px 20px; margin-top: -3.5cm; background: linear-gradient(to bottom, transparent 50px, var(--beige-card) 50px); }
+      .categories { padding: 0 8px 20px; margin-top: -3.5cm; background: linear-gradient(to bottom, transparent 50px, var(--beige-card) 50px); position: relative; z-index: 2; }
       .categories-grid { grid-template-columns: repeat(4, 1fr); gap: 7px; }
       .categories-grid .cat-card:nth-child(5) { display: none; }
       .cat-card {
@@ -660,14 +683,8 @@
       </div>
     </div>
 
-    <div class="hero-wave">
-      <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;">
-        <path class="wave-anim-1" d="M0,25 C200,50 400,0 600,25 C800,50 1000,5 1200,30 C1320,42 1400,20 1440,25 L1440,50 L0,50 Z" fill="#FEF7EC"/>
-      </svg>
-    </div>
-
     <div class="categories">
-      <div class="categories-top-wave" style="line-height:0;position:relative;z-index:1;">
+      <div style="margin:-18px -24px 0;line-height:0;position:relative;z-index:1;">
         <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;">
           <path class="wave-anim-1" d="M0,25 C200,50 400,0 600,25 C800,50 1000,5 1200,30 C1320,42 1400,20 1440,25 L1440,50 L0,50 Z" fill="#FEF7EC"/>
         </svg>
@@ -865,12 +882,6 @@
 
   </section>
 
-  <div style="line-height:0;overflow:hidden;">
-    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;">
-      <path class="wave-anim-1" d="M0,25 C200,50 400,0 600,25 C800,50 1000,5 1200,30 C1320,42 1400,20 1440,25 L1440,50 L0,50 Z" fill="#FEF7EC"/>
-    </svg>
-  </div>
-
   <section id="offres">
     <div class="page-header"><h2>Nos Offres</h2><div class="heart-line">♡</div></div>
     <p class="offres-subtitle">Des formules pensées pour toutes les envies, seul ou à partager.</p>
@@ -1003,12 +1014,6 @@
       </div>
     </div>
   </section>
-
-  <div style="line-height:0;overflow:hidden;">
-    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:50px;">
-      <path class="wave-anim-1" d="M0,40 C150,10 350,50 600,20 C850,0 1100,45 1440,15 L1440,50 L0,50 Z" fill="#FEF7EC"/>
-    </svg>
-  </div>
 
   <section id="contact">
     <div class="page-header"><h2>Contact & Accès</h2><div class="heart-line">♡</div></div>
