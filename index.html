@@ -1062,7 +1062,10 @@
 
   <footer style="background:var(--brown);color:var(--cream);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 28px;padding:18px 80px;font-size:14px;">
     <span style="opacity:0.6;">© 2025 Roll in Love — Tous droits réservés</span>
-    <nav aria-label="Liens légaux" style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;">
+    <!-- Les propriétés ci-dessous neutralisent la règle `nav { position:sticky; height:70px;
+         background:var(--cream); border-bottom:… }` qui stylise l'en-tête du site : elle frappe
+         aussi ce <nav>, et rendait les liens crème invisibles sur un bloc crème. -->
+    <nav aria-label="Liens légaux" style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;position:static;height:auto;background:none;border:0;padding:0;overflow:visible;z-index:auto;justify-content:flex-start;">
       <a href="mentions-legales.html" style="color:var(--cream);text-decoration:underline;text-underline-offset:3px;">Mentions légales</a>
       <span style="opacity:0.4;" aria-hidden="true">·</span>
       <a href="confidentialite.html" style="color:var(--cream);text-decoration:underline;text-underline-offset:3px;">Confidentialité</a>

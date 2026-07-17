@@ -61,7 +61,11 @@ footer a:focus-visible { outline-color: var(--cream); }
 .skip-link:focus { left: 0; }
 
 /* ── NAV — repris du site ────────────────────────────────── */
-nav {
+/* Le :not() est nécessaire : le pied de page contient lui aussi un <nav> (les
+   liens légaux). Sans exclusion, il héritait de la hauteur, du fond crème et du
+   position:sticky de l'en-tête — ses liens, crème eux aussi, devenaient
+   invisibles dans un bloc crème de 70 px. */
+nav:not(.foot-legal-links) {
   position: sticky; top: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 40px; height: 70px;
@@ -76,7 +80,7 @@ nav {
   text-decoration: none; color: var(--brown); opacity: .65;
 }
 .nav-links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
-@media (max-width: 900px) { .nav-links { display: none; } nav { padding: 0 20px; } }
+@media (max-width: 900px) { .nav-links { display: none; } nav:not(.foot-legal-links) { padding: 0 20px; } }
 
 /* ── EN-TÊTE DE PAGE ─────────────────────────────────────── */
 .legal-head {
