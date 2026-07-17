@@ -1045,15 +1045,31 @@
           </div>
         </div>
       </div>
-      <div style="border-radius:18px;overflow:hidden;box-shadow:0 8px 32px rgba(66,32,12,0.12);height:300px;">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2703.1!2d-2.054700!3d46.794700!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48028e3b9d9f4b6b%3A0x9e0e5a5a5a5a5a5a!2s32+Rue+Neuve%2C+85160+Saint-Jean-de-Monts!5e0!3m2!1sfr!2sfr!4v1" width="100%" height="100%" style="border:0;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <!-- Accès : lien sortant vers Google Maps, et non carte intégrée.
+           Une <iframe> Google Maps transmettrait l'IP de chaque visiteur à Google
+           dès l'ouverture de la page, sans consentement, et imposerait une bannière
+           cookies. Ici, rien n'est chargé depuis Google tant que vous ne cliquez pas.
+           Voir confidentialite.html#cookies -->
+      <div style="border-radius:18px;box-shadow:0 8px 32px rgba(66,32,12,0.12);height:300px;background:var(--cream);border:1.5px solid var(--beige-border);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;gap:6px;">
+        <span style="font-size:34px;line-height:1;" aria-hidden="true">📍</span>
+        <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.4;font-weight:700;margin-top:6px;">Nous trouver</div>
+        <div style="font-size:20px;font-weight:700;line-height:1.4;margin-top:2px;">32 Rue Neuve<br>85160 Saint-Jean-de-Monts</div>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=32+Rue+Neuve+85160+Saint-Jean-de-Monts" target="_blank" rel="noopener noreferrer" style="margin-top:14px;background:var(--brown);color:var(--cream);font-family:'Scripter',cursive;font-size:17px;border-radius:50px;padding:10px 24px;text-decoration:none;display:inline-block;">Ouvrir l'itinéraire ♡</a>
+        <div style="font-size:12.5px;opacity:0.5;margin-top:8px;">S'ouvre dans Google Maps, dans un nouvel onglet.</div>
       </div>
     </div>
   </section>
 
-  <footer style="background:var(--brown);color:var(--cream);display:flex;justify-content:space-between;align-items:center;padding:18px 80px;font-size:14px;">
+  <footer style="background:var(--brown);color:var(--cream);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 28px;padding:18px 80px;font-size:14px;">
     <span style="opacity:0.6;">© 2025 Roll in Love — Tous droits réservés</span>
-    <span style="opacity:0.6;">Fait avec ♡ à Saint-Jean-de-Monts</span>
+    <nav aria-label="Liens légaux" style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;">
+      <a href="mentions-legales.html" style="color:var(--cream);text-decoration:underline;text-underline-offset:3px;">Mentions légales</a>
+      <span style="opacity:0.4;" aria-hidden="true">·</span>
+      <a href="confidentialite.html" style="color:var(--cream);text-decoration:underline;text-underline-offset:3px;">Confidentialité</a>
+      <span style="opacity:0.4;" aria-hidden="true">·</span>
+      <a href="confidentialite.html#cookies" style="color:var(--cream);text-decoration:underline;text-underline-offset:3px;">Cookies</a>
+    </nav>
+    <span style="opacity:0.6;">Fait avec ♡ à Saint-Jean-de-Monts · Création <a href="https://vokumagency.com" target="_blank" rel="noopener" style="color:var(--cream);text-decoration:underline;text-underline-offset:3px;">Vokum</a></span>
   </footer>
 
   <script>

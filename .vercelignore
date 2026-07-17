@@ -1,0 +1,12 @@
+# ============================================================================
+# Fichiers présents dans le dépôt mais NON déployés.
+# ----------------------------------------------------------------------------
+# index_4.html — maquette abandonnée, suivie par git, orpheline (aucune page
+# n'y renvoie). Sans cette exclusion elle reste servie publiquement à l'adresse
+# /index_4.html : elle est indexable, elle n'a pas de pages légales, et surtout
+# elle contient encore l'<iframe> Google Maps retirée d'index.html le
+# 17 juillet 2026 — elle transmettrait donc l'IP des visiteurs à Google sans
+# consentement, ce que la page confidentialite.html affirme ne pas faire.
+# Le fichier n'est pas supprimé : il est seulement retiré du déploiement.
+# ============================================================================
+index_4.html
