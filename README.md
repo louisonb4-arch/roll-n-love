@@ -1,145 +1,94 @@
 # Roll in Love — Site officiel
 
-Site vitrine + carte du coffee shop **Roll in Love** à Saint-Jean-de-Monts.
-Stack légère, vanilla : HTML, CSS, JavaScript. Multilingue FR/EN. Admin via Decap CMS.
+Site vitrine + carte du coffee shop **Roll in Love**, 32 rue Neuve à Saint-Jean-de-Monts.
+Statique, sans framework ni étape de build : HTML, CSS et JavaScript écrits à la main.
+
+En ligne : <https://rollinlove.com>
 
 ## 📁 Structure
 
 ```
-Roll-in-love/
-├── index.html              # Page principale
-├── css/styles.css          # Styles (fonts, layout, responsive)
-├── js/
-│   ├── i18n.js             # Système de traduction FR/EN
-│   ├── menu.js             # Charge data/menu.json et rend la carte
-│   ├── testimonials.js     # Charge data/testimonials.json
-│   └── main.js             # Tabs, animations, drag-scroll
-├── lang/
-│   ├── fr.json             # Toutes les chaînes UI en français
-│   └── en.json             # Toutes les chaînes UI en anglais
-├── data/
-│   ├── menu.json           # Carte (FR + EN), éditable via admin
-│   └── testimonials.json   # Avis clients, éditable via admin
-├── admin/
-│   ├── index.html          # Interface Decap CMS
-│   └── config.yml          # Configuration des collections
+roll-n-love/
+├── index.html              # Page d'accueil — SEULE SOURCE DE VÉRITÉ du contenu.
+│                           # Styles dans un <style> en tête, scripts en bas de <body>,
+│                           # police Scripter intégrée en base64 (évite un FOUT).
+├── mentions-legales.html   # Pages légales, partagent legal.css
+├── confidentialite.html
+├── legal.css               # Styles des seules pages légales
+├── css/intro.css           # Animation d'ouverture « Le roll se déroule »
+├── js/intro.js             # idem — composant isolé, aucune dépendance
 ├── assets/
-│   ├── fonts/              # Scripter (woff + woff2)
-│   └── images/             # Logos, photos, hero, stories
-└── netlify.toml            # Config Netlify (headers, cache)
+│   ├── fonts/              # Scripter (woff + woff2), utilisées par legal.css
+│   └── images/             # Toutes les images du site, en WebP
+│       ├── favicon-32.png  # icônes et image de partage : PNG/JPEG, pas WebP
+│       ├── apple-touch-icon.png
+│       ├── og-image.jpg    # 1200×630, sans transparence
+│       └── src/            # sources non compressées, NON versionnées (voir plus bas)
+├── robots.txt
+├── sitemap.xml
+└── vercel.json             # en-têtes de sécurité et de cache
 ```
+
+## ⚠️ Où se modifie le contenu
+
+**Tout est dans `index.html`.** La carte, les prix, les avis, les horaires et les textes y
+sont écrits en dur. Il n'y a **ni back-office, ni fichier de données, ni système de
+traduction** : ils ont existé, mais ne pilotaient rien et ont été retirés le 7 août 2026
+(voir `LEGAL-TODO.md` § 5.2).
+
+Concrètement :
+
+- modifier un prix ou un produit → chercher son nom dans `index.html` ;
+- ajouter un avis → dupliquer un bloc `.testi-card` dans la rangée voulue ;
+- changer les horaires → deux endroits, le bloc visible **et** le JSON-LD en tête de page.
+
+Le site est **monolingue (français)**. Il n'y a pas de sélecteur de langue.
 
 ## 🚀 Lancer en local
 
-Le site doit être servi par un serveur HTTP (les `fetch()` ne marchent pas en `file://`).
+Aucune dépendance à installer. Un simple serveur HTTP suffit :
 
 ```bash
-cd "/Users/louisonbobin/Desktop/Roll-in-love"
-
-# Option 1 — Python (déjà installé sur macOS)
+cd /Users/louisonbobin/roll-n-love
 python3 -m http.server 8000
-
-# Option 2 — Node
-npx serve .
-
-# Option 3 — Live Server (VS Code) → clic droit sur index.html > "Open with Live Server"
 ```
 
-Puis ouvre [http://localhost:8000](http://localhost:8000).
+Puis <http://localhost:8000>.
 
-## 🌍 Multilingue (FR / EN)
+L'animation d'ouverture ne joue **qu'une fois par session**. Pour la revoir :
+ajouter `?intro` à l'URL, ou taper `RollInLoveIntro.replay()` dans la console.
+Elle ne joue pas du tout si le système est réglé sur « animations réduites ».
 
-- Le sélecteur **FR / EN** est dans la barre de navigation.
-- La langue est détectée à la première visite (browser) puis stockée en `localStorage`.
-- Tous les textes statiques sont dans `lang/fr.json` et `lang/en.json`.
-- Le menu est dans `data/menu.json` avec des champs `{ "fr": "...", "en": "..." }` pour chaque nom et description.
+## 🖼️ Régénérer les images
 
-### Ajouter une chaîne traduite
+Les sources non compressées vivent dans `assets/images/src/`, **volontairement hors git**
+(elles pèsent 18 Mo). Elles restent récupérables dans l'historique :
 
-1. Dans le HTML, ajouter `data-i18n="section.cle"` sur l'élément (ou `data-i18n-html` si la valeur contient du HTML).
-2. Dans `lang/fr.json` et `lang/en.json`, ajouter la clé sous la section correspondante.
-
-Exemple :
-```html
-<button data-i18n="hero.ctaCommander">Commander</button>
-```
-```json
-// fr.json
-"hero": { "ctaCommander": "Commander" }
-// en.json
-"hero": { "ctaCommander": "Order" }
-```
-
-## 🌐 Déploiement Vercel
-
-### Étape 1 — Importer le repo dans Vercel
-
-1. https://vercel.com/new → "Import Git Repository" → choisir `roll-n-love`
-2. Framework preset : **Other** (site statique)
-3. Root directory : `.`
-4. **Deploy** → tu obtiens une URL `https://xxx.vercel.app`
-
-Le `vercel.json` à la racine gère déjà :
-- Headers de sécurité (X-Frame-Options, X-Content-Type-Options…)
-- Cache long pour `/assets`, court pour `/data` et `/lang`
-- Rewrite `/admin` → `/admin/index.html`
-
-À chaque `git push` sur `main`, Vercel redéploie automatiquement.
-
-### Étape 2 — Activer l'admin Decap CMS (OAuth GitHub)
-
-L'admin est sur `https://ton-site.vercel.app/admin`. Pour qu'il fonctionne en prod, il faut authentifier l'utilisateur via GitHub OAuth.
-
-**a. Créer une GitHub OAuth App**
-1. Va sur https://github.com/settings/developers → "OAuth Apps" → "New OAuth App"
-2. Application name : `Roll in Love Admin`
-3. Homepage URL : `https://ton-site.vercel.app`
-4. Authorization callback URL : `https://ton-site.vercel.app/api/callback`
-5. "Register application" → tu obtiens un **Client ID** + tu peux générer un **Client Secret**
-
-**b. Ajouter les variables d'env dans Vercel**
-1. Vercel → ton projet → "Settings" → "Environment Variables"
-2. Ajouter :
-   - `OAUTH_CLIENT_ID` = ton Client ID GitHub
-   - `OAUTH_CLIENT_SECRET` = ton Client Secret GitHub
-3. Cocher tous les environnements (Production, Preview, Development)
-4. **Save**, puis **Redeploy** depuis l'onglet Deployments
-
-**c. Mettre à jour `admin/config.yml`**
-Remplacer les 3 `REPLACE_ME.vercel.app` par ton vraie URL Vercel, puis :
 ```bash
-git add admin/config.yml && git commit -m "wire admin to vercel url" && git push
+git show a7feaa8~1:rolls.png > assets/images/src/rolls.png
 ```
 
-**d. Tester l'admin**
-1. Va sur `https://ton-site.vercel.app/admin`
-2. Clique "Login with GitHub"
-3. Tu autorises l'app → tu peux éditer la carte / avis / traductions !
+Les WebP sont dimensionnés à environ **2× la largeur d'affichage réellement mesurée** dans
+le navigateur, ce qui reste net sur écran haute densité sans transporter d'inutile. Les
+largeurs cibles et la qualité par image sont documentées dans le commit `7bd32d2`.
 
-### Comment marche l'OAuth
+> Les fichiers ne portent pas d'empreinte dans leur nom. `vercel.json` les met donc en
+> cache **30 jours** et non un an : une image remplacée sous le même nom met au pire un
+> mois à se propager. Pour un remplacement immédiat, changer aussi le nom du fichier.
 
-- `api/auth.js` redirige vers github.com/login/oauth/authorize avec ton Client ID
-- GitHub renvoie l'utilisateur sur `api/callback.js?code=...`
-- `callback.js` échange le code contre un access_token (avec ton Client Secret côté serveur)
-- Le token est passé à Decap CMS via `postMessage`, qui l'utilise pour commit sur ton repo
+## 🌐 Déploiement
 
-Aucun secret n'est exposé côté client.
+Projet statique sur Vercel, aucune commande de build. À chaque `git push` sur `main`,
+Vercel redéploie.
 
-### Champs éditables via l'admin
+`vercel.json` gère les en-têtes de sécurité (`X-Frame-Options`, `X-Content-Type-Options`,
+`Referrer-Policy`, `Permissions-Policy`) et le cache : un an immuable pour les polices,
+30 jours pour les images, revalidation systématique pour le HTML.
 
-- **La Carte** : nom/description/prix de chaque item (FR + EN), badges Bio, logo Vendée, image
-- **Avis Clients** : ajouter/supprimer/modifier les témoignages
-- **Traductions UI** : éditer les chaînes de l'interface
+## ✅ Ce qui reste à faire
 
-## 🔧 Personnalisation rapide
-
-- **Couleurs** : variables CSS en haut de `css/styles.css` (`--cream`, `--brown`, etc.)
-- **Police** : `assets/fonts/Scripter-Regular.woff2`
-- **Images** : remplacer dans `assets/images/`
-- **Horaires / téléphone / email** : `lang/fr.json` (clés `contact.*`) + JSON-LD dans `index.html`
-
-## ✅ TODO si tu veux aller plus loin
-
-- [ ] Optimiser les images (les PNG font 2 MB chacun → passer en WebP avec [squoosh.app](https://squoosh.app), gain ~10×)
-- [ ] Acheter le domaine `roll-in-love.fr` et le brancher sur Vercel (Project Settings → Domains)
-- [ ] Brancher un formulaire de contact via [Formspree](https://formspree.io) ou [Web3Forms](https://web3forms.com)
+- [ ] **Bloc hébergeur des mentions légales** — obligatoire (art. 6 III-1 LCEN), le site
+      est en ligne et les quatre champs sont vides. Voir `LEGAL-TODO.md` § 1.2.
+- [ ] **Capital social** et **directeur de la publication** — manquants, voir § 1.1.
+- [ ] Licence de la webfont Scripter à obtenir, ou remplacer la police.
+- [ ] `index.html` affiche « © 2025 » alors que les pages légales portent « © 2026 ».
