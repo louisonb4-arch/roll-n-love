@@ -256,10 +256,12 @@
     html.classList.remove('intro-active');
     html.classList.add('intro-running');
 
-    /* logo.png pèse près de 800 ko : sur une connexion lente il pourrait
-       n'arriver qu'après son étape. On attend son chargement, plafonné, pour
-       ne jamais révéler un cadre vide — sans jamais transformer l'intro en
-       écran de chargement (le plafond et les garde-fous priment). */
+    /* Le logo peut n'arriver qu'après son étape sur une connexion lente. On
+       attend son chargement, plafonné, pour ne jamais révéler un cadre vide —
+       sans jamais transformer l'intro en écran de chargement (le plafond et
+       les garde-fous priment). Depuis le passage en WebP il pèse 46 ko contre
+       788 ko auparavant : l'attente ne se déclenche donc plus qu'en cas de
+       réseau très dégradé. */
     var logoImg = overlay.querySelector('.rl-intro-logo');
     var logoShownAt = 0;
 
@@ -306,6 +308,12 @@
     } catch (e) {
       finish();                       /* jamais d'écran bloqué sur erreur */
     }
+    /* Dernier filet, armé au démarrage réel de l'intro et non au parse du
+       <head> : play() n'a lieu qu'au DOMContentLoaded, or sur connexion lente
+       le document peut mettre plusieurs secondes à arriver. Compté depuis le
+       chargement du script, ce délai était consommé avant même l'apparition
+       du premier point et coupait l'animation en cours de route. */
+    setTimeout(finish, 8000);
   }
 
   if (document.readyState === 'loading') {
@@ -314,6 +322,7 @@
     start();
   }
 
-  /* dernier filet, indépendant de la timeline */
-  setTimeout(finish, 8000);
+  /* Filet absolu, indépendant de start() : couvre le cas où DOMContentLoaded
+     ne se produirait jamais, sans quoi le pré-voile resterait à l'écran. */
+  setTimeout(finish, 20000);
 })();
