@@ -33,8 +33,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
 
-  <!-- L'image du hero est le LCP : on la demande avant que le CSS ne la découvre -->
-  <link rel="preload" as="image" href="/assets/images/hero-bg.webp" fetchpriority="high">
+  <!-- Le hero est le LCP : on le demande avant que le CSS ne le découvre. Les deux
+       visuels s'excluent (hero-bg en fond ≥769px, hero.webp dans .hero-right ≤768px),
+       donc chaque préchargement porte la même condition que sa règle CSS — sans quoi
+       chaque visiteur télécharge en priorité haute l'image qu'il ne verra jamais. -->
+  <link rel="preload" as="image" href="/assets/images/hero-bg.webp" media="(min-width: 769px)" fetchpriority="high">
+  <link rel="preload" as="image" href="/assets/images/hero.webp" media="(max-width: 768px)" fetchpriority="high">
 
   <!-- LocalBusiness Schema -->
   <script type="application/ld+json">
@@ -676,7 +680,7 @@
             <img src="assets/images/coeurs.webp" alt="" aria-hidden="true" style="position:absolute;left:-70px;top:-10px;width:130px;height:auto;" decoding="async">
           </div>
         </span>
-        <img src="assets/images/hero.webp" alt="Roll in Love" class="hero-img" fetchpriority="high" decoding="async">
+        <img src="assets/images/hero.webp" alt="Roll in Love" class="hero-img" decoding="async">
         <div class="badge-gourmand">
           <svg viewBox="0 0 100 100" width="95" height="95">
             <path d="M50,5.25 Q53.48,8.27 57.27,7.28 Q60.73,6.38 63.18,9.14 Q65.55,11.81 69.11,11.86 Q72.58,11.91 74.04,15.15 Q75.44,18.27 78.74,19.35 Q81.93,20.39 82.26,23.87 Q82.57,27.22 85.42,29.22 Q88.17,31.16 87.35,34.54 Q86.56,37.79 88.71,40.52 Q90.78,43.17 88.86,46.18 Q87.01,49.09 88.27,52.37 Q89.47,55.54 86.60,57.88 Q83.82,60.15 84.17,63.58 Q84.50,66.88 81.23,68.32 Q78.08,69.71 77.47,73.10 Q76.89,76.38 73.43,76.79 Q70.10,77.18 68.47,80.14 Q66.90,82.99 63.50,82.35 Q60.23,81.73 57.73,84.12 Q55.33,86.41 52.00,84.80 Q48.79,83.24 45.53,84.88 Q42.39,86.47 39.97,84.18 Q37.64,81.98 34.38,82.64 Q31.24,83.27 29.67,80.43 Q28.15,77.70 24.82,77.28 Q21.60,76.88 20.98,73.55 Q20.39,70.34 17.27,68.88 Q14.26,67.47 14.56,64.14 Q14.85,60.93 12.08,58.69 Q9.40,56.52 10.55,53.25 Q11.65,50.10 9.87,47.15 Q8.14,44.30 10.07,41.47 Q11.93,38.73 11.14,35.48 Q10.37,32.32 12.93,30.19 Q15.39,28.13 15.70,24.81 Q16.00,21.61 18.94,20.28 Q21.77,19.00 22.93,15.85 Q24.05,12.80 27.26,12.56 Q30.34,12.33 32.44,9.77 Q34.47,7.28 37.66,7.93 Q40.73,8.56 43.28,6.68 Q45.72,4.87 48.76,5.74 Q50.00,5.25 50,5.25Z" fill="#42200C"/>
