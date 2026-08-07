@@ -162,10 +162,10 @@
               '<circle class="rl-intro-seed" cx="101.2" cy="100" r="2.6"></circle>' +
             '</g>' +
           '</svg>' +
-          '<span class="rl-intro-heart"><img src="coeurs.png" alt="" aria-hidden="true"></span>' +
+          '<span class="rl-intro-heart"><img src="assets/images/coeurs.webp" alt="" aria-hidden="true"></span>' +
         '</span>' +
         '<span class="rl-intro-logo-frame"><span class="rl-intro-logo-mask">' +
-          '<img class="rl-intro-logo" src="logo.png" alt="" aria-hidden="true">' +
+          '<img class="rl-intro-logo" src="assets/images/logo.webp" alt="" aria-hidden="true">' +
         '</span></span>' +
         '<p class="rl-intro-sign">Le roll fond, le cœur aussi.</p>' +
       '</div>';
