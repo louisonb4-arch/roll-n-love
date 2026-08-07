@@ -7,9 +7,12 @@
 > supposition.
 
 > ⚠️ **Ce site n'est pas comme les autres sites du lot.** Il **mesure réellement son
-> audience** (Vercel Web Analytics) et il a un **back-office** avec authentification. Les
-> formules « zéro cookie, zéro traceur, ce site ne sait rien de vous » employées ailleurs
-> **ne s'appliquent pas ici** et n'ont pas été reprises. Voir § 1.3 et § 4.
+> audience** (Vercel Web Analytics). Les formules « zéro cookie, zéro traceur, ce site ne sait
+> rien de vous » employées ailleurs **ne s'appliquent pas ici** et n'ont pas été reprises.
+> Voir § 1.3 et § 4.
+>
+> ℹ️ Mise à jour du 7 août 2026 : le **back-office a été supprimé** (§ 5.2). Le site est
+> redevenu purement statique. Seul Vercel Web Analytics subsiste comme traitement.
 
 ---
 
@@ -32,10 +35,14 @@ d'entité.
 
 ### 1.2 Hébergeur (article 6 III-1 LCEN — obligatoire)
 
-Nom, adresse, téléphone et site de l'hébergeur. **Le site n'est pas déployé** (aucun dossier
-`.vercel`, aucun domaine, `admin/config.yml` contient encore `https://REPLACE_ME.vercel.app`),
-donc les quatre champs sont vides dans `mentions-legales.html`, et la durée de conservation des
-journaux est vide dans `confidentialite.html`.
+Nom, adresse, téléphone et site de l'hébergeur. Les quatre champs sont **toujours vides** dans
+`mentions-legales.html`, et la durée de conservation des journaux est vide dans
+`confidentialite.html`.
+
+> 🔴 **Ce point est devenu bloquant.** Au 7 août 2026 le site **est en ligne**, sur le domaine
+> `https://rollinlove.com`. L'article 6 III-1 LCEN impose d'identifier l'hébergeur dès la mise à
+> disposition au public. Ces champs doivent être renseignés **maintenant**, à partir des
+> informations réelles du contrat d'hébergement — ils n'ont volontairement pas été devinés ici.
 
 Le projet est **configuré pour Vercel** (`vercel.json`, `/api/`, `@vercel/analytics`), mais tant
 que le déploiement n'a pas eu lieu, l'affirmer serait une supposition. **Conséquence en chaîne :
@@ -261,7 +268,7 @@ lieu d'être. Une section **« Allergènes »** a été ajoutée à la place : e
 | Comptes utilisateurs (visiteurs) | **aucun** |
 | Newsletter | **aucune** |
 | Paiement | **aucun** |
-| **Back-office** | **OUI — `/admin`, OAuth GitHub.** Voir § 6 |
+| **Back-office** | **aucun** — `/admin` et `/api` supprimés le 7 août 2026, voir § 5.2 |
 
 ### 🔴 Ce qui a été retiré : l'iframe Google Maps
 
@@ -308,41 +315,56 @@ traceur » ni « ce site ne sait rien de vous » sur ce site : ce serait faux.**
 
 ## 5. Anomalies techniques trouvées en chemin
 
-### 5.1 `index_4.html` — maquette abandonnée, déployable, avec l'iframe Google
+### 5.1 `index_4.html` — maquette abandonnée ✅ RÉSOLU
 
-`index_4.html` (2 Mo) traîne à la racine, **est suivie par git**, n'est référencée par aucune
-page, et **contient toujours l'iframe Google Maps**. Sans exclusion, elle serait servie
-publiquement à `/index_4.html` : indexable, sans pages légales, et **transmettant l'IP des
-visiteurs à Google** — contredisant ce qu'affirme `confidentialite.html`.
+`index_4.html` (2 Mo) traînait à la racine, était suivie par git, n'était référencée par aucune
+page, et **contenait toujours l'iframe Google Maps**. Elle avait d'abord été retirée du
+déploiement via `.vercelignore` sans être supprimée.
 
-**Un `.vercelignore` a été créé** pour la retirer du déploiement. **Le fichier n'a pas été
-supprimé.** À trancher : la supprimer proprement du dépôt, ou la garder hors ligne.
+**Le fichier a été supprimé du dépôt** (audit technique du 7 août 2026). L'historique git le
+conserve si besoin. La règle correspondante a été retirée de `.vercelignore`, devenue sans objet.
 
-### 5.2 🟠 Le back-office ne pilote rien
+### 5.2 Le back-office ne pilotait rien ✅ RÉSOLU — Decap retiré
 
-`admin/config.yml` (Decap CMS) écrit dans `data/menu.json`, `data/testimonials.json` et
-`lang/*.json`. **Or `index.html` ne lit aucun de ces fichiers** : la carte, les avis et les
+`admin/config.yml` (Decap CMS) écrivait dans `data/menu.json`, `data/testimonials.json` et
+`lang/*.json`. **Or `index.html` ne lisait aucun de ces fichiers** : la carte, les avis et les
 traductions y sont **codés en dur**. Aucun `fetch()`, aucune référence à `css/styles.css` ni à
-`js/*.js` — `index.html` est un fichier autonome où tout est inliné (y compris les images, en
-base64, d'où ses 2 Mo).
+`js/*.js`.
 
-**Conséquence : si la cliente modifie la carte depuis `/admin`, rien ne changera sur le site.**
-Le `README.md` décrit une architecture (`css/`, `js/`, `lang/`, `data/`) qui **n'est plus celle du
-site**. Ce n'est pas un problème juridique, mais c'est un problème réel à remonter.
+Pire : ces fichiers étaient un **instantané d'une version antérieure du site**. Les rebrancher
+aurait fait *reculer* le contenu — carte des glaces amputée de cinq produits réellement vendus
+(1 Boule, Golden Affogato, White Affogato, La Pistache, La Fraise), prix du Vendée Diabolo
+ramené de 4 € à 2,50 €, titre du hero remplacé par un ancien slogan.
 
-### 5.3 🟠 Back-office non configuré, et un point de sécurité
+**Décision (7 août 2026) : `index.html` devient la seule source de vérité.** Les fichiers morts
+(`css/styles.css`, `js/main.js`, `js/i18n.js`, `js/menu.js`, `js/testimonials.js`, `data/`,
+`lang/`) ont été supprimés. Les trois collections Decap dépendant exclusivement d'eux n'avaient
+plus d'objet : **`admin/` et `api/` ont été retirés**.
 
-- `admin/config.yml` contient encore `base_url: https://REPLACE_ME.vercel.app` et
-  `site_url: https://REPLACE_ME.vercel.app` → **le back-office ne fonctionne pas en l'état**.
-- `api/callback.js` transmet le jeton d'accès GitHub via
+> ⚠️ **Conséquence à remonter à la cliente : il n'y a plus de back-office.** Toute modification
+> de la carte, des avis ou des horaires passe désormais par une intervention sur `index.html`.
+> Si un back-office est souhaité, il devra être reconstruit **à partir du contenu actuel**, pas
+> des anciens JSON.
+
+### 5.3 Sécurité du back-office ✅ SANS OBJET — code retiré
+
+Pour mémoire, ce que contenait le code supprimé :
+
+- `admin/config.yml` contenait encore `base_url: https://REPLACE_ME.vercel.app` et
+  `site_url: https://REPLACE_ME.vercel.app` → le back-office ne fonctionnait pas en l'état.
+- `api/callback.js` transmettait le jeton d'accès GitHub via
   `window.opener.postMessage(message, '*')` — **origine cible en joker**. Le jeton (scope
-  `repo,user`, large) pourrait être lu par toute fenêtre ayant ouvert la page. **À restreindre à
-  l'origine du site.** Ce n'est pas un manquement RGPD, c'est une faiblesse de sécurité.
-- `api/callback.js` **ne pose aucun cookie de session** (vérifié : aucun `Set-Cookie`) — c'est ce
-  qui est écrit dans `confidentialite.html`.
-- `admin/index.html` charge Decap CMS depuis **`unpkg.com`** (CDN tiers). Cela ne concerne que
-  `/admin` : **aucune page publique ne charge quoi que ce soit depuis unpkg**. Décrit comme tel
-  dans `confidentialite.html`, sans le cacher.
+  `repo,user`, large) pouvait être lu par toute fenêtre ayant ouvert la page. Faiblesse de
+  sécurité réelle, **éliminée par la suppression du flux OAuth** plutôt que corrigée.
+- `api/auth.js` employait un `state` OAuth constant (`decap-cms`), jamais vérifié au retour :
+  le flux n'était pas protégé contre le CSRF.
+- `api/callback.js` ne posait aucun cookie de session (vérifié : aucun `Set-Cookie`).
+- `admin/index.html` chargeait Decap CMS depuis `unpkg.com` (CDN tiers), sur `/admin`
+  uniquement.
+
+Les sections correspondantes de `confidentialite.html` (« Le back-office ») et de
+`mentions-legales.html` (« Un espace d'administration existe ») **ont été retirées** : elles
+décrivaient un traitement de données qui n'a plus lieu.
 
 ### 5.4 Incohérences mineures
 
@@ -350,27 +372,25 @@ site**. Ce n'est pas un problème juridique, mais c'est un problème réel à re
   décembre 2025, que le site annonce « Ouverture 2026 » et que nous sommes en 2026. Les pages
   légales portent « © 2026 ». **Non corrigé** (contenu éditorial existant) — à trancher par le
   client, mais l'incohérence est visible entre les pages.
-- Les images existent **en double** : à la racine (utilisées par `index.html`) et dans
-  `assets/images/` (utilisées par personne). Idem pour la police. Poids mort, sans effet légal.
-- `README.md` : « Optimiser les images (les PNG font 2 MB chacun) » — toujours d'actualité,
-  `index.html` pèse 2 Mo.
+- ~~Les images existent **en double** : à la racine et dans `assets/images/`.~~ ✅ Résolu le
+  7 août 2026 : source unique dans `assets/images/`.
+- ~~`README.md` : « Optimiser les images (les PNG font 2 MB chacun) ».~~ ✅ Résolu le
+  7 août 2026 : images converties en WebP, `index.html` ramené de 2 Mo à ~90 Ko.
 
 ---
 
-## 6. Le back-office, du point de vue des données
+## 6. Le back-office, du point de vue des données — SANS OBJET
 
-Décrit honnêtement dans `confidentialite.html`, section « Le back-office ». En résumé :
+**Il n'y a plus de back-office depuis le 7 août 2026** (voir § 5.2). Le site est redevenu
+purement statique : aucune authentification, aucun traitement de données lié à
+l'administration, aucun appel à un CDN tiers sur aucune page.
 
-- `/admin` est une interface **réservée à l'exploitante**, non destinée aux visiteurs ;
-- l'authentification passe par **OAuth GitHub** (`/api/auth` → GitHub → `/api/callback`) : les
-  identifiants sont saisis **chez GitHub**, jamais sur ce site ;
-- **aucun cookie de session n'est posé par ce site** ;
-- la page `/admin` est **publiquement atteignable** (elle se charge), mais l'accès au contenu
-  suppose des droits sur le dépôt GitHub. Il ne faut donc pas écrire « inaccessible au public » —
-  la formule retenue est « réservé à l'exploitante, non accessible au public », ce qui décrit
-  l'autorisation, pas l'inatteignabilité de l'URL ;
-- **`confidentialite.html` n'écrit pas « aucun compte utilisateur »** tout court, mais « aucun
-  compte utilisateur **pour les visiteurs** ». La nuance est voulue.
+Les sections correspondantes ont été retirées de `confidentialite.html` et de
+`mentions-legales.html`. Le seul traitement de données restant est **Vercel Web Analytics**
+(§ 1.3 et § 4) et les **journaux de l'hébergeur**.
+
+> Si un back-office est réintroduit un jour, ces deux sections devront être réécrites **avant**
+> la mise en ligne de la fonctionnalité, et le § 1.3 réexaminé.
 
 ---
 
@@ -381,10 +401,11 @@ Décrit honnêtement dans `confidentialite.html`, section « Le back-office ». 
 - [ ] **Le projet Vercel est en plan Pro** (sinon : pas de DPA, pas de CCT — voir § 1.3)
 - [ ] Le bloc hébergeur est rempli (art. 6 III-1 LCEN)
 - [ ] La licence webfont de Scripter est obtenue ou la police est remplacée
-- [ ] `sitemap.xml` et `robots.txt` créés, pointant le vrai domaine
-- [ ] `admin/config.yml` : `REPLACE_ME` remplacé par l'URL réelle
-- [ ] `api/callback.js` : `postMessage` restreint à l'origine du site
-- [ ] `/index_4.html` renvoie bien **404** en production (test du `.vercelignore`)
+- [x] `sitemap.xml` et `robots.txt` créés, pointant `https://rollinlove.com` (7 août 2026)
+- [x] ~~`admin/config.yml` : `REPLACE_ME` remplacé~~ — sans objet, `admin/` supprimé (§ 5.2)
+- [x] ~~`api/callback.js` : `postMessage` restreint~~ — sans objet, `api/` supprimé (§ 5.3)
+- [x] ~~`/index_4.html` renvoie 404~~ — le fichier a été supprimé du dépôt (§ 5.1)
+- [ ] `/admin` et `/api/auth` renvoient bien **404** en production après redéploiement
 - [ ] Onglet Réseau : aucune requête tierce au chargement de l'accueil
 - [ ] `document.cookie` est vide sur l'accueil (⚠️ à tester **sur le site déployé** : en local,
       `/_vercel/insights/script.js` renvoie 404 et le script ne s'exécute pas. Noter aussi que le
