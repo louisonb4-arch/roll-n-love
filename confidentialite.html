@@ -42,7 +42,7 @@
       <strong>compte ses visites</strong>. Ce n'est pas rien, alors on le déroule en entier —
       quel outil, ce qu'il mesure, ce qu'il ne mesure pas, et ce qui reste à trancher.
     </p>
-    <p class="legal-maj">Dernière mise à jour : 17 juillet 2026</p>
+    <p class="legal-maj">Dernière mise à jour : 7 août 2026</p>
   </header>
 
   <div class="legal-wave" aria-hidden="true">
@@ -231,19 +231,38 @@
       <h2 id="cookies">Cookies</h2>
       <p>
         <strong>Ce site ne dépose aucun cookie</strong> — ni cookie de mesure d'audience, ni
-        cookie publicitaire, ni cookie de préférence, ni cookie strictement nécessaire. Il
-        n'utilise pas davantage le stockage local (<code>localStorage</code>,
-        <code>sessionStorage</code>) de votre navigateur.
+        cookie publicitaire, ni cookie de préférence, ni cookie strictement nécessaire.
       </p>
       <p>
         Vous pouvez le vérifier vous-même : ouvrez la console de votre navigateur et tapez
         <code>document.cookie</code>. La réponse est une chaîne vide.
       </p>
       <p>
+        <strong>Une seule chose est inscrite dans votre navigateur</strong>, et nous préférons la
+        nommer plutôt que de l'omettre. La page d'accueil ouvre sur une courte animation. Pour ne
+        pas vous l'imposer à chaque page consultée, le site inscrit un marqueur
+        <code>rollinlove-intro-seen</code> dans le <code>sessionStorage</code> de votre
+        navigateur — vous pouvez le voir en tapant
+        <code>sessionStorage.getItem('rollinlove-intro-seen')</code> dans la console.
+      </p>
+      <ul>
+        <li>sa valeur est <code>1</code>, et rien d'autre : ce n'est pas un identifiant, il ne
+            permet pas de vous reconnaître ni de vous distinguer d'un autre visiteur ;</li>
+        <li>il n'est <strong>jamais transmis</strong> : il reste dans votre navigateur et n'est
+            envoyé à aucun serveur, ni au nôtre ni à un tiers ;</li>
+        <li>il est <strong>effacé automatiquement</strong> à la fermeture de l'onglet, sans action
+            de votre part ;</li>
+        <li>il ne sert à aucune mesure, aucun profilage, aucune publicité.</li>
+      </ul>
+      <p>
         L'article 82 de la loi Informatique et Libertés impose de recueillir le consentement avant
-        d'inscrire ou de lire une information dans votre terminal. Rien n'est inscrit ni lu chez
-        vous, et <strong>ce n'est pas un oubli : c'est le résultat de choix techniques</strong> —
-        police auto-hébergée, aucune carte intégrée, aucun widget, aucun réseau publicitaire.
+        d'inscrire ou de lire une information dans votre terminal, <strong>sauf lorsque cette
+        inscription est strictement nécessaire à la fourniture du service que vous avez
+        demandé</strong>. Ce marqueur relève de cette exception : il ne fait que mémoriser que
+        l'animation d'ouverture a déjà été jouée pendant votre visite. À part lui,
+        <strong>rien n'est inscrit ni lu chez vous</strong>, et ce n'est pas un oubli : c'est le
+        résultat de choix techniques — police auto-hébergée, aucune carte intégrée, aucun widget,
+        aucun réseau publicitaire.
       </p>
       <p>
         Nous nous arrêtons là où beaucoup de sites concluent trop vite. « Aucun cookie » ne veut

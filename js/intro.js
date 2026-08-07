@@ -23,6 +23,16 @@
      speed     : multiplicateur global des durées (1 = référence)
      Rejouer manuellement : ajouter ?intro à l'URL, ou en console
      RollInLoveIntro.replay().
+
+     ⚠️ confidentialite.html décrit nommément ce que ce fichier inscrit dans le
+     navigateur du visiteur, et sur quel fondement (article 82, exception du
+     service expressément demandé). En l'état, un seul marqueur est posé :
+     rollinlove-intro-seen, dans le sessionStorage, effacé à la fermeture de
+     l'onglet.
+
+     Passer frequency à 'daily' bascule sur le localStorage, donc sur un
+     stockage PERSISTANT — la page de confidentialité deviendrait fausse et
+     devrait être mise à jour dans le même commit. 'always' n'écrit rien.
      -------------------------------------------------------------------------- */
   var CONFIG = {
     frequency: 'session',
