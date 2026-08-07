@@ -185,16 +185,16 @@ Le nom « Roll in Love » lui-même : **aucun dépôt INPI vérifié** → marqu
 `[dépôt de marque à confirmer]`. Il est utilisé comme nom commercial, ce qui n'emporte pas
 protection à titre de marque.
 
-### 1.8 Pas de domaine → pas de `sitemap.xml`
+### 1.8 Pas de domaine → pas de `sitemap.xml` ✅ RÉSOLU
 
-**Aucun `sitemap.xml`, aucun `robots.txt`, aucune balise `canonical`, aucun `og:url` n'existe sur
-ce site.** Le seul domaine évoqué est `roll-in-love.fr`, cité dans le `README.md` comme une
-tâche **à faire** (« Acheter le domaine roll-in-love.fr et le brancher sur Vercel ») — **il n'est
-pas déposé**.
+État au 17 juillet 2026 : aucun `sitemap.xml`, aucun `robots.txt`, aucune balise `canonical`,
+aucun `og:url`. Aucun n'avait été créé faute de domaine arrêté — il aurait fallu en inventer un.
+La piste évoquée à l'époque, `roll-in-love.fr`, n'a jamais été déposée.
 
-**Aucun sitemap n'a donc été créé** : il aurait fallu inventer un domaine. À créer une fois le
-domaine arrêté, en y incluant `mentions-legales.html` et `confidentialite.html` (`priority` 0.2,
-`lastmod` 2026-07-17).
+**Le domaine retenu est `rollinlove.com` et le site est en ligne.** Créés le 7 août 2026 :
+`robots.txt` (indexation autorisée, renvoi vers le sitemap), `sitemap.xml` (accueil +
+`mentions-legales.html` + `confidentialite.html`), `canonical` absolue et `og:url` sur les trois
+pages, `og:image` absolue vers `assets/images/og-image.jpg`.
 
 ### 1.9 Vérifier avant publication
 
