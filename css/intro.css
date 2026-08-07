@@ -1,0 +1,277 @@
+/* ==========================================================================
+   Roll in Love — Animation d'ouverture « Le roll se déroule »
+   Composant isolé : css/intro.css + js/intro.js.
+   index.html ne contient que deux références (feuille + script) ; tout le
+   balisage de l'overlay est construit par js/intro.js.
+
+   Palette : tokens du site (--cream, --brown) + un caramel relevé dans
+   logo.png (#D89048), donc strictement issu de l'identité existante.
+   Durées : pilotées par les variables --rl-d-* posées par js/intro.js.
+   ========================================================================== */
+
+:root {
+  --rl-caramel: #D89048;          /* échantillonné dans le swirl de logo.png */
+  --rl-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --rl-ease-draw: cubic-bezier(0.32, 0, 0.16, 1);   /* départ vif, fin douce */
+  --rl-ease-open: cubic-bezier(0.66, 0, 0.24, 1);
+}
+
+/* --------------------------------------------------------------------------
+   1. Pré-voile — posé par la classe html.intro-active dès le <head>, donc
+   présent au tout premier rendu. Empêche le flash de contenu avant que
+   js/intro.js n'ait construit l'overlay. Même crème que le voile SVG :
+   la bascule entre les deux est invisible.
+   -------------------------------------------------------------------------- */
+html.intro-active::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--cream);
+  z-index: 899;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. Overlay
+   -------------------------------------------------------------------------- */
+.rl-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  /* le voile SVG porte la couleur : pas de background ici, sinon il
+     resterait opaque une fois le disque ouvert */
+}
+
+/* Voile crème percé d'un disque qui s'ouvre (masque SVG interne : rendu
+   identique sur les trois moteurs, sans @property ni box-shadow géante). */
+.rl-intro-veil {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.rl-intro-veil-fill { fill: var(--cream); }
+
+/* Le disque qui s'ouvre. `r` est une propriété géométrique SVG animable en
+   CSS (Chrome, Safari, Firefox) : transition déclarative, donc insensible au
+   throttling de requestAnimationFrame quand l'onglet passe en arrière-plan.
+   72 % : un pourcentage de rayon se résout sur √((w²+h²)/2), donc 72 % couvre
+   toujours le coin le plus éloigné, quel que soit le format d'écran. */
+.rl-intro-hole {
+  r: 0;
+  transition: r var(--rl-d-open, 780ms) var(--rl-ease-open);
+}
+/* --rl-hole-r : rayon exact calculé par js/intro.js depuis le centre réel de
+   la spirale jusqu'au coin le plus éloigné. 72 % sert de repli : un rayon en
+   pourcentage se résout sur √((w²+h²)/2), donc 72 % couvre tous les formats. */
+.rl-intro.is-opening .rl-intro-hole { r: var(--rl-hole-r, 72%); }
+
+/* --------------------------------------------------------------------------
+   3. Scène centrale
+   -------------------------------------------------------------------------- */
+.rl-intro-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* le logo ne touche jamais les bords, même en 375 px */
+  padding: 0 clamp(24px, 8vw, 64px);
+  text-align: center;
+}
+
+/* ----- Spirale ------------------------------------------------------------ */
+/* repère local pour le cœur : il suit la spirale à toutes les tailles */
+.rl-intro-crown {
+  position: relative;
+  display: block;
+  line-height: 0;
+  transition: transform var(--rl-d-open, 780ms) var(--rl-ease-open),
+              opacity 360ms ease-in 60ms;
+}
+.rl-intro-spiral {
+  display: block;
+  width: clamp(96px, 21vw, 168px);
+  height: auto;
+  overflow: visible;
+  transform: rotate(-14deg);
+  transition: transform var(--rl-d-spiral, 1000ms) var(--rl-ease-draw);
+}
+.rl-intro.is-drawing .rl-intro-spiral { transform: rotate(0deg); }
+
+/* stabilisation finale — resserrement de 1.5 %, aucun rebond */
+.rl-intro-spiral-inner {
+  transform-origin: 100px 100px;
+  transform: scale(1.015);
+  transition: transform 300ms var(--rl-ease-out);
+}
+.rl-intro.is-settled .rl-intro-spiral-inner { transform: scale(1); }
+
+.rl-intro-seed {
+  fill: var(--brown);
+  transform-origin: 101.2px 100px;
+  transform: scale(0);
+  transition: transform var(--rl-d-seed, 260ms) var(--rl-ease-out);
+}
+.rl-intro.is-seeded .rl-intro-seed { transform: scale(1); }
+
+.rl-intro-trail,
+.rl-intro-line {
+  fill: none;
+  stroke-linecap: round;
+  /* --rl-len : longueur exacte du tracé, posée par js/intro.js via
+     getTotalLength(). Passer par une variable plutôt que par une propriété
+     inline évite d'écraser la règle .is-drawing (le style inline gagnerait). */
+  stroke-dasharray: var(--rl-len, 900);
+  stroke-dashoffset: var(--rl-len, 900);
+  transition: stroke-dashoffset var(--rl-d-spiral, 1000ms) var(--rl-ease-draw);
+}
+.rl-intro-trail { stroke: var(--rl-caramel); stroke-width: 7.4; }
+.rl-intro-line  { stroke: var(--brown);     stroke-width: 2.4;
+                  transition-delay: 70ms; }   /* le trait brun suit le caramel */
+.rl-intro.is-drawing .rl-intro-trail,
+.rl-intro.is-drawing .rl-intro-line { stroke-dashoffset: 0; }
+
+/* ----- Logo officiel ------------------------------------------------------ */
+/* logo.png fait 1545×2000 dont seule la bande y 674→1322 porte le dessin :
+   le cadre recadre cette zone utile. L'asset n'est ni redessiné ni déformé. */
+.rl-intro-logo-frame {
+  display: block;
+  width: clamp(184px, 38vw, 320px);
+  aspect-ratio: 1545 / 648;
+  overflow: hidden;
+  margin-top: clamp(14px, 2.4vh, 26px);
+  position: relative;
+}
+.rl-intro-logo-mask {
+  /* le cadre tire sa hauteur d'aspect-ratio : un height:100% ici resterait
+     nul, et le clip-path masquerait alors le logo entier */
+  position: absolute;
+  inset: 0;
+  display: block;
+  /* révélation par masque vertical, remontée depuis le bas */
+  clip-path: inset(100% 0 0 0);
+  transform: translateY(12px);
+  transition: clip-path var(--rl-d-logo, 700ms) var(--rl-ease-out),
+              transform var(--rl-d-logo, 700ms) var(--rl-ease-out);
+  will-change: clip-path, transform;
+}
+.rl-intro.is-logo .rl-intro-logo-mask {
+  clip-path: inset(0 0 0 0);
+  transform: translateY(0);
+}
+.rl-intro-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: -43.63%;      /* 674 / 2000 × (2000 / 1545) */
+}
+
+/* ----- Cœur de l'identité (coeurs.png, même cadrage que la hero) ---------- */
+.rl-intro-heart {
+  position: absolute;
+  top: -8%;
+  left: 84%;
+  width: 38px;
+  height: 41px;
+  overflow: hidden;
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--rl-d-heart, 450ms) var(--rl-ease-out),
+              transform var(--rl-d-heart, 450ms) var(--rl-ease-out);
+}
+.rl-intro.is-heart .rl-intro-heart { opacity: 0.9; transform: translateY(0); }
+/* même cadrage que les cœurs de la hero (fenêtre 60×65 / image 130 px),
+   réduit de 63 % : c'est le cœur officiel du site, pas un glyphe */
+.rl-intro-heart img {
+  position: absolute;
+  left: -44px;
+  top: -6.3px;
+  width: 82px;
+  height: auto;
+}
+
+/* ----- Signature ---------------------------------------------------------- */
+.rl-intro-sign {
+  margin: clamp(12px, 2vh, 20px) 0 0;
+  font-family: 'Scripter', cursive;
+  font-size: clamp(13px, 2.4vw, 17px);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--brown);
+  opacity: 0;
+  transform: translateY(9px);
+  transition: opacity var(--rl-d-sign, 600ms) var(--rl-ease-out),
+              transform var(--rl-d-sign, 600ms) var(--rl-ease-out);
+}
+.rl-intro.is-sign .rl-intro-sign { opacity: 0.72; transform: translateY(0); }
+
+/* ----- Bascule vers la hero ----------------------------------------------
+   La spirale s'agrandit avec le disque : c'est elle qui ouvre la page. Le
+   logo, le cœur et la signature s'effacent d'abord pour lui laisser la scène.
+   Règles placées après les précédentes : à spécificité égale, elles gagnent. */
+.rl-intro.is-opening .rl-intro-crown {
+  transform: scale(3.4);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.rl-intro.is-opening .rl-intro-logo-frame,
+.rl-intro.is-opening .rl-intro-heart,
+.rl-intro.is-opening .rl-intro-sign {
+  opacity: 0;
+  transition: opacity 280ms ease-in;
+}
+
+/* Repli si les propriétés géométriques SVG ne s'animent pas : le voile
+   disparaît en fondu court plutôt que d'un coup. */
+.rl-intro.is-fading { opacity: 0; transition: opacity 420ms ease-in; }
+
+/* --------------------------------------------------------------------------
+   4. Hero — masquée pendant l'intro, révélée en cascade ensuite
+   -------------------------------------------------------------------------- */
+:is(html.intro-active, html.intro-running) :is(nav, .hero-heading, .hero-sub, .hero-ctas, .hero-right) {
+  opacity: 0;
+}
+
+/* `translate` en propriété indépendante : n'écrase pas les transform déjà
+   posés par le site (.hero-img translateY, .heart-deco scale). */
+@keyframes rl-rise {
+  from { opacity: 0; translate: 0 16px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+@keyframes rl-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+/* recentrage lent de la photo de fond : translation seule, jamais de zoom */
+@keyframes rl-settle-bg {
+  from { background-position-x: 57%; }
+  to   { background-position-x: 55%; }
+}
+
+html.intro-done .hero-right   { animation: rl-rise 620ms var(--rl-ease-out) 60ms both; }
+html.intro-done .hero-heading { animation: rl-rise 640ms var(--rl-ease-out) 170ms both; }
+html.intro-done .hero-sub     { animation: rl-rise 600ms var(--rl-ease-out) 300ms both; }
+html.intro-done .hero-ctas    { animation: rl-rise 600ms var(--rl-ease-out) 420ms both; }
+html.intro-done nav           { animation: rl-fade 620ms var(--rl-ease-out) 540ms both; }
+
+@media (min-width: 769px) {
+  html.intro-done .hero-section { animation: rl-settle-bg 1100ms var(--rl-ease-out) 40ms both; }
+}
+
+/* --------------------------------------------------------------------------
+   5. Accessibilité — mouvement réduit : aucune intro, fondu court du site
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .rl-intro,
+  html.intro-active::before { display: none !important; }
+  :is(html.intro-active, html.intro-running) :is(nav, .hero-heading, .hero-sub, .hero-ctas, .hero-right) { opacity: 1; }
+  html.intro-done :is(nav, .hero-heading, .hero-sub, .hero-ctas, .hero-right, .hero-section) { animation: none !important; }
+}
+html.intro-reduced body { animation: rl-fade 160ms linear both; }
