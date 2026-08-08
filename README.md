@@ -92,3 +92,21 @@ Vercel redéploie.
 - [ ] **Capital social** et **directeur de la publication** — manquants, voir § 1.1.
 - [ ] Licence de la webfont Scripter à obtenir, ou remplacer la police.
 - [ ] `index.html` affiche « © 2025 » alors que les pages légales portent « © 2026 ».
+
+## 🔒 CSP — scripts inline hashés
+
+La `Content-Security-Policy` (dans `vercel.json`) autorise les deux scripts inline
+d'`index.html` par **hash sha256**. Si on modifie le moindre caractère d'un
+`<script>…</script>` inline, il faut recalculer son hash et le remplacer dans la CSP :
+
+```bash
+python3 -c "
+import re, hashlib, base64
+html = open('index.html', encoding='utf-8').read()
+for m in re.finditer(r'<script(?![^>]*src=)([^>]*)>(.*?)</script>', html, re.S):
+    if 'ld+json' in m.group(1): continue
+    print('sha256-' + base64.b64encode(hashlib.sha256(m.group(2).encode()).digest()).decode())
+"
+```
+
+Symptôme d'un hash périmé : onglets de la carte morts + erreur CSP dans la console.
