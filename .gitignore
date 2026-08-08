@@ -12,3 +12,5 @@ node_modules/
 # Sources d'images non compressées : servent uniquement à régénérer les WebP.
 # Les originaux restent récupérables dans l'historique git (commit a7feaa8~1).
 assets/images/src/
+.vercel
+.env*
