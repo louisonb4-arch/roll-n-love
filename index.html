@@ -627,11 +627,14 @@
     }
   </style>
 
-  <!-- Animation d'ouverture « Le roll se déroule » — composant isolé.
+  <!-- Animation d'ouverture « Le O de ROLL » — composant isolé.
        Le script est volontairement bloquant : il pose html.intro-active avant
-       le premier rendu, sinon la page apparaîtrait avant l'overlay. -->
-  <link rel="stylesheet" href="css/intro.css">
-  <script src="js/intro.js"></script>
+       le premier rendu, sinon la page apparaîtrait avant l'overlay.
+       ?v= : à changer à chaque modification de ces deux fichiers. vercel.json
+       les garde 24 h en cache ; sans ce paramètre, un visiteur récurrent
+       recevrait l'ancien script avec la nouvelle feuille, ou l'inverse. -->
+  <link rel="stylesheet" href="css/intro.css?v=o-de-roll">
+  <script src="js/intro.js?v=o-de-roll"></script>
 
   <!-- Vercel Analytics — auto-injected on Vercel deployment, 404 silencieux en local -->
   <script>

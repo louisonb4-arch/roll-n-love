@@ -1,19 +1,19 @@
 /* ==========================================================================
-   Roll in Love — Animation d'ouverture « Le roll se déroule »
-   Composant isolé, sans dépendance : le projet est en HTML/CSS/JS vanilla
-   (aucun framework, aucune librairie d'animation installée — package.json ne
-   contient que @vercel/analytics). L'animation s'appuie donc sur CSS +
-   requestAnimationFrame, conformément à la stack existante.
+   Roll in Love — Animation d'ouverture « Le O de ROLL »
+   Composant isolé, sans dépendance (HTML/CSS/JS vanilla, comme le reste du
+   site). Mouvement par Web Animations API, cascade de la hero en CSS.
 
    Chargé en <head> SANS defer : la classe html.intro-active doit être posée
    avant le premier rendu, sinon la page apparaît une fraction de seconde
-   avant l'overlay. Le pré-voile crème (css/intro.css) tient l'écran pendant
-   que le DOM se construit ; l'overlay le remplace ensuite sans transition
-   visible (même crème).
+   avant l'overlay. Le pré-voile chocolat (css/intro.css) tient l'écran
+   pendant que le DOM se construit ; l'overlay le remplace sans transition
+   visible (même chocolat).
 
-   Étapes : point → spirale dessinée dans le sens horaire → logo officiel
-   révélé par masque vertical → cœur → signature → disque qui s'ouvre sur la
-   hero (« la page s'ouvre depuis l'intérieur du roll »).
+   Idée : la spirale du O de ROLL — l'emblème du logo — remplit l'écran et
+   tourne le temps que la page se prépare. Puis elle se rétracte en roulant
+   et vient se poser exactement dans le O imprimé sur la tasse de la photo
+   d'accueil. Le voile ne disparaît pas : il devient un détail de la photo,
+   et la page entre en cascade autour de lui pendant sa course.
    ========================================================================== */
 (function () {
   'use strict';
@@ -41,27 +41,37 @@
   };
 
   /* ---------------------------------------------------------------- timeline
-     `at` = départ en ms depuis le début, `dur` = durée de l'étape.
-     Modifier une durée : changer la valeur ici (les transitions CSS lisent
-     ces nombres via les variables --rl-d-*). Tout accélérer / ralentir :
-     CONFIG.speed. Total actuel : ouverture terminée à 2 730 ms.
+     Durées en ms. `hold` : la spirale tourne au moins `min`, au plus `max`,
+     en attendant la photo d'accueil et la police. `page` et `melt` sont
+     comptés depuis le départ de la course. Total, connexion normale : ~2,9 s.
      -------------------------------------------------------------------------- */
   var TL = {
-    seed:   { at:    0, dur:  260 },   /* le point de pâte apparaît          */
-    spiral: { at:  140, dur: 1000 },   /* la spirale se dessine, sens horaire */
-    settle: { at: 1140, dur:  300 },   /* stabilisation, sans rebond          */
-    logo:   { at:  720, dur:  700 },   /* ROLL IN LOVE, masque vertical       */
-    heart:  { at: 1150, dur:  450 },   /* petit cœur de l'identité            */
-    sign:   { at: 1300, dur:  600 },   /* « Le roll fond, le cœur aussi. »    */
-    open:   { at: 1950, dur:  780 },   /* le disque s'ouvre sur la hero       */
-    end:    { at: 2850 }               /* overlay retiré du DOM               */
+    bloom: { dur: 1050 },              /* le O grandit jusqu'à remplir l'écran */
+    hold:  { min: 1200, max: 2400 },   /* il tourne, la page se prépare        */
+    land:  { dur: 1500 },              /* course jusqu'au O de la tasse        */
+    page:  { at:   760 },              /* la page entre en cascade             */
+    melt:  { at:  1380, dur: 380 }     /* la spirale se fond dans le O imprimé */
   };
 
-  /* marges de sécurité autour du chargement de logo.png (voir play()) */
-  var LOGO_WAIT_MAX = 700;      /* attente maximale de l'image      */
-  var LOGO_MIN_VISIBLE = 500;   /* temps de lecture minimal du logo */
+  var EASE_LAND  = 'cubic-bezier(0.86, 0, 0.07, 1)';   /* départ lent, arrivée posée */
+  var EASE_BLOOM = 'cubic-bezier(0.22, 1, 0.36, 1)';
+  var EASE_PHOTO = 'cubic-bezier(0.19, 1, 0.22, 1)';
+  var EASE_GROW  = 'cubic-bezier(0.7, 0, 0.2, 1)';
+  var SPIN_MS = 7000;                 /* un tour pendant l'attente             */
+  var ROLL_DEG = 220;                 /* rotation minimale pendant la course   */
+  var PHOTO_ZOOM = 1.1;               /* la photo recule de 10 % autour du O   */
 
-  var SPIRAL_PATH = 'M101.20 100.00 C101.46 100.08 101.72 100.22 101.94 100.41 C102.17 100.60 102.37 100.85 102.54 101.13 C102.70 101.41 102.82 101.74 102.88 102.09 C102.95 102.45 102.96 102.83 102.91 103.23 C102.86 103.63 102.75 104.04 102.57 104.45 C102.39 104.86 102.14 105.26 101.83 105.64 C101.52 106.01 101.14 106.37 100.70 106.68 C100.26 106.99 99.76 107.25 99.22 107.46 C98.67 107.67 98.07 107.81 97.44 107.88 C96.81 107.95 96.14 107.95 95.46 107.86 C94.78 107.77 94.09 107.60 93.40 107.33 C92.71 107.07 92.03 106.71 91.38 106.26 C90.73 105.81 90.11 105.28 89.55 104.65 C88.98 104.03 88.47 103.32 88.04 102.54 C87.61 101.76 87.25 100.91 86.98 100.00 C86.72 99.09 86.56 98.13 86.50 97.13 C86.44 96.13 86.50 95.10 86.67 94.07 C86.85 93.03 87.14 91.98 87.56 90.96 C87.98 89.94 88.52 88.94 89.18 87.99 C89.85 87.04 90.63 86.14 91.52 85.32 C92.42 84.50 93.42 83.76 94.52 83.13 C95.61 82.49 96.80 81.97 98.06 81.57 C99.32 81.18 100.65 80.91 102.02 80.79 C103.39 80.67 104.80 80.70 106.21 80.88 C107.63 81.06 109.05 81.40 110.45 81.91 C111.84 82.41 113.21 83.07 114.51 83.89 C115.81 84.71 117.04 85.68 118.18 86.79 C119.31 87.91 120.34 89.16 121.24 90.54 C122.15 91.92 122.91 93.41 123.52 95.00 C124.12 96.59 124.57 98.27 124.83 100.00 C125.09 101.73 125.17 103.52 125.06 105.33 C124.94 107.13 124.63 108.95 124.12 110.74 C123.61 112.53 122.90 114.29 122.00 115.98 C121.10 117.67 120.00 119.29 118.72 120.79 C117.45 122.30 115.99 123.68 114.38 124.91 C112.78 126.15 111.01 127.22 109.13 128.11 C107.25 129.00 105.25 129.70 103.17 130.18 C101.09 130.66 98.93 130.93 96.75 130.96 C94.56 131.00 92.34 130.80 90.14 130.36 C87.94 129.92 85.75 129.24 83.65 128.33 C81.54 127.41 79.50 126.26 77.59 124.89 C75.67 123.52 73.88 121.93 72.26 120.15 C70.65 118.37 69.20 116.39 67.96 114.26 C66.73 112.13 65.70 109.85 64.93 107.46 C64.15 105.06 63.62 102.56 63.35 100.00 C63.09 97.44 63.10 94.83 63.38 92.22 C63.67 89.61 64.24 87.00 65.08 84.45 C65.93 81.91 67.05 79.43 68.44 77.07 C69.83 74.71 71.48 72.48 73.37 70.43 C75.26 68.37 77.39 66.50 79.71 64.85 C82.03 63.21 84.55 61.79 87.22 60.65 C89.88 59.51 92.69 58.64 95.59 58.07 C98.49 57.50 101.48 57.24 104.49 57.29 C107.50 57.34 110.53 57.71 113.51 58.41 C116.50 59.10 119.44 60.12 122.26 61.44 C125.08 62.77 127.79 64.41 130.32 66.33 C132.85 68.25 135.19 70.45 137.29 72.90 C139.40 75.35 141.26 78.05 142.83 80.93 C144.40 83.81 145.68 86.89 146.63 90.09 C147.58 93.29 148.20 96.62 148.46 100.00 C148.72 103.38 148.63 106.82 148.17 110.24 C147.71 113.66 146.89 117.05 145.71 120.35 C144.53 123.65 142.99 126.85 141.12 129.87 C139.24 132.90 137.04 135.75 134.54 138.36 C132.03 140.96 129.24 143.32 126.20 145.38 C123.16 147.44 119.89 149.19 116.44 150.58 C112.99 151.98 109.36 153.02 105.64 153.68 C101.92 154.33 98.11 154.60 94.28 154.46 C90.45 154.32 86.60 153.78 82.83 152.83 C79.06 151.88 75.37 150.53 71.83 148.79 C68.29 147.05 64.91 144.93 61.78 142.45 C58.64 139.98 55.74 137.16 53.15 134.04 C50.56 130.92 48.28 127.51 46.37 123.88 C44.47 120.24 42.93 116.38 41.81 112.37 C40.69 108.36 39.99 104.21 39.72 100.00 C39.46 95.79 39.64 91.53 40.27 87.30 C40.90 83.08 41.98 78.89 43.50 74.84 C45.01 70.79 46.97 66.87 49.32 63.18 C51.68 59.49 54.44 56.02 57.56 52.86 C60.67 49.71 64.14 46.86 67.89 44.39 C71.64 41.92 75.68 39.83 79.91 38.18 C84.15 36.53 88.58 35.31 93.12 34.57 C97.66 33.83 102.31 33.56 106.96 33.79 C111.61 34.01 116.26 34.73 120.82 35.93 C125.37 37.13 129.83 38.83 134.08 40.98 C138.33 43.13 142.38 45.74 146.13 48.77 C149.88 51.79 153.34 55.23 156.41 59.01 C159.49 62.80 162.18 66.93 164.42 71.32 C166.66 75.71 168.45 80.36 169.75 85.17 C171.04 89.99 171.83 94.97 172.09 100.00 C172.35 105.03 172.09 110.12 171.29 115.15 C170.49 120.18 169.15 125.16 167.30 129.96 C165.45 134.77 163.08 139.40 160.24 143.76 C157.39 148.12 154.08 152.21 150.35 155.92 C146.62 159.63 142.48 162.96 138.02 165.84 C133.55 168.73 128.76 171.15 123.74 173.06 C118.72 174.97 113.47 176.35 108.11 177.18';
+  /* Position du O de ROLL imprimé sur la tasse, en pixels de l'image source.
+     Desktop (≥ 769 px) : fond de .hero-section (cover, 55 % center).
+     Mobile  (≤ 768 px) : <img class="hero-img">.
+     À remesurer si l'une de ces deux photos change. */
+  var MUG_O = {
+    desktop: { w: 1719, h: 915, x: 936, y: 492, r: 43 },
+    mobile:  { w: 1200, h: 960, x: 312, y: 516, r: 69 }
+  };
+  var BREAKPOINT = 769;
+  /* angle final de la spirale, pour qu'elle se pose dans l'axe de la tasse */
+  var LANDED_ANGLE = 0;
 
   var html = document.documentElement;
   var REDUCED = window.matchMedia &&
@@ -109,24 +119,34 @@
     }
   };
 
-  /* Mouvement réduit, intro déjà vue, ou page sans hero : on ne joue rien.
-     Aucun voile n'est posé, donc aucun flash possible. */
+  /* Mouvement réduit, intro déjà vue, ou navigateur sans Web Animations :
+     on ne joue rien. Aucun voile n'est posé, donc aucun flash possible. */
   if (REDUCED) { html.classList.add('intro-reduced'); return; }
   if (alreadySeen()) return;
+  if (typeof Element === 'undefined' || !Element.prototype.animate) return;
 
   /* Pré-voile immédiat — avant même que <body> ne soit analysé. */
   html.classList.add('intro-active');
 
   var timers = [];
+  var anims = [];
+  var restore = [];                   /* remises en état de la page, en fin */
   var overlay = null;
   var finished = false;
   var scrollY = 0;
 
-  function later(fn, ms) { timers.push(setTimeout(fn, ms * CONFIG.speed)); }
+  function ms(n) { return n * CONFIG.speed; }
+  function later(fn, n) { timers.push(setTimeout(fn, ms(n))); }
+  function animate(el, frames, opts) {
+    var a = el.animate(frames, opts);
+    anims.push(a);
+    return a;
+  }
 
   /* --------------------------------------------------------------- scroll lock
      Verrou sans overflow:hidden ni padding compensatoire : aucune barre de
-     défilement ne disparaît, donc aucun décalage de mise en page. */
+     défilement ne disparaît, donc aucun décalage de mise en page — le O
+     mesuré reste à sa place pendant toute la course. */
   function block(e) { e.preventDefault(); }
   var KEYS = { 32: 1, 33: 1, 34: 1, 35: 1, 36: 1, 38: 1, 40: 1 };
   function blockKeys(e) { if (KEYS[e.keyCode]) e.preventDefault(); }
@@ -147,48 +167,213 @@
     window.removeEventListener('scroll', pin);
   }
 
-  /* -------------------------------------------------------------- construction */
-  function build() {
+  /* ------------------------------------------------------------------ spirale
+     Le O du logo : disque chocolat cerclé de caramel, ruban de pâte crème qui
+     s'élargit en s'enroulant, ombré de caramel. Généré plutôt que figé dans
+     un tracé : les proportions se règlent par ces quelques nombres.
+     Repère 200 × 200, centre (100, 100), disque de rayon 100. */
+  function ribbon(turns, rEnd, w0, w1, curve, steps) {
+    var T = Math.PI * 2 * turns;
+    var k = rEnd / T;
+    var t0 = (w0 * 1.15) / k;          /* départ décollé du centre */
+    var outer = [], inner = [];
+    for (var i = 0; i <= steps; i++) {
+      var t = t0 + (T - t0) * i / steps;
+      var r = k * t;
+      var w = w0 + (w1 - w0) * Math.pow((t - t0) / (T - t0), curve);
+      var c = Math.cos(t), s = Math.sin(t);
+      outer.push((100 + (r + w) * c).toFixed(2) + ' ' + (100 + (r + w) * s).toFixed(2));
+      inner.push((100 + (r - w) * c).toFixed(2) + ' ' + (100 + (r - w) * s).toFixed(2));
+    }
+    return 'M' + outer.join('L') +
+           'A' + w1 + ' ' + w1 + ' 0 0 1 ' + inner[steps] +
+           'L' + inner.reverse().join('L') +
+           'A' + w0 + ' ' + w0 + ' 0 0 1 ' + outer[0] + 'Z';
+  }
+
+  function swirlSVG() {
+    var d = ribbon(2.6, 84, 2, 11, 1.2, 320);
+    return '<svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">' +
+             '<circle class="rl-o-rim" cx="100" cy="100" r="100"></circle>' +
+             '<circle class="rl-o-disc" cx="100" cy="100" r="96"></circle>' +
+             '<path class="rl-o-shade" d="' + d + '" transform="translate(0 3.5)"></path>' +
+             '<path class="rl-o-dough" d="' + d + '"></path>' +
+           '</svg>';
+  }
+
+  /* -------------------------------------------------------------- construction
+     .rl-intro-panel : le voile, découpé par un cercle (clip-path) qui se
+                       resserre sur le O de la tasse ;
+     .rl-intro-swirl : course (translation + échelle) ;
+     .rl-intro-bloom : éclosion ;
+     .rl-intro-spin  : rotation.
+     Une transformation par élément : aucune ne contrarie l'autre. */
+  function build(radius) {
     var el = document.createElement('div');
     el.className = 'rl-intro';
     el.id = 'rl-intro';
     el.setAttribute('aria-hidden', 'true');   /* purement décoratif */
     el.setAttribute('role', 'presentation');
     el.innerHTML =
-      '<svg class="rl-intro-veil" aria-hidden="true" focusable="false">' +
-        '<defs><mask id="rl-intro-hole" maskUnits="userSpaceOnUse">' +
-          '<rect x="0" y="0" width="100%" height="100%" fill="#fff"></rect>' +
-          '<circle class="rl-intro-hole" cx="50%" cy="50%" r="0" fill="#000"></circle>' +
-        '</mask></defs>' +
-        '<rect class="rl-intro-veil-fill" x="0" y="0" width="100%" height="100%" ' +
-              'mask="url(#rl-intro-hole)"></rect>' +
-      '</svg>' +
-      '<div class="rl-intro-stage">' +
-        '<span class="rl-intro-crown">' +
-          '<svg class="rl-intro-spiral" viewBox="0 0 200 200" aria-hidden="true" focusable="false">' +
-            '<g class="rl-intro-spiral-inner">' +
-              '<path class="rl-intro-trail" d="' + SPIRAL_PATH + '"></path>' +
-              '<path class="rl-intro-line" d="' + SPIRAL_PATH + '"></path>' +
-              '<circle class="rl-intro-seed" cx="101.2" cy="100" r="2.6"></circle>' +
-            '</g>' +
-          '</svg>' +
-          '<span class="rl-intro-heart"><img src="assets/images/coeurs.webp" alt="" aria-hidden="true"></span>' +
-        '</span>' +
-        '<span class="rl-intro-logo-frame"><span class="rl-intro-logo-mask">' +
-          '<img class="rl-intro-logo" src="assets/images/logo.webp" alt="" aria-hidden="true">' +
-        '</span></span>' +
-        '<p class="rl-intro-sign">Le roll fond, le cœur aussi.</p>' +
+      '<div class="rl-intro-panel">' +
+        '<div class="rl-intro-swirl"><div class="rl-intro-bloom"><div class="rl-intro-spin">' +
+          swirlSVG() +
+        '</div></div></div>' +
       '</div>';
-
-    /* durées de la timeline → variables CSS */
-    var s = el.style;
-    s.setProperty('--rl-d-seed',   TL.seed.dur   * CONFIG.speed + 'ms');
-    s.setProperty('--rl-d-spiral', TL.spiral.dur * CONFIG.speed + 'ms');
-    s.setProperty('--rl-d-logo',   TL.logo.dur   * CONFIG.speed + 'ms');
-    s.setProperty('--rl-d-heart',  TL.heart.dur  * CONFIG.speed + 'ms');
-    s.setProperty('--rl-d-sign',   TL.sign.dur   * CONFIG.speed + 'ms');
-    s.setProperty('--rl-d-open',   TL.open.dur   * CONFIG.speed + 'ms');
+    var swirl = el.querySelector('.rl-intro-swirl');
+    swirl.style.width = swirl.style.height = (radius * 2) + 'px';
+    swirl.style.marginLeft = swirl.style.marginTop = (-radius) + 'px';
     return el;
+  }
+
+  /* ------------------------------------------------------------------- cible
+     Où se trouve le O de la tasse à l'écran, et l'élément qui porte la photo.
+     null si la photo n'est pas là où on l'attend (mise en page modifiée,
+     défilement restauré plus bas…) : la spirale se referme alors sur
+     elle-même au centre, sans viser. */
+  function findTarget() {
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var t;
+
+    if (vw >= BREAKPOINT) {
+      var section = document.querySelector('.hero-section');
+      if (!section) return null;
+      if (getComputedStyle(section).backgroundImage.indexOf('hero-bg') === -1) return null;
+      var b = section.getBoundingClientRect();
+      var o = MUG_O.desktop;
+      /* background-size: cover ; background-position: 55% center */
+      var s = Math.max(b.width / o.w, b.height / o.h);
+      var ox = (b.width - o.w * s) * 0.55;
+      var oy = (b.height - o.h * s) * 0.5;
+      t = { kind: 'desktop', el: section, box: b,
+            x: b.left + ox + o.x * s, y: b.top + oy + o.y * s, r: o.r * s };
+    } else {
+      var img = document.querySelector('.hero-img');
+      if (!img || !img.naturalWidth) return null;
+      var r = img.getBoundingClientRect();
+      var m = MUG_O.mobile;
+      t = { kind: 'mobile', el: img, box: r,
+            x: r.left + m.x * r.width / m.w, y: r.top + m.y * r.height / m.h,
+            r: m.r * r.width / m.w };
+    }
+
+    if (t.r < 4 || t.x < 0 || t.x > vw || t.y < 0 || t.y > vh) return null;
+    return t;
+  }
+
+  /* ------------------------------------------------------------------ attente
+     La spirale sert aussi de chargement : elle tourne jusqu'à ce que la photo
+     d'accueil soit décodée et la police posée (la hauteur du titre fixe celle
+     de la hero, donc la position du O). Plafonné : jamais d'écran d'attente. */
+  function ready() {
+    var waits = [];
+    if (document.fonts && document.fonts.ready) waits.push(document.fonts.ready);
+
+    if (window.innerWidth >= BREAKPOINT) {
+      var probe = new Image();
+      probe.src = 'assets/images/hero-bg.webp';   /* déjà préchargée par le <head> */
+      if (probe.decode) waits.push(probe.decode());
+    } else {
+      var img = document.querySelector('.hero-img');
+      if (img && img.decode) waits.push(img.decode());
+    }
+
+    var all = Promise.all(waits.map(function (p) {
+      return p.catch(function () {});     /* une image en erreur ne bloque pas */
+    }));
+    var cap = new Promise(function (resolve) { later(resolve, TL.hold.max); });
+    return Promise.race([all, cap]);
+  }
+
+  /* -------------------------------------------------------- la photo recule
+     Pendant la course, la photo d'accueil passe de 110 % à 100 % autour du
+     O : ce point reste fixe, tout le reste recule. Desktop : la photo est un
+     fond CSS, doublée le temps de l'animation dans un calque qu'on peut
+     mettre à l'échelle. Mobile : on anime l'<img> elle-même. */
+  function photoZoom(t) {
+    var opts = { duration: ms(TL.land.dur), easing: EASE_PHOTO, fill: 'backwards' };
+
+    if (t.kind === 'desktop') {
+      var section = t.el;
+      var cs = getComputedStyle(section);
+      var layer = document.createElement('div');
+      layer.className = 'rl-intro-photo';
+      layer.setAttribute('aria-hidden', 'true');
+      layer.style.backgroundImage = cs.backgroundImage;
+      layer.style.backgroundPosition = cs.backgroundPosition;
+      layer.style.backgroundSize = cs.backgroundSize;
+      layer.style.backgroundRepeat = cs.backgroundRepeat;
+      layer.style.transformOrigin =
+        (t.x - t.box.left) + 'px ' + (t.y - t.box.top) + 'px';
+      section.insertBefore(layer, section.firstChild);
+      html.classList.add('intro-photo');
+      animate(layer, [{ transform: 'scale(' + PHOTO_ZOOM + ')' }, { transform: 'scale(1)' }], opts);
+      restore.push(function () {
+        html.classList.remove('intro-photo');
+        if (layer.parentNode) layer.parentNode.removeChild(layer);
+      });
+    } else {
+      var img = t.el;
+      var base = getComputedStyle(img).transform;
+      if (!base || base === 'none') base = '';
+      /* origine = le O dans le repère propre de l'image (avant transform) ;
+         la translation du site, placée en tête, reste hors de l'échelle */
+      var m = MUG_O.mobile;
+      img.style.transformOrigin =
+        (m.x * img.offsetWidth / m.w) + 'px ' + (m.y * img.offsetHeight / m.h) + 'px';
+      animate(img, [
+        { transform: (base + ' scale(' + PHOTO_ZOOM + ')').trim() },
+        { transform: (base + ' scale(1)').trim() }
+      ], opts);
+      restore.push(function () { img.style.transformOrigin = ''; });
+    }
+  }
+
+  /* -------------------------------------------------------- titre en lettres
+     Le <h1> est découpé en lettres le temps de la cascade, puis rendu tel
+     quel : le DOM retrouve exactement son état d'origine. Les mots restent
+     insécables ; aria-label garde la phrase lisible d'un bloc. */
+  function splitHeading() {
+    var h1 = document.querySelector('.hero-heading');
+    if (!h1) return;
+    var original = h1.innerHTML;
+    var label = h1.textContent.replace(/\s+/g, ' ').trim();
+    var index = 0;
+
+    function splitNode(node) {
+      if (node.nodeType === 3) {
+        var frag = document.createDocumentFragment();
+        node.nodeValue.split(/(\s+)/).forEach(function (part) {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          var word = document.createElement('span');
+          word.className = 'rl-word';
+          Array.prototype.forEach.call(part, function (ch) {
+            var c = document.createElement('span');
+            c.className = 'rl-char';
+            c.style.setProperty('--rl-i', index++);
+            c.textContent = ch;
+            word.appendChild(c);
+          });
+          frag.appendChild(word);
+        });
+        node.parentNode.replaceChild(frag, node);
+      } else if (node.nodeType === 1) {
+        Array.prototype.slice.call(node.childNodes).forEach(splitNode);
+      }
+    }
+
+    Array.prototype.slice.call(h1.childNodes).forEach(splitNode);
+    h1.setAttribute('aria-label', label);
+    restore.push(function () {
+      h1.innerHTML = original;
+      h1.removeAttribute('aria-label');
+    });
+  }
+
+  function cascade() {
+    html.classList.remove('intro-active', 'intro-running');
+    html.classList.add('intro-done');
   }
 
   /* ------------------------------------------------------------------ nettoyage
@@ -198,117 +383,125 @@
     finished = true;
     for (var i = 0; i < timers.length; i++) clearTimeout(timers[i]);
     timers.length = 0;
+    for (var j = 0; j < anims.length; j++) { try { anims[j].cancel(); } catch (e) {} }
+    anims.length = 0;
     unlockScroll();
+    window.removeEventListener('resize', finish);
     if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
     overlay = null;
-    html.classList.remove('intro-active', 'intro-running');
-    /* la cascade de la hero se termine ~1,2 s après ; on retire ensuite la
-       classe pour laisser le DOM strictement dans son état d'origine */
-    setTimeout(function () { html.classList.remove('intro-done'); }, 1400);
+
+    var late = !html.classList.contains('intro-done');
+    cascade();
+    /* la cascade de la hero dure ~1,8 s (badge compris) ; on rend ensuite le
+       DOM strictement dans son état d'origine */
+    setTimeout(function () {
+      html.classList.remove('intro-done');
+      while (restore.length) { try { restore.pop()(); } catch (e) {} }
+    }, late ? 1900 : 900);
     markSeen();
   }
 
-  /* ------------------------------------------------------------------ ouverture
-     Le disque du masque s'ouvre par transition CSS sur `r`. Si le moteur
-     n'expose pas cette propriété géométrique, on retombe sur un fondu court :
-     dans les deux cas la hero est révélée, jamais d'écran figé. */
-  function reveal() {
+  /* -------------------------------------------------------------------- course */
+  function land(parts) {
     if (!overlay) return finish();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var cx = vw / 2, cy = vh / 2;
+    var t = findTarget();
+    var opts = { duration: ms(TL.land.dur), easing: EASE_LAND, fill: 'forwards' };
 
-    var circle = overlay.querySelector('.rl-intro-hole');
-    var canOpen = !!(circle && circle.style && 'r' in circle.style);
+    /* arrivée : le O de la tasse, ou à défaut le centre (la spirale se ferme) */
+    var tx = t ? t.x : cx, ty = t ? t.y : cy, tr = t ? t.r : 0;
+    /* départ du cercle de découpe : jusqu'au coin le plus éloigné */
+    var r0 = Math.ceil(Math.sqrt(cx * cx + cy * cy)) + 2;
 
-    /* Le disque naît du cœur de la spirale — pas du centre de l'écran — pour
-       que la page paraisse s'ouvrir depuis l'intérieur du roll. Rayon = coin
-       le plus éloigné de ce centre, quel que soit le format. */
-    var spiral = overlay.querySelector('.rl-intro-spiral');
-    if (canOpen && spiral && spiral.getBoundingClientRect) {
-      var b = spiral.getBoundingClientRect();
-      var cx = b.left + b.width / 2;
-      var cy = b.top + b.height / 2;
-      var vw = window.innerWidth;
-      var vh = window.innerHeight;
-      var r = Math.max(
-        Math.sqrt(cx * cx + cy * cy),
-        Math.sqrt((vw - cx) * (vw - cx) + cy * cy),
-        Math.sqrt(cx * cx + (vh - cy) * (vh - cy)),
-        Math.sqrt((vw - cx) * (vw - cx) + (vh - cy) * (vh - cy))
-      ) + 8;
-      circle.setAttribute('cx', Math.round(cx));
-      circle.setAttribute('cy', Math.round(cy));
-      overlay.style.setProperty('--rl-hole-r', Math.ceil(r) + 'px');
+    animate(parts.panel, [
+      { clipPath: 'circle(' + r0 + 'px at ' + cx + 'px ' + cy + 'px)' },
+      { clipPath: 'circle(' + tr + 'px at ' + tx + 'px ' + ty + 'px)' }
+    ], opts);
+
+    animate(parts.swirl, [
+      { transform: 'translate(0px, 0px) scale(1)' },
+      { transform: 'translate(' + (tx - cx) + 'px, ' + (ty - cy) + 'px) scale(' + (tr / parts.radius) + ')' }
+    ], opts);
+
+    /* La rotation continue s'arrête là où elle en est, puis la spirale roule
+       encore d'au moins ROLL_DEG et se pose dans l'axe de celle de la tasse. */
+    var a0 = 0;
+    if (parts.spinAnim && parts.spinAnim.currentTime != null) {
+      a0 = (parts.spinAnim.currentTime % SPIN_MS) / SPIN_MS * 360;
+      parts.spinAnim.cancel();
     }
+    var a1 = LANDED_ANGLE;
+    while (a1 < a0 + ROLL_DEG) a1 += 360;
+    animate(parts.spin, [
+      { transform: 'rotate(' + a0 + 'deg)' },
+      { transform: 'rotate(' + a1 + 'deg)' }
+    ], opts);
 
-    overlay.classList.add('is-opening');
-    if (!canOpen) overlay.classList.add('is-fading');
-    html.classList.remove('intro-active', 'intro-running');
-    html.classList.add('intro-done');       /* déclenche la cascade hero */
-    unlockScroll();
+    if (t) photoZoom(t);
 
-    later(finish, (canOpen ? TL.open.dur : 420) + 60);
+    /* la page entre en cascade pendant que la spirale termine sa course */
+    later(cascade, TL.page.at);
+
+    /* la spirale se fond dans le O imprimé, puis le voile est retiré */
+    later(function () {
+      if (!overlay) return;
+      var melt = animate(overlay, [{ opacity: 1 }, { opacity: 0 }],
+        { duration: ms(TL.melt.dur), easing: 'ease-out', fill: 'forwards' });
+      melt.onfinish = finish;
+    }, TL.melt.at);
   }
 
   function play() {
-    overlay = build();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    /* spirale un peu plus grande que l'écran : ses bords restent hors champ */
+    var radius = Math.ceil(Math.sqrt(vw * vw + vh * vh) / 2 * 1.15);
+
+    overlay = build(radius);
     document.body.appendChild(overlay);
     lockScroll();
+    window.addEventListener('resize', finish);   /* cible faussée : on coupe */
 
-    /* longueur exacte des tracés → variable CSS (voir css/intro.css) */
-    var paths = overlay.querySelectorAll('.rl-intro-trail, .rl-intro-line');
-    for (var i = 0; i < paths.length; i++) {
-      if (typeof paths[i].getTotalLength !== 'function') continue;
-      paths[i].style.setProperty('--rl-len', Math.ceil(paths[i].getTotalLength()));
-    }
+    var parts = {
+      radius: radius,
+      panel: overlay.querySelector('.rl-intro-panel'),
+      swirl: overlay.querySelector('.rl-intro-swirl'),
+      bloom: overlay.querySelector('.rl-intro-bloom'),
+      spin:  overlay.querySelector('.rl-intro-spin'),
+      spinAnim: null
+    };
 
-    /* l'overlay est en place : on rend la main au voile SVG. Les deux sont
-       de la même crème, la bascule ne se voit pas. */
+    /* l'overlay est en place : on rend la main au voile. Même chocolat. */
     void overlay.offsetWidth;
     html.classList.remove('intro-active');
     html.classList.add('intro-running');
 
-    /* Le logo peut n'arriver qu'après son étape sur une connexion lente. On
-       attend son chargement, plafonné, pour ne jamais révéler un cadre vide —
-       sans jamais transformer l'intro en écran de chargement (le plafond et
-       les garde-fous priment). Depuis le passage en WebP il pèse 46 ko contre
-       788 ko auparavant : l'attente ne se déclenche donc plus qu'en cas de
-       réseau très dégradé. */
-    var logoImg = overlay.querySelector('.rl-intro-logo');
-    var logoShownAt = 0;
+    /* éclosion : le O naît petit au centre, cerclé de caramel, puis grandit
+       au-delà des bords (son disque a la couleur du voile : seul le ruban et
+       le liseré se détachent) */
+    animate(parts.bloom, [
+      { opacity: 0, transform: 'scale(0.05)', easing: EASE_BLOOM },
+      { opacity: 1, transform: 'scale(0.13)', offset: 0.16, easing: EASE_GROW },
+      { opacity: 1, transform: 'scale(1)' }
+    ], { duration: ms(TL.bloom.dur), fill: 'backwards' });
 
-    function showLogo() {
-      if (!overlay || logoShownAt) return;
-      overlay.classList.add('is-logo');
-      logoShownAt = Date.now();
-    }
+    parts.spinAnim = animate(parts.spin, [
+      { transform: 'rotate(0deg)' },
+      { transform: 'rotate(360deg)' }
+    ], { duration: SPIN_MS, iterations: Infinity });
 
-    function logoStep() {
-      if (!logoImg || logoImg.complete) return showLogo();
-      logoImg.addEventListener('load', showLogo, { once: true });
-      logoImg.addEventListener('error', showLogo, { once: true });
-      later(showLogo, LOGO_WAIT_MAX);      /* plafond d'attente */
-    }
+    var startedAt = Date.now();
+    splitHeading();
 
-    /* le logo doit rester lisible un minimum avant que le disque s'ouvre */
-    function maybeReveal() {
-      var seen = logoShownAt ? Date.now() - logoShownAt : LOGO_MIN_VISIBLE;
-      if (seen < LOGO_MIN_VISIBLE) { later(reveal, LOGO_MIN_VISIBLE - seen); return; }
-      reveal();
-    }
-
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        overlay.classList.add('is-seeded');
-        later(function () { overlay.classList.add('is-drawing'); }, TL.spiral.at);
-        later(logoStep,                                             TL.logo.at);
-        later(function () { overlay.classList.add('is-settled'); }, TL.settle.at);
-        later(function () { overlay.classList.add('is-heart'); },   TL.heart.at);
-        later(function () { overlay.classList.add('is-sign'); },    TL.sign.at);
-        later(maybeReveal, TL.open.at);
-      });
+    ready().then(function () {
+      if (finished) return;
+      var wait = ms(TL.hold.min) - (Date.now() - startedAt);
+      if (wait > 0) timers.push(setTimeout(function () { land(parts); }, wait));
+      else land(parts);
     });
 
     /* garde-fou : quoi qu'il arrive, l'overlay disparaît */
-    later(finish, TL.end.at + 1500);
+    later(finish, TL.hold.max + TL.land.dur + TL.melt.dur + 1500);
   }
 
   function start() {
@@ -320,9 +513,7 @@
     }
     /* Dernier filet, armé au démarrage réel de l'intro et non au parse du
        <head> : play() n'a lieu qu'au DOMContentLoaded, or sur connexion lente
-       le document peut mettre plusieurs secondes à arriver. Compté depuis le
-       chargement du script, ce délai était consommé avant même l'apparition
-       du premier point et coupait l'animation en cours de route. */
+       le document peut mettre plusieurs secondes à arriver. */
     setTimeout(finish, 8000);
   }
 

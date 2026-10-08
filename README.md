@@ -15,7 +15,7 @@ roll-n-love/
 ├── mentions-legales.html   # Pages légales, partagent legal.css
 ├── confidentialite.html
 ├── legal.css               # Styles des seules pages légales
-├── css/intro.css           # Animation d'ouverture « Le roll se déroule »
+├── css/intro.css           # Animation d'ouverture « Le O de ROLL »
 ├── js/intro.js             # idem — composant isolé, aucune dépendance
 ├── assets/
 │   ├── fonts/              # Scripter (woff + woff2), utilisées par legal.css
@@ -58,6 +58,13 @@ Puis <http://localhost:8000>.
 L'animation d'ouverture ne joue **qu'une fois par session**. Pour la revoir :
 ajouter `?intro` à l'URL, ou taper `RollInLoveIntro.replay()` dans la console.
 Elle ne joue pas du tout si le système est réglé sur « animations réduites ».
+
+Elle vise le O de ROLL imprimé sur la tasse de la photo d'accueil : ses coordonnées
+dans `hero-bg.webp` (desktop) et `hero.webp` (mobile) sont écrites dans `MUG_O`,
+en tête de `js/intro.js`. **Si l'une de ces photos change, remesurer ces valeurs**,
+sinon la spirale se posera à côté. Après toute modification de `css/intro.css` ou
+`js/intro.js`, changer le `?v=` de leurs deux références dans `index.html`
+(`vercel.json` les garde 24 h en cache).
 
 ## 🖼️ Régénérer les images
 

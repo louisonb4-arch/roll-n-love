@@ -1,32 +1,47 @@
 /* ==========================================================================
-   Roll in Love — Animation d'ouverture « Le roll se déroule »
+   Roll in Love — Animation d'ouverture « Le O de ROLL »
    Composant isolé : css/intro.css + js/intro.js.
    index.html ne contient que deux références (feuille + script) ; tout le
    balisage de l'overlay est construit par js/intro.js.
 
-   Palette : tokens du site (--cream, --brown) + un caramel relevé dans
-   logo.png (#D89048), donc strictement issu de l'identité existante.
-   Durées : pilotées par les variables --rl-d-* posées par js/intro.js.
+   Palette : tokens du site (--cream, --brown) + le caramel relevé dans le O
+   de logo.png (#D89048), donc strictement issue de l'identité existante.
+   Mouvement de l'overlay : Web Animations (js/intro.js). Ici : les couleurs,
+   la mise en place, et la cascade de la hero.
    ========================================================================== */
 
 :root {
-  --rl-caramel: #D89048;          /* échantillonné dans le swirl de logo.png */
+  --rl-caramel: #D89048;          /* échantillonné dans le O de logo.png */
   --rl-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --rl-ease-draw: cubic-bezier(0.32, 0, 0.16, 1);   /* départ vif, fin douce */
-  --rl-ease-open: cubic-bezier(0.66, 0, 0.24, 1);
+  /* ressort amorti : dépassement ~20 %, puis se pose. Repli cubic-bezier
+     pour les moteurs sans linear() (Safari < 17.2). */
+  --rl-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --rl-spring-soft: cubic-bezier(0.3, 1.3, 0.6, 1);
+}
+@supports (animation-timing-function: linear(0, 1)) {
+  :root {
+    --rl-spring: linear(0, 0.081 3.6%, 0.276 7.1%, 0.518 10.7%, 0.756 14.3%, 0.954 17.9%,
+      1.096 21.4%, 1.177 25%, 1.205 28.6%, 1.193 32.1%, 1.155 35.7%, 1.106 39.3%, 1.057 42.9%,
+      1.014 46.4%, 0.984 50%, 0.965 53.6%, 0.958 57.1%, 0.96 60.7%, 0.967 64.3%, 0.977 67.9%,
+      0.987 71.4%, 0.996 75%, 1.003 78.6%, 1.007 82.1%, 1.009 85.7%, 1.007 92.9%, 1);
+    --rl-spring-soft: linear(0, 0.051 3.6%, 0.175 7.1%, 0.336 10.7%, 0.507 14.3%, 0.666 17.9%,
+      0.804 21.4%, 0.914 25%, 0.995 28.6%, 1.049 32.1%, 1.081 35.7%, 1.094 39.3%, 1.093 42.9%,
+      1.084 46.4%, 1.07 50%, 1.054 53.6%, 1.038 57.1%, 1.024 60.7%, 1.013 64.3%, 1.004 67.9%,
+      0.997 71.4%, 0.993 75%, 0.991 82.1%, 0.994 92.9%, 1);
+  }
 }
 
 /* --------------------------------------------------------------------------
    1. Pré-voile — posé par la classe html.intro-active dès le <head>, donc
    présent au tout premier rendu. Empêche le flash de contenu avant que
-   js/intro.js n'ait construit l'overlay. Même crème que le voile SVG :
+   js/intro.js n'ait construit l'overlay. Même chocolat que le voile :
    la bascule entre les deux est invisible.
    -------------------------------------------------------------------------- */
 html.intro-active::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: var(--cream);
+  background: var(--brown);
   z-index: 899;
   pointer-events: none;
 }
@@ -41,237 +56,115 @@ html.intro-active::before {
   height: 100vh;
   height: 100dvh;
   overflow: hidden;
-  /* le voile SVG porte la couleur : pas de background ici, sinon il
-     resterait opaque une fois le disque ouvert */
+  pointer-events: none;
 }
 
-/* Voile crème percé d'un disque qui s'ouvre (masque SVG interne : rendu
-   identique sur les trois moteurs, sans @property ni box-shadow géante). */
-.rl-intro-veil {
+/* Le voile chocolat. js/intro.js resserre son clip-path en cercle jusqu'au
+   O de la tasse : hors du cercle, la page apparaît. */
+.rl-intro-panel {
   position: absolute;
   inset: 0;
+  background: var(--brown);
+  will-change: clip-path;
+}
+
+/* Centrée sur l'écran ; taille et marges posées par js/intro.js (un peu plus
+   grande que la diagonale : on n'en voit d'abord que le cœur). */
+.rl-intro-swirl {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  will-change: transform;
+}
+.rl-intro-bloom,
+.rl-intro-spin {
   width: 100%;
   height: 100%;
-  display: block;
+  will-change: transform;
 }
-.rl-intro-veil-fill { fill: var(--cream); }
-
-/* Le disque qui s'ouvre. `r` est une propriété géométrique SVG animable en
-   CSS (Chrome, Safari, Firefox) : transition déclarative, donc insensible au
-   throttling de requestAnimationFrame quand l'onglet passe en arrière-plan.
-   72 % : un pourcentage de rayon se résout sur √((w²+h²)/2), donc 72 % couvre
-   toujours le coin le plus éloigné, quel que soit le format d'écran. */
-.rl-intro-hole {
-  r: 0;
-  transition: r var(--rl-d-open, 780ms) var(--rl-ease-open);
-}
-/* --rl-hole-r : rayon exact calculé par js/intro.js depuis le centre réel de
-   la spirale jusqu'au coin le plus éloigné. 72 % sert de repli : un rayon en
-   pourcentage se résout sur √((w²+h²)/2), donc 72 % couvre tous les formats. */
-.rl-intro.is-opening .rl-intro-hole { r: var(--rl-hole-r, 72%); }
-
-/* --------------------------------------------------------------------------
-   3. Scène centrale
-   -------------------------------------------------------------------------- */
-.rl-intro-stage {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* le logo ne touche jamais les bords, même en 375 px */
-  padding: 0 clamp(24px, 8vw, 64px);
-  text-align: center;
-}
-
-/* ----- Spirale ------------------------------------------------------------ */
-/* repère local pour le cœur : il suit la spirale à toutes les tailles */
-.rl-intro-crown {
-  position: relative;
-  display: block;
-  line-height: 0;
-  transition: transform var(--rl-d-open, 780ms) var(--rl-ease-open),
-              opacity 360ms ease-in 60ms;
-}
-.rl-intro-spiral {
-  display: block;
-  width: clamp(96px, 21vw, 168px);
-  height: auto;
-  overflow: visible;
-  transform: rotate(-14deg);
-  transition: transform var(--rl-d-spiral, 1000ms) var(--rl-ease-draw);
-}
-.rl-intro.is-drawing .rl-intro-spiral { transform: rotate(0deg); }
-
-/* stabilisation finale — resserrement de 1.5 %, aucun rebond */
-.rl-intro-spiral-inner {
-  transform-origin: 100px 100px;
-  transform: scale(1.015);
-  transition: transform 300ms var(--rl-ease-out);
-}
-.rl-intro.is-settled .rl-intro-spiral-inner { transform: scale(1); }
-
-.rl-intro-seed {
-  fill: var(--brown);
-  transform-origin: 101.2px 100px;
-  transform: scale(0);
-  transition: transform var(--rl-d-seed, 260ms) var(--rl-ease-out);
-}
-.rl-intro.is-seeded .rl-intro-seed { transform: scale(1); }
-
-.rl-intro-trail,
-.rl-intro-line {
-  fill: none;
-  stroke-linecap: round;
-  /* --rl-len : longueur exacte du tracé, posée par js/intro.js via
-     getTotalLength(). Passer par une variable plutôt que par une propriété
-     inline évite d'écraser la règle .is-drawing (le style inline gagnerait). */
-  stroke-dasharray: var(--rl-len, 900);
-  stroke-dashoffset: var(--rl-len, 900);
-  transition: stroke-dashoffset var(--rl-d-spiral, 1000ms) var(--rl-ease-draw);
-}
-.rl-intro-trail { stroke: var(--rl-caramel); stroke-width: 7.4; }
-.rl-intro-line  { stroke: var(--brown);     stroke-width: 2.4;
-                  transition-delay: 70ms; }   /* le trait brun suit le caramel */
-.rl-intro.is-drawing .rl-intro-trail,
-.rl-intro.is-drawing .rl-intro-line { stroke-dashoffset: 0; }
-
-/* ----- Logo officiel ------------------------------------------------------ */
-/* logo.png fait 1545×2000 dont seule la bande y 674→1322 porte le dessin :
-   le cadre recadre cette zone utile. L'asset n'est ni redessiné ni déformé. */
-.rl-intro-logo-frame {
-  display: block;
-  width: clamp(184px, 38vw, 320px);
-  aspect-ratio: 1545 / 648;
-  overflow: hidden;
-  margin-top: clamp(14px, 2.4vh, 26px);
-  position: relative;
-}
-.rl-intro-logo-mask {
-  /* le cadre tire sa hauteur d'aspect-ratio : un height:100% ici resterait
-     nul, et le clip-path masquerait alors le logo entier */
-  position: absolute;
-  inset: 0;
-  display: block;
-  /* révélation par masque vertical, remontée depuis le bas */
-  clip-path: inset(100% 0 0 0);
-  transform: translateY(12px);
-  transition: clip-path var(--rl-d-logo, 700ms) var(--rl-ease-out),
-              transform var(--rl-d-logo, 700ms) var(--rl-ease-out);
-  will-change: clip-path, transform;
-}
-.rl-intro.is-logo .rl-intro-logo-mask {
-  clip-path: inset(0 0 0 0);
-  transform: translateY(0);
-}
-.rl-intro-logo {
+.rl-intro-spin svg {
   display: block;
   width: 100%;
-  height: auto;
-  margin-top: -43.63%;      /* 674 / 2000 × (2000 / 1545) */
+  height: 100%;
 }
 
-/* ----- Cœur de l'identité (coeurs.png, même cadrage que la hero) ---------- */
-.rl-intro-heart {
-  position: absolute;
-  top: -8%;
-  left: 84%;
-  width: 38px;
-  height: 41px;
+/* Le O du logo */
+.rl-o-rim   { fill: var(--rl-caramel); }
+.rl-o-disc  { fill: var(--brown); }
+.rl-o-shade { fill: var(--rl-caramel); }
+.rl-o-dough { fill: var(--cream); }
+
+/* Desktop : calque temporaire qui double le fond de la hero pour qu'il puisse
+   reculer autour du O (un background CSS ne se met pas à l'échelle). Retiré
+   en fin d'intro : le fond d'origine reprend, pixel pour pixel. */
+html.intro-photo .hero-section {
+  position: relative;
+  isolation: isolate;
   overflow: hidden;
-  mix-blend-mode: multiply;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity var(--rl-d-heart, 450ms) var(--rl-ease-out),
-              transform var(--rl-d-heart, 450ms) var(--rl-ease-out);
+  background-image: none;
 }
-.rl-intro.is-heart .rl-intro-heart { opacity: 0.9; transform: translateY(0); }
-/* même cadrage que les cœurs de la hero (fenêtre 60×65 / image 130 px),
-   réduit de 63 % : c'est le cœur officiel du site, pas un glyphe */
-.rl-intro-heart img {
+.rl-intro-photo {
   position: absolute;
-  left: -44px;
-  top: -6.3px;
-  width: 82px;
-  height: auto;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  will-change: transform;
 }
-
-/* ----- Signature ---------------------------------------------------------- */
-.rl-intro-sign {
-  margin: clamp(12px, 2vh, 20px) 0 0;
-  font-family: 'Scripter', cursive;
-  font-size: clamp(13px, 2.4vw, 17px);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--brown);
-  opacity: 0;
-  transform: translateY(9px);
-  transition: opacity var(--rl-d-sign, 600ms) var(--rl-ease-out),
-              transform var(--rl-d-sign, 600ms) var(--rl-ease-out);
-}
-.rl-intro.is-sign .rl-intro-sign { opacity: 0.72; transform: translateY(0); }
-
-/* ----- Bascule vers la hero ----------------------------------------------
-   La spirale s'agrandit avec le disque : c'est elle qui ouvre la page. Le
-   logo, le cœur et la signature s'effacent d'abord pour lui laisser la scène.
-   Règles placées après les précédentes : à spécificité égale, elles gagnent. */
-.rl-intro.is-opening .rl-intro-crown {
-  transform: scale(3.4);
-  opacity: 0;
-  will-change: transform, opacity;
-}
-.rl-intro.is-opening .rl-intro-logo-frame,
-.rl-intro.is-opening .rl-intro-heart,
-.rl-intro.is-opening .rl-intro-sign {
-  opacity: 0;
-  transition: opacity 280ms ease-in;
-}
-
-/* Repli si les propriétés géométriques SVG ne s'animent pas : le voile
-   disparaît en fondu court plutôt que d'un coup. */
-.rl-intro.is-fading { opacity: 0; transition: opacity 420ms ease-in; }
 
 /* --------------------------------------------------------------------------
-   4. Hero — masquée pendant l'intro, révélée en cascade ensuite
+   3. Hero — masquée pendant l'intro, révélée en cascade autour du O.
+   La photo, elle, reste visible : c'est elle que la spirale découvre.
    -------------------------------------------------------------------------- */
-:is(html.intro-active, html.intro-running) :is(nav, .hero-heading, .hero-sub, .hero-ctas, .hero-right) {
+:is(html.intro-active, html.intro-running) :is(nav, .hero-heading, .hero-sub, .hero-ctas, .heart-deco, .badge-gourmand) {
   opacity: 0;
 }
 
-/* `translate` en propriété indépendante : n'écrase pas les transform déjà
-   posés par le site (.hero-img translateY, .heart-deco scale). */
-@keyframes rl-rise {
-  from { opacity: 0; translate: 0 16px; }
-  to   { opacity: 1; translate: 0 0; }
-}
-@keyframes rl-fade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-/* recentrage lent de la photo de fond : translation seule, jamais de zoom */
-@keyframes rl-settle-bg {
-  from { background-position-x: 57%; }
-  to   { background-position-x: 55%; }
-}
+/* Lettres du titre (découpées par js/intro.js le temps de la cascade) */
+.rl-word { display: inline-block; white-space: nowrap; }
+.rl-char { display: inline-block; }
 
-html.intro-done .hero-right   { animation: rl-rise 620ms var(--rl-ease-out) 60ms both; }
-html.intro-done .hero-heading { animation: rl-rise 640ms var(--rl-ease-out) 170ms both; }
-html.intro-done .hero-sub     { animation: rl-rise 600ms var(--rl-ease-out) 300ms both; }
-html.intro-done .hero-ctas    { animation: rl-rise 600ms var(--rl-ease-out) 420ms both; }
-html.intro-done nav           { animation: rl-fade 620ms var(--rl-ease-out) 540ms both; }
-
-@media (min-width: 769px) {
-  html.intro-done .hero-section { animation: rl-settle-bg 1100ms var(--rl-ease-out) 40ms both; }
+@keyframes rl-char-in {
+  from { opacity: 0; transform: translateY(0.42em) scale(0.55) rotate(-8deg); }
 }
+@keyframes rl-fade { from { opacity: 0; } }
+@keyframes rl-rise { from { opacity: 0; translate: 0 14px; } }
+@keyframes rl-drop { from { opacity: 0; translate: 0 -12px; } }
+/* propriétés indépendantes (`scale`, `rotate`, `translate`) : elles se
+   composent avec les transform déjà posés par le site (.heart-deco scale,
+   .badge-gourmand rotate) au lieu de les écraser */
+@keyframes rl-pop   { from { opacity: 0; scale: 0.4; } }
+/* badge : rotation seule, jamais d'échelle — un `scale` animé sur ce SVG fait
+   disparaître son <text> une fois sur deux dans Chrome (texte jamais repeint) */
+@keyframes rl-stamp { from { rotate: -70deg; translate: 0 -10px; } }
+
+html.intro-done .rl-char {
+  animation:
+    rl-fade 160ms linear calc(40ms + var(--rl-i, 0) * 26ms) both,
+    rl-char-in 900ms var(--rl-spring) calc(40ms + var(--rl-i, 0) * 26ms) both;
+}
+html.intro-done nav               { animation: rl-fade 420ms var(--rl-ease-out) 60ms both; }
+html.intro-done nav .logo-img     { animation: rl-pop 900ms var(--rl-spring) 120ms both; }
+html.intro-done .nav-links li     { animation: rl-drop 560ms var(--rl-ease-out) 200ms both; }
+html.intro-done .nav-links li:nth-child(2) { animation-delay: 250ms; }
+html.intro-done .nav-links li:nth-child(3) { animation-delay: 300ms; }
+html.intro-done .nav-links li:nth-child(4) { animation-delay: 350ms; }
+html.intro-done .nav-links li:nth-child(5) { animation-delay: 400ms; }
+html.intro-done .nav-links li:nth-child(6) { animation-delay: 450ms; }
+html.intro-done .hero-sub         { animation: rl-rise 620ms var(--rl-ease-out) 420ms both; }
+html.intro-done .hero-ctas > *    { animation: rl-pop 820ms var(--rl-spring-soft) 560ms both; }
+html.intro-done .hero-ctas > :nth-child(2) { animation-delay: 640ms; }
+html.intro-done .heart-deco       { animation: rl-pop 900ms var(--rl-spring) 520ms both; }
+html.intro-done .heart-deco.h3    { animation-delay: 640ms; }
+html.intro-done .badge-gourmand   { animation: rl-fade 240ms linear 700ms both,
+                                               rl-stamp 1100ms var(--rl-spring) 700ms both; }
 
 /* --------------------------------------------------------------------------
-   5. Accessibilité — mouvement réduit : aucune intro, fondu court du site
+   4. Accessibilité — mouvement réduit : aucune intro, fondu court du site
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .rl-intro,
   html.intro-active::before { display: none !important; }
-  :is(html.intro-active, html.intro-running) :is(nav, .hero-heading, .hero-sub, .hero-ctas, .hero-right) { opacity: 1; }
-  html.intro-done :is(nav, .hero-heading, .hero-sub, .hero-ctas, .hero-right, .hero-section) { animation: none !important; }
+  :is(html.intro-active, html.intro-running) :is(nav, .hero-heading, .hero-sub, .hero-ctas, .heart-deco, .badge-gourmand) { opacity: 1; }
+  html.intro-done :is(nav, .logo-img, .nav-links li, .rl-char, .hero-sub, .hero-ctas > *, .heart-deco, .badge-gourmand) { animation: none !important; }
 }
 html.intro-reduced body { animation: rl-fade 160ms linear both; }
