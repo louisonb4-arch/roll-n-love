@@ -1,0 +1,47 @@
+/* ==========================================================================
+   En vitrine — les derniers posts @roll_in_love, en mosaïque décalée.
+   ========================================================================== */
+
+.vitrine__head {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: clamp(24px, 4vw, 44px);
+}
+.vitrine__head .lede { color: var(--ink-soft); }
+
+.vitrine__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.vitrine__grid li:nth-child(even) { translate: 0 28px; }
+
+.vitrine__tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  aspect-ratio: 4 / 5;
+  background: var(--beige);
+}
+.vitrine__tile img { width: 100%; height: 100%; object-fit: cover; }
+.vitrine__tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 0 var(--caramel);
+  transition: box-shadow 300ms var(--ease-out);
+}
+.vitrine__tile:hover::after,
+.vitrine__tile:focus-visible::after { box-shadow: inset 0 0 0 5px var(--caramel); }
+
+.vitrine__more { margin-top: clamp(44px, 6vw, 60px); }
+
+@media (min-width: 900px) {
+  .vitrine__head { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 28px; align-items: end; }
+  .vitrine__head > :first-child { grid-column: 1 / 8; }
+  .vitrine__head .lede { grid-column: 8 / 13; }
+  .vitrine__grid { grid-template-columns: repeat(6, 1fr); gap: 18px; }
+  .vitrine__grid li:nth-child(even) { translate: 0 44px; }
+}

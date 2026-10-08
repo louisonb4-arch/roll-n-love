@@ -1,0 +1,62 @@
+/* ==========================================================================
+   Annotation — le geste de l'Instagram de la maison : un mot écrit à la main
+   et une flèche tracée vers le produit. La flèche s'écrit au reveal.
+   Placement : --ax / --ay (coin haut-gauche du bloc, dans le parent positionné)
+   ========================================================================== */
+
+.annot {
+  position: absolute;
+  left: var(--ax, auto);
+  top: var(--ay, auto);
+  right: var(--axr, auto);
+  bottom: var(--ayb, auto);
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.15rem;
+  width: max-content;
+  max-width: 13rem;
+  pointer-events: none;
+  color: var(--brown);
+}
+.annot--rev { flex-direction: row-reverse; text-align: right; }
+.annot--col { flex-direction: column; }
+.annot--col-rev { flex-direction: column-reverse; }
+
+.annot__label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 2.6vw, 1.2rem);
+  line-height: 1;
+  text-transform: uppercase;
+  rotate: var(--annot-tilt, -4deg);
+}
+.annot__label em {
+  display: block;
+  font-style: normal;
+  color: var(--cinnamon);
+  font-size: 0.82em;
+  margin-top: 0.15em;
+}
+
+.annot__arrow {
+  width: var(--arrow-w, 3.4rem);
+  height: auto;
+  flex: none;
+  overflow: visible;
+  rotate: var(--arrow-rot, 0deg);
+}
+.annot__arrow path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Sur photo : crème, avec une ombre portée douce pour la lisibilité */
+.annot--on-photo { color: var(--glaze); }
+.annot--on-photo .annot__label { text-shadow: 0 1px 10px rgba(30, 14, 4, 0.55), 0 0 2px rgba(30, 14, 4, 0.6); }
+.annot--on-photo .annot__label em { color: var(--yuzu); }
+.annot--on-photo .annot__arrow { filter: drop-shadow(0 1px 3px rgba(30, 14, 4, 0.5)); }

@@ -1,0 +1,51 @@
+/* ==========================================================================
+   Ouverture « Le O de ROLL » — voir assets/js/ui/site-intro.js
+   Écran chocolat, le O du logo éclot, tourne, puis roule jusqu'au O du grand
+   « R◯LL » de la hero, où la vraie photo d'un roll s'ouvre en cercle.
+   ========================================================================== */
+
+/* Pré-voile : présent dès le premier rendu (classe posée par core/head.js) */
+html.intro-active::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 899;
+  background: var(--brown);
+  pointer-events: none;
+}
+
+.site-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  height: 100lvh;
+  overflow: hidden;
+  pointer-events: none;
+}
+.site-intro__panel {
+  position: absolute;
+  inset: 0;
+  background: var(--brown);
+  will-change: clip-path;
+}
+.site-intro__swirl {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  will-change: transform;
+}
+.site-intro__bloom,
+.site-intro__spin {
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+.site-intro__spin svg { display: block; width: 100%; height: 100%; }
+
+.o-rim   { fill: var(--caramel); }
+.o-disc  { fill: var(--brown); }
+.o-shade { fill: var(--caramel); }
+.o-dough { fill: var(--cream); }
+
+/* La photo du O et les lettres du logo restent fermées jusqu'à l'atterrissage :
+   voir modules/hero.css (.hero__mark.is-unrolled). */

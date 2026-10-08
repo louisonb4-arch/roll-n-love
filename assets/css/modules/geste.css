@@ -1,0 +1,92 @@
+/* ==========================================================================
+   Le geste — fabrication en 4 temps, sur fond chocolat.
+   Un filet caramel relie les étapes et se remplit au scroll (animation
+   pilotée par le défilement là où le navigateur la connaît ; sinon plein).
+   ========================================================================== */
+
+.geste {
+  --section-bg: var(--brown);
+  color: var(--cream);
+}
+.geste .eyebrow { color: var(--caramel); }
+
+.geste__wrap {
+  display: grid;
+  gap: clamp(36px, 6vw, 72px);
+}
+
+.geste__head { display: grid; gap: 1.1rem; }
+.geste__lede { color: rgba(255, 238, 220, 0.82); max-width: 32em; }
+
+.geste__media { position: relative; }
+.geste__media .polaroid { --tilt: -3deg; width: min(78%, 360px); }
+.geste__media .polaroid__img { aspect-ratio: 4 / 5; }
+.geste__media .annot { color: var(--cream); }
+.geste__annot { --axr: 0; --ay: 4%; --arrow-w: 3rem; max-width: 6.2rem; align-items: flex-end; text-align: right; }
+@media (min-width: 900px) { .geste__annot { --axr: -2%; --ay: 8%; max-width: 9rem; } }
+.geste__media .annot .annot__label em { color: var(--caramel); }
+
+.geste__steps {
+  position: relative;
+  display: grid;
+  gap: 0;
+  counter-reset: step;
+}
+/* le filet */
+.geste__steps::before,
+.geste__steps::after {
+  content: "";
+  position: absolute;
+  left: calc(1.6rem - 1px);
+  top: 1.6rem;
+  bottom: 1.6rem;
+  width: 2px;
+  border-radius: 2px;
+  background: rgba(255, 238, 220, 0.16);
+}
+.geste__steps::after { background: var(--caramel); transform-origin: top; }
+
+@supports (animation-timeline: view()) {
+  .geste__steps::after {
+    animation: geste-fill linear both;
+    animation-timeline: view();
+    animation-range: entry 30% cover 65%;
+  }
+  @keyframes geste-fill { from { scale: 1 0; } to { scale: 1 1; } }
+}
+
+.geste__step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.2rem 1fr;
+  column-gap: 1.1rem;
+  padding-block: 1.1rem;
+}
+.geste__num {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background: var(--brown);
+  border: 2px solid var(--caramel);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--caramel);
+}
+.geste__step h3 { font-size: clamp(1.55rem, 5vw, 2.1rem); line-height: 1; margin: 0.55rem 0 0.35rem; }
+.geste__step p { color: rgba(255, 238, 220, 0.8); max-width: 26em; }
+
+@media (min-width: 900px) {
+  .geste__wrap {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(16px, 2vw, 28px);
+    align-items: start;
+  }
+  .geste__head  { grid-column: 6 / 13; grid-row: 1; }
+  .geste__media { grid-column: 1 / 6; grid-row: 1 / 3; position: sticky; top: calc(var(--header-h) + 32px); }
+  .geste__media .polaroid { width: 88%; }
+  .geste__steps { grid-column: 6 / 12; grid-row: 2; }
+}

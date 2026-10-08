@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Roll in Love — tokens
+   DA « Le tourbillon » : le O de ROLL (la coupe d'un cinnamon roll) est le
+   signe de la marque ; tout le site s'enroule autour. Base crème / chocolat
+   de la marque, fraîcheur apportée par les couleurs réelles des boissons
+   (ube, ruby, matcha, yuzu) — une couleur par famille de la carte.
+   Contrastes vérifiés (WCAG) : voir README § Contraste.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Scripter';
+  src: url('../fonts/scripter.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Karla';
+  src: url('../fonts/karla-var.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Marque */
+  --cream: #FFEEDC;
+  --glaze: #FFF8EF;          /* glaçage : surface claire */
+  --brown: #42200C;          /* chocolat : encre */
+  --ink-soft: #6B4A36;       /* texte secondaire — 7,0:1 sur crème */
+  --cinnamon: #9A4E1C;       /* accent texte — 5,3:1 sur crème */
+  --caramel: #D89048;        /* décor uniquement (2,3:1 sur crème) */
+  --beige: #E8D5B0;          /* filets, bordures */
+
+  /* Fraîcheur — relevées sur les boissons de la maison */
+  --ube: #C9B6EC;
+  --ruby: #F6B9C6;
+  --matcha: #BFD39A;
+  --yuzu: #F8D56E;
+
+  /* Typo */
+  --font-display: 'Scripter', 'Marker Felt', 'Comic Sans MS', cursive;
+  --font-body: 'Karla', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Mise en page */
+  --gutter: clamp(16px, 5vw, 56px);
+  --max: 1320px;
+  --header-h: 64px;
+  --radius: 14px;
+  --radius-lg: 22px;
+
+  /* Courbes — jamais de rebond */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-roll: cubic-bezier(0.86, 0, 0.07, 1);
+
+  --dur-fast: 250ms;
+  --dur-base: 650ms;
+  --dur-slow: 950ms;
+}
+
+@media (min-width: 900px) {
+  :root { --header-h: 76px; }
+}

@@ -1,0 +1,133 @@
+/* ==========================================================================
+   Motion — système d'entrée (principes MILL3, réimplémentés)
+   · animations déclarées en play-state:paused + fill-mode:backwards,
+     basculées en running par .is-inview (ouverture ou IntersectionObserver)
+   · délais = somme composable : --module-delay + --self-delay + index × stagger
+   · rien ne s'applique sans html.--js-inview-enabled (posé par core/head.js) :
+     sans JS ou en mouvement réduit, tout est visible d'emblée
+   · jamais de scale sur une photo : clip-path, masque ou translation
+   ========================================================================== */
+
+:root {
+  --stagger-base: 120ms;
+  --stagger-step: 130ms;
+}
+
+[data-module-delay] { --module-delay: 0ms; }
+
+[data-reveal], [data-split] {
+  --self-delay: 0ms;
+  --local-offset: 0ms;
+  --index: 0;
+  --stagger: 70ms;
+  --delay: calc(var(--module-delay, 0ms) + var(--self-delay, 0ms)
+           + var(--index, 0) * var(--stagger, 0ms) + var(--local-offset, 0ms));
+}
+
+[data-module-delay] > [data-reveal]:nth-child(2) { --self-delay:  90ms; }
+[data-module-delay] > [data-reveal]:nth-child(3) { --self-delay: 180ms; }
+[data-module-delay] > [data-reveal]:nth-child(4) { --self-delay: 270ms; }
+[data-module-delay] > [data-reveal]:nth-child(5) { --self-delay: 360ms; }
+[data-module-delay] > [data-reveal]:nth-child(6) { --self-delay: 450ms; }
+
+@keyframes v-fade      { from { opacity: 0; } }
+@keyframes v-translate { from { translate: var(--tx, 0px) var(--ty, 0px); } }
+@keyframes v-rotate    { from { rotate: var(--rot-from, 0deg); } }
+/* clip-path : `to` explicite, la valeur naturelle `none` ne s'interpole pas */
+@keyframes v-clip {
+  from { clip-path: inset(var(--top, 0%) var(--right, 0%) var(--bottom, 0%) var(--left, 0%) round var(--clip-radius, 0px)); }
+  to   { clip-path: inset(0% 0% 0% 0% round var(--clip-radius, 0px)); }
+}
+@keyframes v-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+/* a. Par défaut : monte et se fond */
+html.--js-inview-enabled [data-reveal] {
+  --ty: 1.4rem;
+  animation:
+    v-translate var(--dur-base, 650ms) var(--ease-out, ease) var(--delay, 0ms) backwards,
+    v-fade var(--dur-base, 650ms) linear var(--delay, 0ms) backwards;
+  animation-play-state: paused, paused;
+}
+html.--js-inview-enabled [data-reveal].is-inview { animation-play-state: running, running; }
+
+/* b. Masque : le parent masque, l'enfant monte */
+html.--js-inview-enabled [data-reveal="mask"] { overflow: hidden; animation: none; }
+html.--js-inview-enabled [data-reveal="mask"] > * {
+  display: block;
+  --ty: 105%;
+  animation: v-translate var(--dur-slow, 950ms) var(--ease-out, ease) var(--delay, 0ms) backwards;
+  animation-play-state: paused;
+}
+html.--js-inview-enabled [data-reveal="mask"].is-inview > * { animation-play-state: running; }
+
+/* c. Image nappée de haut en bas (le glaçage coule) — jamais de zoom */
+html.--js-inview-enabled [data-reveal="clip"] {
+  --top: 0%; --right: 0%; --bottom: 100%; --left: 0%;
+  animation: v-clip var(--dur-slow, 950ms) var(--ease-io, ease) var(--delay, 0ms) backwards;
+  animation-play-state: paused;
+}
+html.--js-inview-enabled [data-reveal="clip"].is-inview { animation-play-state: running; }
+
+/* d. Polaroïd qui roule jusqu'à sa place : translation + rotation */
+html.--js-inview-enabled [data-reveal="roll"] {
+  --ty: 2.5rem;
+  --rot-from: calc(var(--tilt, 0deg) - 9deg);
+  animation:
+    v-translate var(--dur-slow, 950ms) var(--ease-out, ease) var(--delay, 0ms) backwards,
+    v-rotate var(--dur-slow, 950ms) var(--ease-out, ease) var(--delay, 0ms) backwards,
+    v-fade 300ms linear var(--delay, 0ms) backwards;
+  animation-play-state: paused, paused, paused;
+}
+html.--js-inview-enabled [data-reveal="roll"].is-inview { animation-play-state: running, running, running; }
+
+/* e. Annotation : la flèche s'écrit (pathLength="1" sur les tracés) */
+[data-reveal="draw"] .annot__arrow path { stroke-dasharray: 1; }
+html.--js-inview-enabled [data-reveal="draw"] .annot__arrow path {
+  animation: v-draw 700ms var(--ease-io, ease) calc(var(--delay, 0ms) + 250ms) backwards;
+  animation-play-state: paused;
+}
+html.--js-inview-enabled [data-reveal="draw"] .annot__label {
+  --ty: 0.5rem;
+  animation:
+    v-translate 500ms var(--ease-out, ease) calc(var(--delay, 0ms) + 650ms) backwards,
+    v-fade 500ms linear calc(var(--delay, 0ms) + 650ms) backwards;
+  animation-play-state: paused, paused;
+}
+html.--js-inview-enabled [data-reveal="draw"] { animation: none; }
+html.--js-inview-enabled [data-reveal="draw"].is-inview .annot__arrow path { animation-play-state: running; }
+html.--js-inview-enabled [data-reveal="draw"].is-inview .annot__label { animation-play-state: running, running; }
+
+/* f. Titres : chaque mot monte dans son masque (core/motion.js → splitWords) */
+.word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+.word__inner { display: inline-block; }
+html.--js-inview-enabled [data-split] .word__inner {
+  --ty: 110%;
+  animation: v-translate var(--dur-slow, 950ms) var(--ease-out, ease)
+             calc(var(--delay, 0ms) + var(--word-index, 0) * var(--word-stagger, 60ms)) backwards;
+  animation-play-state: paused;
+}
+html.--js-inview-enabled [data-split].is-inview .word__inner { animation-play-state: running; }
+
+/* Mobile : rythme raccourci, nappage remplacé par un fondu (moins de compositing) */
+@media (max-width: 760px) {
+  :root { --dur-base: 520ms; --dur-slow: 720ms; }
+  html.--js-inview-enabled [data-split] .word__inner { --word-stagger: 40ms; }
+}
+
+/* Mouvement réduit : dernier mot */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html [data-reveal], html [data-reveal] > *, html [data-split] .word__inner,
+  html [data-reveal] .annot__arrow path, html [data-reveal] .annot__label {
+    animation: none !important;
+    opacity: 1 !important;
+    translate: none !important;
+    clip-path: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}

@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Pied de page — chocolat, la phrase de la marque en grand
+   ========================================================================== */
+
+.site-footer {
+  --section-bg: var(--brown);
+  --wave-h: clamp(26px, 4vw, 54px);
+  position: relative;
+  background: var(--brown);
+  color: var(--cream);
+  padding-bottom: max(28px, env(safe-area-inset-bottom));
+}
+.site-footer a { color: var(--cream); text-decoration-color: rgba(255, 238, 220, 0.4); }
+.site-footer a:hover { text-decoration-color: var(--caramel); }
+
+.site-footer__top {
+  display: grid;
+  gap: 28px;
+  padding-block: clamp(56px, 9vw, 110px) clamp(36px, 5vw, 56px);
+}
+.site-footer__brand img { width: clamp(150px, 40vw, 230px); height: auto; }
+.site-footer__motto {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 10vw, 5.4rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  max-width: 11ch;
+}
+.site-footer__motto em { font-style: normal; color: var(--caramel); }
+
+.site-footer__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 20px;
+  font-size: 0.95rem;
+}
+.site-footer__cols h2 {
+  font-size: 1rem;
+  color: var(--caramel);
+  margin-bottom: 0.6rem;
+}
+.site-footer__cols li { padding-block: 0.15rem; }
+.site-footer__cols a { display: inline-flex; min-height: 32px; align-items: center; }
+
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 238, 220, 0.16);
+  font-size: 0.85rem;
+  color: rgba(255, 238, 220, 0.78);
+}
+.site-footer__bottom button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 238, 220, 0.4);
+  text-underline-offset: 0.2em;
+  min-height: 32px;
+}
+.site-footer__credit { margin-left: auto; }
+
+@media (min-width: 900px) {
+  .site-footer__top { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 28px; align-items: end; }
+  .site-footer__brand { grid-column: 1 / 4; align-self: start; }
+  .site-footer__motto { grid-column: 1 / 7; }
+  .site-footer__cols { grid-column: 8 / 13; grid-template-columns: repeat(3, 1fr); }
+}

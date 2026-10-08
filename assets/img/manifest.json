@@ -1,0 +1,412 @@
+{
+ "logo": {
+  "widths": [
+   400,
+   800,
+   1348
+  ],
+  "ratio": [
+   1348,
+   648
+  ],
+  "alpha": true
+ },
+ "logo-cream": {
+  "widths": [
+   450,
+   900
+  ],
+  "ratio": [
+   900,
+   433
+  ],
+  "alpha": true
+ },
+ "roll-o": {
+  "widths": [
+   320,
+   640,
+   860
+  ],
+  "ratio": [
+   860,
+   860
+  ],
+  "alpha": false
+ },
+ "ube-plateau": {
+  "widths": [
+   480,
+   800,
+   1086
+  ],
+  "ratio": [
+   1086,
+   1358
+  ],
+  "alpha": false
+ },
+ "latte-glace": {
+  "widths": [
+   480,
+   800,
+   1024
+  ],
+  "ratio": [
+   1024,
+   1280
+  ],
+  "alpha": false
+ },
+ "choco-kinder": {
+  "widths": [
+   480,
+   800,
+   1024
+  ],
+  "ratio": [
+   1024,
+   1280
+  ],
+  "alpha": false
+ },
+ "rolls-caramel": {
+  "widths": [
+   480,
+   745
+  ],
+  "ratio": [
+   745,
+   931
+  ],
+  "alpha": false
+ },
+ "roll-macro": {
+  "widths": [
+   480,
+   800,
+   1024
+  ],
+  "ratio": [
+   1024,
+   1365
+  ],
+  "alpha": false
+ },
+ "rolls-mms": {
+  "widths": [
+   480,
+   745
+  ],
+  "ratio": [
+   745,
+   931
+  ],
+  "alpha": false
+ },
+ "cappuccino-mains": {
+  "widths": [
+   480,
+   800,
+   1024
+  ],
+  "ratio": [
+   1024,
+   1280
+  ],
+  "alpha": false
+ },
+ "ube-latte": {
+  "widths": [
+   480,
+   717
+  ],
+  "ratio": [
+   717,
+   896
+  ],
+  "alpha": false
+ },
+ "ube-verre": {
+  "widths": [
+   480,
+   800,
+   869
+  ],
+  "ratio": [
+   869,
+   1086
+  ],
+  "alpha": false
+ },
+ "sandwich-main": {
+  "widths": [
+   480,
+   800,
+   1024
+  ],
+  "ratio": [
+   1024,
+   1280
+  ],
+  "alpha": false
+ },
+ "brunch-plateau": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "ratio": [
+   1200,
+   1500
+  ],
+  "alpha": false
+ },
+ "brunch-box": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "ratio": [
+   1200,
+   1500
+  ],
+  "alpha": false
+ },
+ "glaces-boules": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "ratio": [
+   1536,
+   1024
+  ],
+  "alpha": true
+ },
+ "affogato": {
+  "widths": [
+   480,
+   800,
+   1024
+  ],
+  "ratio": [
+   1024,
+   1536
+  ],
+  "alpha": true
+ },
+ "vendee-ardoise": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "ratio": [
+   1365,
+   1706
+  ],
+  "alpha": false
+ },
+ "plateau-choco": {
+  "widths": [
+   480,
+   800,
+   1024
+  ],
+  "ratio": [
+   1024,
+   1280
+  ],
+  "alpha": false
+ },
+ "box-rolls": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "ratio": [
+   1440,
+   1800
+  ],
+  "alpha": false
+ },
+ "salon": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "ratio": [
+   1440,
+   1800
+  ],
+  "alpha": false
+ },
+ "salon-large": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "ratio": [
+   1440,
+   960
+  ],
+  "alpha": false
+ },
+ "coin-miroir": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "ratio": [
+   1440,
+   1800
+  ],
+  "alpha": false
+ },
+ "gerantes": {
+  "widths": [
+   480,
+   800,
+   1062
+  ],
+  "ratio": [
+   1062,
+   708
+  ],
+  "alpha": false
+ },
+ "the-plateau": {
+  "widths": [
+   480,
+   800,
+   1024
+  ],
+  "ratio": [
+   1024,
+   1280
+  ],
+  "alpha": false
+ },
+ "rolls-daim": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "ratio": [
+   1365,
+   1706
+  ],
+  "alpha": false
+ },
+ "plaque-salon": {
+  "widths": [
+   480,
+   800,
+   1024
+  ],
+  "ratio": [
+   1024,
+   1280
+  ],
+  "alpha": false
+ },
+ "gobelet-main": {
+  "widths": [
+   480,
+   800,
+   1024
+  ],
+  "ratio": [
+   1024,
+   1280
+  ],
+  "alpha": false
+ },
+ "ig-jeux-rolls": {
+  "widths": [
+   320,
+   512
+  ],
+  "ratio": [
+   512,
+   640
+  ],
+  "alpha": false
+ },
+ "ig-oreo-kitkat": {
+  "widths": [
+   320,
+   480
+  ],
+  "ratio": [
+   480,
+   600
+  ],
+  "alpha": false
+ },
+ "ig-matcha-fraise": {
+  "widths": [
+   320,
+   360
+  ],
+  "ratio": [
+   360,
+   450
+  ],
+  "alpha": false
+ },
+ "ig-ruby-yuzu": {
+  "widths": [
+   320,
+   480
+  ],
+  "ratio": [
+   480,
+   600
+  ],
+  "alpha": false
+ },
+ "ig-mojito-ruby": {
+  "widths": [
+   320,
+   480
+  ],
+  "ratio": [
+   480,
+   600
+  ],
+  "alpha": false
+ },
+ "ig-brunch": {
+  "widths": [
+   320,
+   360
+  ],
+  "ratio": [
+   360,
+   450
+  ],
+  "alpha": false
+ },
+ "choco-kitkat": {
+  "widths": [
+   480,
+   800,
+   1024
+  ],
+  "ratio": [
+   1024,
+   1280
+  ],
+  "alpha": false
+ }
+}

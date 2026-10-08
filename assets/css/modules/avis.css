@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Avis — sur chocolat. Mobile : on fait défiler les mots des clients (aimanté,
+   points de progression). Desktop : trois colonnes décalées.
+   ========================================================================== */
+
+.avis { --section-bg: var(--brown); color: var(--cream); }
+.avis .eyebrow { color: var(--caramel); }
+.avis__head { display: grid; gap: 1rem; margin-bottom: clamp(26px, 5vw, 48px); }
+
+.avis__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 84%;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  scroll-padding-inline: var(--gutter);
+}
+.avis__track::-webkit-scrollbar { display: none; }
+
+.quote {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.4rem;
+  padding: 1.5rem 1.4rem 1.3rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 238, 220, 0.07);
+  border: 1.5px solid rgba(255, 238, 220, 0.14);
+}
+.quote:nth-child(3n + 1) { --q: var(--ruby); }
+.quote:nth-child(3n + 2) { --q: var(--yuzu); }
+.quote:nth-child(3n + 3) { --q: var(--ube); }
+.quote__mark {
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  line-height: 0.5;
+  color: var(--q, var(--caramel));
+  height: 1.4rem;
+}
+.quote blockquote {
+  font-size: clamp(1.12rem, 4.4vw, 1.3rem);
+  line-height: 1.42;
+  font-weight: 500;
+}
+.quote figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+.quote__stars { color: var(--q, var(--caramel)); letter-spacing: 0.12em; font-family: var(--font-body); }
+
+.avis__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1.2rem;
+}
+.avis__dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 238, 220, 0.3);
+  transition: width 400ms var(--ease-out), background-color 300ms linear;
+}
+.avis__dots span.is-active { width: 22px; background: var(--caramel); }
+
+.avis__source { margin-top: 1.4rem; font-size: 0.88rem; color: rgba(255, 238, 220, 0.72); text-align: center; }
+
+@media (min-width: 900px) {
+  .avis__head { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 28px; }
+  .avis__head > * { grid-column: 1 / 9; }
+  .avis__track {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+    gap: 22px;
+    align-items: start;
+  }
+  .quote:nth-child(3n + 2) { margin-top: 48px; }
+  .quote:nth-child(3n + 3) { margin-top: 18px; }
+  .avis__dots { display: none; }
+  .avis__source { text-align: left; }
+}

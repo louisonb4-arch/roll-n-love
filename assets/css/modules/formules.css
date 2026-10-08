@@ -1,0 +1,160 @@
+/* ==========================================================================
+   Formules & box — fond caramel, prix en pastille ronde (le code des ardoises
+   de la maison), formules en tickets crantés, box en rangées de rolls.
+   ========================================================================== */
+
+.formules {
+  --section-bg: var(--caramel);
+  color: var(--brown);
+}
+.formules .eyebrow { color: var(--brown); }
+
+.formules__head { display: grid; gap: 1rem; margin-bottom: clamp(30px, 5vw, 56px); }
+.formules__head .lede { max-width: 30em; }
+
+/* Pastille de prix — comme sur les ardoises du comptoir */
+.price-dot {
+  display: inline-grid;
+  place-items: center;
+  width: var(--dot, 4.6rem);
+  height: var(--dot, 4.6rem);
+  flex: none;
+  border-radius: 50%;
+  background: var(--brown);
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: calc(var(--dot, 4.6rem) * 0.3);
+  line-height: 0.9;
+  text-align: center;
+  rotate: var(--dot-tilt, -8deg);
+}
+.price-dot small { display: block; font-size: 0.48em; letter-spacing: 0.03em; }
+
+/* ----- Brunch -------------------------------------------------------------- */
+.brunch {
+  display: grid;
+  gap: clamp(26px, 5vw, 48px);
+  align-items: center;
+}
+.brunch__media { position: relative; padding-inline: 4% 10%; }
+.brunch__media .polaroid { --tilt: 2.5deg; }
+.brunch__media .polaroid__img { aspect-ratio: 4 / 5; }
+.brunch__media .price-dot { position: absolute; right: 0; top: -1.2rem; z-index: 4; --dot: clamp(5rem, 22vw, 6.6rem); --dot-tilt: 10deg; }
+
+.brunch__text { display: grid; gap: 1rem; }
+.brunch__text h3 { font-size: clamp(2.8rem, 12vw, 5rem); }
+.brunch__badge {
+  justify-self: start;
+  padding: 0.35em 0.8em 0.3em;
+  border-radius: 999px;
+  background: var(--brown);
+  color: var(--yuzu);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.brunch__facts {
+  display: grid;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+.brunch__facts li { display: flex; gap: 0.6rem; align-items: baseline; }
+.brunch__facts li::before {
+  content: "";
+  width: 0.55em;
+  height: 0.55em;
+  flex: none;
+  border-radius: 50%;
+  background: var(--brown);
+  translate: 0 -0.05em;
+}
+.brunch__fine { font-size: 0.93rem; max-width: 30em; }
+
+/* ----- Tickets ------------------------------------------------------------- */
+.tickets {
+  display: grid;
+  gap: 16px;
+  margin-top: clamp(48px, 8vw, 96px);
+}
+.ticket {
+  --notch: 14px;
+  position: relative;
+  display: grid;
+  gap: 0.45rem;
+  padding: 1.4rem 1.5rem 1.4rem 1.6rem;
+  padding-right: calc(1.5rem + 4.6rem);
+  background: var(--glaze);
+  border-radius: 10px;
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
+          mask:
+    radial-gradient(circle var(--notch) at 0 50%, #0000 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% 50%, #0000 98%, #000) right / 51% 100% no-repeat;
+}
+.ticket__kicker {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  color: var(--cinnamon);
+}
+.ticket h3 { font-size: clamp(2rem, 8vw, 2.7rem); }
+.ticket__text { font-size: 0.98rem; color: var(--brown); }
+.ticket__text small { display: block; margin-top: 0.3rem; font-size: 0.86rem; color: var(--ink-soft); }
+.ticket__price { position: absolute; right: 1.3rem; top: 1.2rem; --dot: 4.3rem; }
+
+/* ----- Box ----------------------------------------------------------------- */
+.box {
+  display: grid;
+  gap: clamp(24px, 4vw, 40px);
+  margin-top: clamp(48px, 8vw, 96px);
+  align-items: center;
+}
+.box__media .polaroid { --tilt: -3deg; width: min(80%, 380px); }
+.box__media .polaroid__img { aspect-ratio: 4 / 5; }
+.box__text { display: grid; gap: 1rem; }
+.box__text h3 { font-size: clamp(2.4rem, 10vw, 4rem); }
+
+.box__list { border-top: 2px solid var(--brown); }
+.box__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.35rem 1rem;
+  align-items: center;
+  padding-block: 0.85rem;
+  border-bottom: 1.5px dashed rgba(66, 32, 12, 0.35);
+}
+.box__name { font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase; line-height: 1.05; }
+.box__price { font-family: var(--font-display); font-size: 1.35rem; }
+.box__rolls {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-rows: repeat(2, 13px);
+  grid-auto-flow: column;
+  grid-auto-columns: 13px;
+  gap: 4px;
+  padding: 5px;
+  width: max-content;
+  border-radius: 5px;
+  background: rgba(255, 248, 239, 0.55);     /* le carton de la box */
+}
+.box__rolls i {
+  border-radius: 50%;
+  background: var(--glaze);
+  box-shadow: inset 0 0 0 2px var(--cinnamon), inset 0 0 0 4.5px var(--glaze), inset 0 0 0 6.5px var(--cinnamon);
+}
+.box__fine { font-size: 0.93rem; }
+
+@media (min-width: 900px) {
+  .formules__head { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 28px; align-items: end; }
+  .formules__head > :first-child { grid-column: 1 / 8; }
+  .formules__head .lede { grid-column: 8 / 13; }
+  .brunch { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 28px; }
+  .brunch__media { grid-column: 1 / 7; }
+  .brunch__text  { grid-column: 8 / 13; }
+  .tickets { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .box { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 28px; }
+  .box__text  { grid-column: 1 / 7; grid-row: 1; }
+  .box__media { grid-column: 8 / 13; grid-row: 1; justify-self: end; }
+}

@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="fr" data-page="home">
+<head>
+{{inc:head}}
+  <title>Roll in Love · Cinnamon rolls & café à Saint-Jean-de-Monts</title>
+  <meta name="description" content="Cinnamon rolls roulés main chaque matin, cafés, ubé latte, boissons glacées et brunch. 32 rue Neuve, Saint-Jean-de-Monts, tous les jours 10h–22h.">
+  <link rel="canonical" href="https://rollinlove.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Roll in Love">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Roll in Love — le roll fond, le cœur aussi">
+  <meta property="og:description" content="Cinnamon rolls roulés main, cafés et boissons glacées à Saint-Jean-de-Monts. Tous les jours, 10h–22h.">
+  <meta property="og:url" content="https://rollinlove.com/">
+  <meta property="og:image" content="https://rollinlove.com/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo Roll in Love et plateau d'ubé lattes et de rolls">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" as="image" type="image/avif" imagesrcset="/assets/img/logo-400.avif 400w, /assets/img/logo-800.avif 800w, /assets/img/logo-1348.avif 1348w" imagesizes="(min-width: 900px) 48vw, 92vw" fetchpriority="high">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CafeOrCoffeeShop",
+        "@id": "https://rollinlove.com/#commerce",
+        "name": "Roll in Love",
+        "description": "Coffee shop de cinnamon rolls roulés à la main et cuits sur place chaque jour, cafés, boissons glacées, sandwichs briochés, brunch et glaces.",
+        "url": "https://rollinlove.com/",
+        "logo": "https://rollinlove.com/assets/img/logo-800.webp",
+        "image": "https://rollinlove.com/assets/img/og-image.jpg",
+        "telephone": "+33259152697",
+        "email": "roll.inlove@outlook.com",
+        "priceRange": "€",
+        "servesCuisine": ["Cinnamon rolls", "Café", "Boissons glacées", "Sandwichs", "Brunch", "Glaces"],
+        "acceptsReservations": false,
+        "menu": "https://rollinlove.com/#carte",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "32 rue Neuve",
+          "postalCode": "85160",
+          "addressLocality": "Saint-Jean-de-Monts",
+          "addressRegion": "Vendée",
+          "addressCountry": "FR"
+        },
+        "openingHoursSpecification": [{
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "10:00",
+          "closes": "22:00"
+        }],
+        "sameAs": [
+          "https://www.instagram.com/roll_in_love/",
+          "https://www.facebook.com/p/Roll-in-love-61587426413608/"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Les cinnamon rolls sont-ils faits sur place ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. La pâte est pétrie, roulée et cuite sur place, rue Neuve, tous les jours. Rien de congelé, rien d'industriel." } },
+          { "@type": "Question", "name": "Faut-il réserver ?", "acceptedAnswer": { "@type": "Answer", "text": "Non, on ne prend pas de réservation : passez quand vous voulez, tous les jours de 10h à 22h. Le brunch se sert sur place de 11h à 13h30." } },
+          { "@type": "Question", "name": "Peut-on commander des box pour un événement ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui : box originale de 4 rolls cannelle, ou box mixtes de 4, 6 ou 8 rolls, pour un anniversaire, un bureau ou une fête. Idéalement 48 h à l'avance, au 02 59 15 26 97 ou par le formulaire de contact." } },
+          { "@type": "Question", "name": "Proposez-vous des laits végétaux ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, sur toutes les boissons, en supplément de 1 €. Il y a aussi une gamme sans café : matcha cérémonial bio, ubé latte, chocolats signature, thés Dammann et smoothies." } },
+          { "@type": "Question", "name": "Peut-on venir en famille, avec une poussette ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, le salon est spacieux et de plain-pied, pensé pour qu'on s'y installe confortablement, seul, à deux ou en famille." } },
+          { "@type": "Question", "name": "La salle est-elle climatisée ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, la salle est climatisée : on y est bien en toute saison." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+{{inc:header}}
+
+  <main id="contenu">
+
+    <!-- ===================================================== HÉRO -->
+    <section class="hero" id="accueil" data-module="hero" data-module-delay aria-labelledby="hero-title">
+      <div class="hero__wrap wrap">
+        <p class="eyebrow hero__eyebrow" data-reveal>Coffee shop · Saint-Jean-de-Monts</p>
+
+        <h1 class="hero__title" id="hero-title">
+          <span class="visually-hidden">Roll in Love, cinnamon rolls roulés à la main et coffee shop à Saint-Jean-de-Monts</span>
+          <span class="hero__mark" aria-hidden="true">
+            <span class="hero__logo">{{pic:logo||(min-width: 900px) 48vw, 92vw|loading="eager" fetchpriority="high"}}</span>
+            <span class="hero__o"><span class="hero__o-photo">{{pic:roll-o||(min-width: 900px) 18vw, 32vw|loading="eager"}}</span></span>
+            <span class="annot hero__annot" data-reveal="draw" style="--self-delay: 1100ms; --annot-tilt: -5deg">
+              <svg class="annot__arrow" viewBox="0 0 64 52"><path pathLength="1" d="M58 44C42 46 22 40 10 12"/><path pathLength="1" d="M4 22l6-12 11 7"/></svg>
+              <span class="annot__label">Roulé main<em>ce matin</em></span>
+            </span>
+          </span>
+        </h1>
+
+        <div class="hero__body">
+          <p class="hero__tagline display" data-split>Le roll fond,<br>le cœur aussi.</p>
+          <p class="lede hero__lede" data-reveal>Des cinnamon rolls roulés à la main chaque matin, glacés tièdes, à croquer avec un ubé latte glacé ou un chocolat signature. Sur place, dans un salon tout doux, ou à emporter.</p>
+          <div class="hero__actions" data-reveal>
+            <a class="cta" href="#infos">
+              <svg class="cta__swirl" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.6 12.2c.2-.6-.3-1.3-1-1.2-1 .1-1.5 1.3-1 2.2.7 1.3 2.6 1.3 3.5.1 1.2-1.6.4-4-1.5-4.6-2.4-.8-4.8 1-4.9 3.5-.1 3.2 3 5.4 6 4.6 3.8-1 5.4-5.5 3.6-8.8C15.5 4.6 10.3 3.6 6.8 6c-4 2.8-4.3 8.8-.8 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Nous trouver
+            </a>
+            <a class="link" href="#carte">Voir la carte <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="status hero__status" data-reveal data-status>
+            <span class="status__dot" aria-hidden="true"></span>
+            <span><span data-status-text>Tous les jours</span> <small>· <span data-status-detail>10h – 22h</span> · 32 rue Neuve</small></span>
+          </p>
+        </div>
+
+        <div class="hero__stack" aria-label="En ce moment au comptoir">
+          <figure class="polaroid hero__shot hero__shot--1" data-reveal="roll" style="--tilt:-6deg; --self-delay: 380ms">
+            <div class="polaroid__img">{{pic:ube-plateau|Plateau en bois : deux ubé lattes violets et deux rolls glacés aux éclats de noisette|(min-width: 900px) 22vw, 52vw}}</div>
+            <figcaption class="polaroid__caption">Ubé latte<small>la boisson violette de la maison</small></figcaption>
+          </figure>
+          <figure class="polaroid hero__shot hero__shot--2" data-reveal="roll" style="--tilt:5deg; --self-delay: 520ms">
+            <div class="polaroid__img">{{pic:latte-glace|Latte glacé dans un gobelet Roll in Love, posé sur un support en bois|(min-width: 900px) 18vw, 47vw}}</div>
+            <figcaption class="polaroid__caption">Latte glacé</figcaption>
+          </figure>
+          <figure class="polaroid hero__shot hero__shot--3" data-reveal="roll" style="--tilt:-2deg; --self-delay: 660ms">
+            <div class="polaroid__img">{{pic:choco-kinder|Chocolat signature Kinder avec crème fouettée et morceaux de chocolat|(min-width: 900px) 17vw, 42vw}}</div>
+            <figcaption class="polaroid__caption">Choco-Kinder</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== LE GESTE -->
+    <section class="section geste" id="le-roll" data-module-delay aria-labelledby="geste-title">
+      <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 56V26C160 4 330 0 500 14s330 38 520 32 300-30 420-26V56Z"/></svg>
+      <div class="geste__wrap wrap">
+        <div class="geste__head">
+          <p class="eyebrow" data-reveal>Notre obsession</p>
+          <h2 class="title-xl" id="geste-title" data-split>Roulé main, chaque matin.</h2>
+          <p class="lede geste__lede" data-reveal>Une pâte briochée qu'on laisse pousser lentement, du beurre, de la cannelle, un ruban qu'on enroule à la main. Puis le four, puis le glaçage tiède. C'est long. C'est ce qui change tout.</p>
+        </div>
+
+        <div class="geste__media">
+          <figure class="polaroid" data-reveal="roll" style="--tilt:-3deg">
+            <div class="polaroid__img">{{pic:rolls-caramel|Rolls dorés couverts de cubes de caramel, l'un ouvert sur sa mie filante|(min-width: 900px) 34vw, 78vw}}</div>
+            <figcaption class="polaroid__caption">Roll caramel<small>création du moment</small></figcaption>
+          </figure>
+          <span class="annot annot--col geste__annot" data-reveal="draw" style="--annot-tilt: 5deg">
+            <span class="annot__label">Mie filante<em>pas de triche</em></span>
+            <svg class="annot__arrow" viewBox="0 0 64 52"><path pathLength="1" d="M52 4C50 22 40 38 12 44"/><path pathLength="1" d="M20 34l-9 10 12 4"/></svg>
+          </span>
+        </div>
+
+        <ol class="geste__steps">
+          <li class="geste__step" data-reveal>
+            <span class="geste__num" aria-hidden="true">01</span>
+            <div><h3>La pâte</h3><p>Pétrie le matin, poussée lentement, jamais congelée.</p></div>
+          </li>
+          <li class="geste__step" data-reveal>
+            <span class="geste__num" aria-hidden="true">02</span>
+            <div><h3>Le ruban</h3><p>Beurre et cannelle étalés, roulés à la main, tranchés un par un.</p></div>
+          </li>
+          <li class="geste__step" data-reveal>
+            <span class="geste__num" aria-hidden="true">03</span>
+            <div><h3>La cuisson</h3><p>Cuits sur place au fil de la journée, servis tièdes.</p></div>
+          </li>
+          <li class="geste__step" data-reveal>
+            <span class="geste__num" aria-hidden="true">04</span>
+            <div><h3>Le glaçage</h3><p>Coulé à la sortie du four : l'original, ou la création du moment.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================================================== LA CARTE -->
+    <section class="section carte" id="carte" data-module="carte" data-module-delay aria-labelledby="carte-title">
+      <svg class="wave wave--flip" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 56V30C150 6 300 2 470 16s320 36 500 30 320-34 470-30V56Z"/></svg>
+      <div class="wrap">
+        <div class="carte__head">
+          <div>
+            <p class="eyebrow" data-reveal>La carte</p>
+            <h2 class="title-xl" id="carte-title" data-split>Tout ce qui sort du comptoir.</h2>
+          </div>
+          <p class="lede" data-reveal>Du four, de la machine à café et du bac à glaces. Les créations changent au fil des semaines : demandez celle du jour.</p>
+        </div>
+
+        <div class="carte__tabs">
+          <div class="carte__tablist">
+            <a class="carte__tab" href="#carte-rolls" data-flavor="rolls">Rolls</a>
+            <a class="carte__tab" href="#carte-chaud" data-flavor="chaud">Boissons chaudes</a>
+            <a class="carte__tab" href="#carte-glace" data-flavor="glace">Boissons glacées</a>
+            <a class="carte__tab" href="#carte-sandwichs" data-flavor="sandwichs">Sandwichs</a>
+            <a class="carte__tab" href="#carte-glaces" data-flavor="glaces">Glaces</a>
+          </div>
+        </div>
+
+        <!-- Rolls -->
+        <div class="carte__panel" id="carte-rolls" data-flavor="rolls">
+          <div class="carte__intro">
+            <h3>Rolls & douceurs</h3>
+            <p>Roulés à la main chaque matin, cuits sur place, servis tièdes sous leur glaçage.</p>
+          </div>
+          <div class="carte__media">
+            <figure class="polaroid"><div class="polaroid__img">{{pic:rolls-mms|Rolls briochés garnis de bonbons chocolatés colorés|(min-width: 900px) 18vw, 45vw}}</div><figcaption class="polaroid__caption">Création du moment</figcaption></figure>
+            <figure class="polaroid"><div class="polaroid__img">{{pic:roll-macro|Gros plan d'un cinnamon roll nappé de glaçage blanc|(min-width: 900px) 18vw, 45vw}}</div><figcaption class="polaroid__caption">L'original</figcaption></figure>
+          </div>
+          <div class="carte__list">
+            <div class="carte__group">
+              <p class="carte__group-title">Sucré</p>
+              <div class="item"><span class="item__name">Roll Original</span><span class="item__price">3,90 €</span><p class="item__desc">Roulé à la cannelle, glaçage tiède.</p></div>
+              <div class="item"><span class="item__name">Roll Création</span><span class="item__price">4,50 €</span><p class="item__desc">La création du moment — demandez-nous la sélection du jour.</p></div>
+              <div class="item"><span class="item__name">Banana Bread</span><span class="item__price">3 €</span><p class="item__desc">Cake banane et pépites de chocolat.</p></div>
+              <div class="item"><span class="item__name">Brownie Chocolat</span><span class="item__price">3 €</span><p class="item__desc">Brownie fondant au chocolat.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Boissons chaudes -->
+        <div class="carte__panel" id="carte-chaud" data-flavor="chaud">
+          <div class="carte__intro">
+            <h3>Boissons chaudes</h3>
+            <p>Cafés, matcha cérémonial bio, thés Dammann et chocolats signature.</p>
+          </div>
+          <div class="carte__media">
+            <figure class="polaroid"><div class="polaroid__img">{{pic:cappuccino-mains|Deux mains autour d'une tasse de cappuccino saupoudrée de cacao|(min-width: 900px) 18vw, 45vw}}</div><figcaption class="polaroid__caption">Cappuccino</figcaption></figure>
+            <figure class="polaroid"><div class="polaroid__img">{{pic:choco-kitkat|Chocolat signature KitKat garni de crème fouettée|(min-width: 900px) 18vw, 45vw}}</div><figcaption class="polaroid__caption">Choco-KitKat</figcaption></figure>
+          </div>
+          <div class="carte__list carte__list--cols">
+            <div class="carte__group">
+              <p class="carte__group-title">Cafés & thés</p>
+              <div class="item"><span class="item__name">Expresso</span><span class="item__price">2,20 €</span></div>
+              <div class="item"><span class="item__name">Double expresso</span><span class="item__price">3,50 €</span></div>
+              <div class="item"><span class="item__name">Noisette</span><span class="item__price">2,40 €</span><p class="item__desc">Expresso, nuage de lait.</p></div>
+              <div class="item"><span class="item__name">Allongé</span><span class="item__price">2,50 €</span></div>
+              <div class="item"><span class="item__name">Americano</span><span class="item__price">2,50 €</span></div>
+              <div class="item"><span class="item__name">Décaféiné</span><span class="item__price">2,50 €</span></div>
+              <div class="item"><span class="item__name">Latte</span><span class="item__price">4,50 €</span><p class="item__desc">Expresso, lait, mousse de lait.</p></div>
+              <div class="item"><span class="item__name">Flat White</span><span class="item__price">4,50 €</span><p class="item__desc">Double expresso, micro-mousse de lait.</p></div>
+              <div class="item"><span class="item__name">Cappuccino</span><span class="item__price">4,50 €</span><p class="item__desc">Expresso, lait, mousse, cacao.</p></div>
+              <div class="item"><span class="item__name">Mocha</span><span class="item__price">4,50 €</span><p class="item__desc">Expresso, cacao, lait.</p></div>
+              <div class="item"><span class="item__name">Affogato</span><span class="item__price">4,50 €</span><p class="item__desc">Expresso versé sur une boule de glace.</p></div>
+              <div class="item"><span class="item__name">Caramel Macchiato</span><span class="item__price">5 €</span><p class="item__desc">Expresso, lait, vanille, coulis caramel, crème fouettée.</p></div>
+              <div class="item"><span class="item__name">Ubé Latte</span><span class="item__price">5 €</span><p class="item__desc">Poudre d'ubé (igname violette), lait.</p></div>
+              <div class="item"><span class="item__name">Thé Matcha <span class="tag tag--bio">bio</span></span><span class="item__price">5 €</span><p class="item__desc">Matcha cérémonial Seijaku, lait. +1 € purée de fraise.</p></div>
+              <div class="item"><span class="item__name">Thé / Thé Dammann</span><span class="item__price">3,50 €</span></div>
+              <div class="item"><span class="item__name">Chocolat chaud</span><span class="item__price">4,50 €</span><p class="item__desc">Pur cacao, lait.</p></div>
+            </div>
+            <div class="carte__group">
+              <p class="carte__group-title">Choco signatures <small>M 5,50 € · L 6,50 €</small></p>
+              <div class="item"><span class="item__name">Choco-Kinder</span><p class="item__desc">Cacao, lait, crème fouettée, coulis chocolat, Kinder.</p></div>
+              <div class="item"><span class="item__name">Choco-Snickers</span><p class="item__desc">Cacao, lait, crème fouettée, coulis caramel, Snickers.</p></div>
+              <div class="item"><span class="item__name">Choco-Oreo</span><p class="item__desc">Cacao, lait, crème fouettée, coulis chocolat, Oreo.</p></div>
+              <div class="item"><span class="item__name">Choco-KitKat</span><p class="item__desc">Cacao, lait, crème fouettée, coulis chocolat, KitKat.</p></div>
+              <div class="item"><span class="item__name">Choco-Marshmallow</span><p class="item__desc">Cacao, lait, crème fouettée, coulis chocolat, marshmallow.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Boissons glacées -->
+        <div class="carte__panel" id="carte-glace" data-flavor="glace">
+          <div class="carte__intro">
+            <h3>Boissons glacées</h3>
+            <p>Cafés glacés, ubé latte, matcha, smoothies et sodas artisanaux de Vendée.</p>
+          </div>
+          <div class="carte__media">
+            <figure class="polaroid"><div class="polaroid__img">{{pic:ube-verre|Ubé latte glacé dans un verre bulle, dégradé violet et blanc|(min-width: 900px) 18vw, 45vw}}</div><figcaption class="polaroid__caption">Ubé latte glacé</figcaption></figure>
+            <figure class="polaroid"><div class="polaroid__img">{{pic:vendee-ardoise|Bouteilles de Vendée Cola et Vendée Limonade devant une ardoise « Nouveauté »|(min-width: 900px) 18vw, 45vw}}</div><figcaption class="polaroid__caption">Sodas de Vendée</figcaption></figure>
+          </div>
+          <div class="carte__list carte__list--cols">
+            <div class="carte__group">
+              <p class="carte__group-title">Cafés glacés</p>
+              <div class="item"><span class="item__name">Latte glacé</span><span class="item__price">4,50 €</span><p class="item__desc">Expresso, lait, mousse, glace.</p></div>
+              <div class="item"><span class="item__name">Flat White glacé</span><span class="item__price">4,50 €</span><p class="item__desc">Double expresso, micro-mousse, glace.</p></div>
+              <div class="item"><span class="item__name">Americano glacé</span><span class="item__price">2,50 €</span></div>
+              <div class="item"><span class="item__name">Cappuccino glacé</span><span class="item__price">4,50 €</span></div>
+              <div class="item"><span class="item__name">Mocha glacé</span><span class="item__price">4,90 €</span><p class="item__desc">Expresso, cacao, lait, glace.</p></div>
+              <div class="item"><span class="item__name">Chocolat glacé</span><span class="item__price">4,50 €</span></div>
+              <div class="item"><span class="item__name">Ubé Latte glacé</span><span class="item__price">5 €</span><p class="item__desc">Poudre d'ubé, lait, glace.</p></div>
+              <div class="item"><span class="item__name">Matcha glacé <span class="tag tag--bio">bio</span></span><span class="item__price">5 €</span><p class="item__desc">Matcha cérémonial Seijaku, lait, glace. +1 € purée de fraise.</p></div>
+              <div class="item"><span class="item__name">Lait aromatisé</span><span class="item__price">2,90 €</span><p class="item__desc">Lait, sirop, glace.</p></div>
+            </div>
+            <div class="carte__group">
+              <p class="carte__group-title">Frais <small>M / L</small></p>
+              <div class="item"><span class="item__name">Citronnade</span><span class="item__price">3,25 € <small>/ 4 €</small></span><p class="item__desc">Citron pressé, eau, sucre de canne, glace.</p></div>
+              <div class="item"><span class="item__name">Thé glacé <span class="tag tag--bio">bio</span></span><span class="item__price">3,25 € <small>/ 4 €</small></span><p class="item__desc">Thé noir, sirop, eau, glace.</p></div>
+              <div class="item"><span class="item__name">Smoothie</span><span class="item__price">4,75 € <small>/ 5,75 €</small></span><p class="item__desc">Fruits du moment, glace.</p></div>
+            </div>
+            <div class="carte__group">
+              <p class="carte__group-title">De Vendée</p>
+              <div class="item"><span class="item__name">Vendée Cola / Cola Zéro <span class="tag tag--vendee">Vendée</span></span><span class="item__price">4 €</span><p class="item__desc">Bouteille en verre, 25 cl.</p></div>
+              <div class="item"><span class="item__name">Vendée Limonade <span class="tag tag--vendee">Vendée</span></span><span class="item__price">3,50 €</span><p class="item__desc">Bouteille en verre, 25 cl.</p></div>
+              <div class="item"><span class="item__name">Vendée Diabolo <span class="tag tag--vendee">Vendée</span></span><span class="item__price">2,50 €</span><p class="item__desc">Limonade de Vendée, sirop, glace.</p></div>
+            </div>
+            <div class="carte__group">
+              <p class="carte__group-title">Suppléments</p>
+              <div class="item"><span class="item__name">Bouteille d'eau 50 cl</span><span class="item__price">2,50 €</span></div>
+              <div class="item"><span class="item__name">Sirop, crème ou lait de vache</span><span class="item__price">0,50 €</span></div>
+              <div class="item"><span class="item__name">Topping ou lait végétal</span><span class="item__price">1 €</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sandwichs -->
+        <div class="carte__panel" id="carte-sandwichs" data-flavor="sandwichs">
+          <div class="carte__intro">
+            <h3>Sandwichs briochés</h3>
+            <p>Notre pain brioché maison, garni le matin même. Le midi et l'après-midi.</p>
+          </div>
+          <div class="carte__media">
+            <figure class="polaroid"><div class="polaroid__img">{{pic:sandwich-main|Sandwich brioché à la truite fumée tenu en main|(min-width: 900px) 18vw, 45vw}}</div><figcaption class="polaroid__caption">Le Nordique</figcaption></figure>
+            <figure class="polaroid"><div class="polaroid__img">{{pic:gobelet-main|Main tenant un gobelet Roll in Love glacé|(min-width: 900px) 18vw, 45vw}}</div><figcaption class="polaroid__caption">À emporter</figcaption></figure>
+          </div>
+          <div class="carte__list">
+            <div class="carte__group">
+              <p class="carte__group-title">Salé</p>
+              <div class="item"><span class="item__name">Le Nordique</span><span class="item__price">7 €</span><p class="item__desc">Truite fumée, concombre, cream cheese, ciboulette, roquette.</p></div>
+              <div class="item"><span class="item__name">Le Gourmand</span><span class="item__price">6,50 €</span><p class="item__desc">Poulet rôti, parmesan, confit d'oignons, mayonnaise, salade.</p></div>
+              <div class="item"><span class="item__name">Le Vendéen <span class="tag tag--vendee">Vendée</span></span><span class="item__price">6,50 €</span><p class="item__desc">Jambon de Vendée, comté, pesto vert, mâche.</p></div>
+              <div class="item"><span class="item__name">Le Méditerranéen</span><span class="item__price">6 €</span><p class="item__desc">Tomate, mozzarella, pesto vert, salade.</p></div>
+            </div>
+            <p class="carte__note"><strong>Formule Plaisir, 12 €</strong> — un sandwich, un roll sucré et une boisson. <a href="#formules">Voir les formules</a></p>
+          </div>
+        </div>
+
+        <!-- Glaces -->
+        <div class="carte__panel" id="carte-glaces" data-flavor="glaces">
+          <div class="carte__intro">
+            <h3>Glaces & coupes</h3>
+            <p>Boules au choix, affogatos et coupes créations.</p>
+          </div>
+          <div class="carte__media carte__media--cutout">
+            {{pic:glaces-boules|Trois pots Roll in Love remplis de boules de glace, de crème et de coulis|(min-width: 900px) 36vw, 90vw}}
+          </div>
+          <div class="carte__list carte__list--cols">
+            <div class="carte__group">
+              <p class="carte__group-title">Boules</p>
+              <div class="item"><span class="item__name">2 boules</span><span class="item__price">3,50 €</span></div>
+              <div class="item"><span class="item__name">3 boules</span><span class="item__price">4,50 €</span><p class="item__desc">Vanille, caramel, chocolat, fraise, mangue, expresso, amarena.</p></div>
+            </div>
+            <div class="carte__group">
+              <p class="carte__group-title">Affogatos</p>
+              <div class="item"><span class="item__name">Affogato classique</span><span class="item__price">4,50 €</span><p class="item__desc">Expresso, boule vanille.</p></div>
+              <div class="item"><span class="item__name">Dark Affogato</span><span class="item__price">6,50 €</span><p class="item__desc">Chocolat, café, expresso, crème fouettée, coulis et copeaux de chocolat noir.</p></div>
+            </div>
+            <div class="carte__group">
+              <p class="carte__group-title">Coupes créations <small>7 €</small></p>
+              <div class="item"><span class="item__name">La Gourmande</span><p class="item__desc">Vanille, caramel, chocolat, crème fouettée, coulis choco-caramel, éclats d'Oreo.</p></div>
+              <div class="item"><span class="item__name">La Caramel</span><p class="item__desc">Vanille, deux boules caramel, crème fouettée, coulis caramel, spéculoos.</p></div>
+              <div class="item"><span class="item__name">La Tropicale</span><p class="item__desc">Vanille, fraise, mangue, crème fouettée, coulis fruits rouges, coco râpée.</p></div>
+              <div class="item"><span class="item__name">L'Amarena</span><p class="item__desc">Vanille, cerise amarena, chocolat, crème fouettée, coulis fruits rouges.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="carte__foot">Laits végétaux sur toutes les boissons (+1 €). Liste des allergènes disponible au comptoir. Carte indicative, susceptible d'évoluer selon les arrivages et les créations du moment.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================== FORMULES -->
+    <section class="section formules" id="formules" data-module-delay aria-labelledby="formules-title">
+      <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 56V26C160 4 330 0 500 14s330 38 520 32 300-30 420-26V56Z"/></svg>
+      <div class="wrap">
+        <div class="formules__head">
+          <div>
+            <p class="eyebrow" data-reveal>Formules & box</p>
+            <h2 class="title-xl" id="formules-title" data-split>Trois façons de s'attarder.</h2>
+          </div>
+          <p class="lede" data-reveal>Un brunch qui étire la matinée, une pause qui tient le midi, une autre qui adoucit l'après-midi. Et de quoi repartir les bras chargés.</p>
+        </div>
+
+        <div class="brunch">
+          <div class="brunch__media">
+            <figure class="polaroid" data-reveal="roll" style="--tilt: 2.5deg">
+              <div class="polaroid__img">{{pic:brunch-plateau|Plateau rond de brunch : pancakes, fruits frais, toasts salés, œufs, coulis et toppings|(min-width: 900px) 42vw, 86vw}}</div>
+              <figcaption class="polaroid__caption">Le plateau brunch<small>selon la sélection du moment</small></figcaption>
+            </figure>
+            <p class="price-dot" aria-hidden="true">20 €<small>/ pers.</small></p>
+          </div>
+          <div class="brunch__text">
+            <span class="brunch__badge" data-reveal>Tous les jours · 11h – 13h30</span>
+            <h3 data-split>Le brunch</h3>
+            <p class="lede" data-reveal>Toasts salés, œufs mayonnaise, fruits, pancakes, toppings et coulis. Servi avec une boisson chaude et une boisson froide.</p>
+            <ul class="brunch__facts" data-reveal>
+              <li>20 € par personne</li>
+              <li>Sur place, tous les jours de 11h à 13h30</li>
+              <li>En box à emporter, toute la journée</li>
+            </ul>
+            <p class="brunch__fine" data-reveal>Sans réservation : installez-vous, on s'occupe du reste. Le plateau change avec la sélection du moment.</p>
+          </div>
+        </div>
+
+        <div class="tickets">
+          <article class="ticket" data-reveal>
+            <p class="ticket__kicker">Formule 01 · le midi</p>
+            <h3>Le Plaisir</h3>
+            <p class="ticket__text">Un sandwich brioché salé, un roll sucré et une boisson.<br><small>Smoothie ou thé matcha : +1,50 €. Boisson en taille L : +1 €.</small></p>
+            <p class="price-dot ticket__price" aria-label="12 euros">12 €</p>
+          </article>
+          <article class="ticket" data-reveal>
+            <p class="ticket__kicker">Formule 02 · de 16h à 18h</p>
+            <h3>La Douceur</h3>
+            <p class="ticket__text">Un roll sucré tout juste glacé et la boisson qui va avec.<br><small>Smoothie ou thé matcha : +1,50 €. Boisson en taille L : +1 €.</small></p>
+            <p class="price-dot ticket__price" aria-label="6 euros 50">6,50 €</p>
+          </article>
+        </div>
+
+        <div class="box">
+          <div class="box__text">
+            <p class="eyebrow" data-reveal>À emporter</p>
+            <h3 data-split>Les box à partager</h3>
+            <p data-reveal>Anniversaire, bureau, goûter qui déborde : prévenez-nous idéalement 48 h à l'avance, au <a href="tel:+33259152697">02 59 15 26 97</a>.</p>
+            <div class="box__list" data-reveal>
+              <div class="box__row"><span class="box__name">Box originale · 4 cannelle</span><span class="box__price">14 €</span><span class="box__rolls" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
+              <div class="box__row"><span class="box__name">Box mixte × 4</span><span class="box__price">16 €</span><span class="box__rolls" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
+              <div class="box__row"><span class="box__name">Box mixte × 6</span><span class="box__price">24 €</span><span class="box__rolls" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+              <div class="box__row"><span class="box__name">Box mixte × 8</span><span class="box__price">30 €</span><span class="box__rolls" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+            </div>
+            <p class="box__fine" data-reveal>Une grosse commande, une question ? <a href="#contact" data-sujet="box">Écrivez-nous</a>.</p>
+          </div>
+          <div class="box__media">
+            <figure class="polaroid" data-reveal="roll" style="--tilt:-3deg">
+              <div class="polaroid__img">{{pic:box-rolls|Plaque de rolls glacés parsemés de pépites colorées, au comptoir|(min-width: 900px) 30vw, 80vw}}</div>
+              <figcaption class="polaroid__caption">Fraîchement sortis</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== LA MAISON -->
+    <section class="section maison" id="maison" data-module-delay aria-labelledby="maison-title">
+      <svg class="wave wave--flip" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 56V30C150 6 300 2 470 16s320 36 500 30 320-34 470-30V56Z"/></svg>
+      <div class="wrap">
+        <div class="maison__grid">
+          <div class="maison__duo">
+            <div class="photo" data-reveal="clip">{{pic:gerantes|Nelly et Héloïse, les deux fondatrices, attablées dans le salon devant le comptoir Roll in Love|(min-width: 900px) 56vw, 92vw}}</div>
+            <span class="annot" data-reveal="draw" style="--annot-tilt: -3deg">
+              <svg class="annot__arrow" viewBox="0 0 64 52" style="--arrow-rot: -70deg"><path pathLength="1" d="M60 6C44 2 22 8 12 40"/><path pathLength="1" d="M4 30l8 12 10-8"/></svg>
+              <span class="annot__label">Nelly & Héloïse<em>mère & fille</em></span>
+            </span>
+          </div>
+          <div class="maison__text">
+            <p class="eyebrow" data-reveal>La maison</p>
+            <h2 class="title-l" id="maison-title" data-split>Une histoire de mère et de fille.</h2>
+            <p data-reveal>Roll in Love est né de l'envie commune de Nelly et Héloïse : ouvrir, à Saint-Jean-de-Monts, le genre d'endroit où l'on s'assoit sans regarder l'heure. Des fauteuils profonds, du bois clair, et l'odeur de la cannelle qui décide pour vous.</p>
+            <p data-reveal>Chaque jour, les rolls sont préparés à la main avec des produits frais et choisis. Ici, rien n'est industriel : tout est fait avec le cœur.</p>
+            <dl class="maison__facts" data-reveal>
+              <div class="maison__fact"><dt class="visually-hidden">Ouverture</dt><dd><b>2026</b><span>ouverture rue Neuve</span></dd></div>
+              <div class="maison__fact"><dt class="visually-hidden">Fabrication</dt><dd><b>100 %</b><span>fait maison, sur place</span></dd></div>
+              <div class="maison__fact"><dt class="visually-hidden">Horaires</dt><dd><b>7 j / 7</b><span>de 10h à 22h</span></dd></div>
+              <div class="maison__fact"><dt class="visually-hidden">Confort</dt><dd><b>Au frais</b><span>salle climatisée</span></dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="salon">
+          <div class="salon__head">
+            <h3 data-split>Le salon</h3>
+            <p class="salon__hint" aria-hidden="true">Faites glisser →</p>
+          </div>
+          <div class="salon__strip" tabindex="0" aria-label="Photos du salon">
+            <figure data-reveal><div class="photo">{{pic:salon|Le salon : fauteuils clairs, suspensions en osier et plantes, baies vitrées|(min-width: 900px) 30vw, 78vw}}</div><figcaption>Les fauteuils</figcaption></figure>
+            <figure data-reveal><div class="photo">{{pic:coin-miroir|Coin lecture avec miroir ondulé, chaise en rotin et cadres au mur|(min-width: 900px) 22vw, 78vw}}</div><figcaption>Le coin miroir</figcaption></figure>
+            <figure data-reveal><div class="photo">{{pic:the-plateau|Plateau en bois avec une théière en verre, un latte et deux tasses, dans le salon|(min-width: 900px) 26vw, 78vw}}</div><figcaption>L'heure du thé</figcaption></figure>
+            <figure data-reveal><div class="photo">{{pic:plaque-salon|Plaque de rolls aux éclats de noisette au premier plan, le comptoir au fond|(min-width: 900px) 24vw, 78vw}}</div><figcaption>Au comptoir</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== AVIS -->
+    <section class="section avis" id="avis" data-module="avis" data-module-delay aria-labelledby="avis-title">
+      <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 56V26C160 4 330 0 500 14s330 38 520 32 300-30 420-26V56Z"/></svg>
+      <div class="wrap">
+        <div class="avis__head">
+          <p class="eyebrow" data-reveal>Ils sont passés</p>
+          <h2 class="title-xl" id="avis-title" data-split>Ce qu'on nous dit en repartant.</h2>
+        </div>
+        <div class="avis__track" tabindex="0" aria-label="Avis de clients">
+          <figure class="quote" data-reveal><span class="quote__mark" aria-hidden="true">“</span><blockquote>Les rolls sont excellents, mention spéciale au spéculoos qui est incroyable ! Je recommande sans hésiter.</blockquote><figcaption>Jade N. <span class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</span></figcaption></figure>
+          <figure class="quote" data-reveal><span class="quote__mark" aria-hidden="true">“</span><blockquote>Pause gourmande vraiment délicieuse, avec cinnamon rolls maison et boissons élaborées. Ça vaut clairement le détour.</blockquote><figcaption>Zoé G. <span class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</span></figcaption></figure>
+          <figure class="quote" data-reveal><span class="quote__mark" aria-hidden="true">“</span><blockquote>Endroit cosy et cocooning. Pâtisseries excellentes et boissons au top.</blockquote><figcaption>Laura M. <span class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</span></figcaption></figure>
+          <figure class="quote" data-reveal><span class="quote__mark" aria-hidden="true">“</span><blockquote>Coffee shop chaleureux avec une belle déco. Cinnamon rolls excellents et copieux. Personnel souriant et agréable.</blockquote><figcaption>Carole G. <span class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</span></figcaption></figure>
+          <figure class="quote" data-reveal><span class="quote__mark" aria-hidden="true">“</span><blockquote>Chocolat chaud délicieux, prix doux et déco chaleureuse. Je reviendrai sans hésiter.</blockquote><figcaption>Júliska T. <span class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</span></figcaption></figure>
+          <figure class="quote" data-reveal><span class="quote__mark" aria-hidden="true">“</span><blockquote>Très belle découverte. Boissons de qualité, rolls généreux et gourmands. Parfait en famille.</blockquote><figcaption>Barbara G. <span class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</span></figcaption></figure>
+          <figure class="quote" data-reveal><span class="quote__mark" aria-hidden="true">“</span><blockquote>Accueil hyper agréable, produits de qualité. Les cinnamon rolls sont exceptionnels.</blockquote><figcaption>Reyhane N. <span class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</span></figcaption></figure>
+          <figure class="quote" data-reveal><span class="quote__mark" aria-hidden="true">“</span><blockquote>Du fait maison beau et bon. Lieu très cocooning, accueil parfait.</blockquote><figcaption>Mary B. <span class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</span></figcaption></figure>
+          <figure class="quote" data-reveal><span class="quote__mark" aria-hidden="true">“</span><blockquote>Ambiance hyper cosy, boissons savoureuses et gâteaux excellents.</blockquote><figcaption>Sofiane S. <span class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</span></figcaption></figure>
+        </div>
+        <div class="avis__dots" aria-hidden="true"></div>
+        <p class="avis__source">Avis laissés par nos clients, reproduits sans retouche.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================== VITRINE -->
+    <section class="section vitrine" id="vitrine" data-module-delay aria-labelledby="vitrine-title">
+      <svg class="wave wave--flip" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 56V30C150 6 300 2 470 16s320 36 500 30 320-34 470-30V56Z"/></svg>
+      <div class="wrap">
+        <div class="vitrine__head">
+          <div>
+            <p class="eyebrow" data-reveal>En vitrine</p>
+            <h2 class="title-xl" id="vitrine-title" data-split>Le comptoir, côté Insta.</h2>
+          </div>
+          <p class="lede" data-reveal>Les créations changent au fil des semaines. Le meilleur endroit pour les suivre : <a class="link" href="https://www.instagram.com/roll_in_love/" rel="noopener" target="_blank">@roll_in_love<span class="visually-hidden"> (Instagram, nouvel onglet)</span></a></p>
+        </div>
+        <ul class="vitrine__grid">
+          <li data-reveal><a class="vitrine__tile" href="https://www.instagram.com/roll_in_love/p/Das_EjzsHLW/" rel="noopener" target="_blank" aria-label="Post Instagram : iced latte chocolat blanc ruby, thé glacé yuzu et rolls (nouvel onglet)">{{pic:ig-ruby-yuzu||(min-width: 900px) 15vw, 46vw}}</a></li>
+          <li data-reveal><a class="vitrine__tile" href="https://www.instagram.com/roll_in_love/p/DacrXKWDD8E/" rel="noopener" target="_blank" aria-label="Post Instagram : virgin mojito, thé glacé et iced latte ruby (nouvel onglet)">{{pic:ig-mojito-ruby||(min-width: 900px) 15vw, 46vw}}</a></li>
+          <li data-reveal><a class="vitrine__tile" href="https://www.instagram.com/roll_in_love/p/Ddt0lEljLRC/" rel="noopener" target="_blank" aria-label="Post Instagram : jeux de société, boissons et rolls sur une table du salon (nouvel onglet)">{{pic:ig-jeux-rolls||(min-width: 900px) 15vw, 46vw}}</a></li>
+          <li data-reveal><a class="vitrine__tile" href="https://www.instagram.com/roll_in_love/reel/DbGlRpUs78-/" rel="noopener" target="_blank" aria-label="Vidéo Instagram : iced matcha latte à la purée de fraise (nouvel onglet)">{{pic:ig-matcha-fraise||(min-width: 900px) 15vw, 46vw}}</a></li>
+          <li data-reveal><a class="vitrine__tile" href="https://www.instagram.com/roll_in_love/p/DbTcbbqMYkB/" rel="noopener" target="_blank" aria-label="Post Instagram : café Oreo glacé et choco KitKat glacé (nouvel onglet)">{{pic:ig-oreo-kitkat||(min-width: 900px) 15vw, 46vw}}</a></li>
+          <li data-reveal><a class="vitrine__tile" href="https://www.instagram.com/roll_in_love/reel/DbLNqe3MJU-/" rel="noopener" target="_blank" aria-label="Vidéo Instagram : le plateau brunch by Roll in Love (nouvel onglet)">{{pic:ig-brunch||(min-width: 900px) 15vw, 46vw}}</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================================================== NOUS ÉCRIRE -->
+    <section class="section contact" id="contact" data-module="contact" data-module-delay aria-labelledby="contact-title">
+      <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 56V26C160 4 330 0 500 14s330 38 520 32 300-30 420-26V56Z"/></svg>
+      <div class="wrap contact__grid">
+        <div class="contact__intro">
+          <p class="eyebrow" data-reveal>Nous écrire</p>
+          <h2 class="title-xl" id="contact-title" data-split>Un mot, une question ?</h2>
+          <p class="lede" data-reveal>Une box pour un anniversaire, un allergène à vérifier, ou juste un mot doux : écrivez-nous, on vous répond vite. Pas de réservation chez nous — pour une pause, passez simplement.</p>
+          <p class="contact__alt" data-reveal>Plus pressé ? <a href="tel:+33259152697">02 59 15 26 97</a></p>
+        </div>
+
+        <form class="form" action="/api/contact" method="post" data-reveal novalidate>
+          <fieldset class="choices">
+            <legend>C'est à propos de…</legend>
+            <div class="choices__list">
+              <label class="choice"><input type="radio" name="sujet" value="question" checked><span>Une question</span></label>
+              <label class="choice"><input type="radio" name="sujet" value="box"><span>Une commande de box</span></label>
+              <label class="choice"><input type="radio" name="sujet" value="autre"><span>Autre chose</span></label>
+            </div>
+            <p class="field__error" data-error="sujet" id="err-sujet"></p>
+          </fieldset>
+
+          <div class="form__row form__row--2">
+            <div class="field">
+              <label class="field__label" for="f-nom">Nom</label>
+              <input class="field__input" id="f-nom" name="nom" type="text" autocomplete="name" maxlength="80" required aria-describedby="err-nom">
+              <p class="field__error" data-error="nom" id="err-nom"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="f-email">E-mail <small>(pour vous répondre)</small></label>
+              <input class="field__input" id="f-email" name="email" type="email" autocomplete="email" maxlength="120" required aria-describedby="err-email">
+              <p class="field__error" data-error="email" id="err-email"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="f-tel">Téléphone <small>(facultatif)</small></label>
+            <input class="field__input" id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" aria-describedby="err-tel">
+            <p class="field__error" data-error="tel" id="err-tel"></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="f-message">Message <small data-hint></small></label>
+            <textarea class="field__input" id="f-message" name="message" minlength="10" maxlength="1500" rows="5" required aria-describedby="err-message"></textarea>
+            <p class="field__error" data-error="message" id="err-message"></p>
+          </div>
+
+          <div class="form__trap" aria-hidden="true">
+            <label for="f-site">Ne pas remplir</label>
+            <input id="f-site" name="site" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <p class="form__status" role="status" aria-live="polite" tabindex="-1"></p>
+
+          <div class="form__foot">
+            <button class="form__submit" type="submit">Envoyer le message <span aria-hidden="true">→</span></button>
+            <p class="form__note">Vos coordonnées servent seulement à vous répondre. <a href="/confidentialite#formulaire">Détails</a></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================================================== INFOS + FAQ -->
+    <section class="section infos" id="infos" data-module-delay aria-labelledby="infos-title">
+      <svg class="wave wave--flip" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 56V30C150 6 300 2 470 16s320 36 500 30 320-34 470-30V56Z"/></svg>
+      <div class="wrap infos__grid">
+        <div class="infos__card">
+          <p class="eyebrow" data-reveal>Nous trouver</p>
+          <h2 class="visually-hidden" id="infos-title">Adresse, horaires et contact</h2>
+          <address class="infos__address" data-reveal>32 rue Neuve<span>85160 Saint-Jean-de-Monts</span></address>
+          <p class="status" data-reveal data-status><span class="status__dot" aria-hidden="true"></span><span><span data-status-text>Tous les jours</span> · <span data-status-detail>10h – 22h</span></span></p>
+          <dl class="infos__list" data-reveal>
+            <div><dt>Horaires</dt><dd>Tous les jours, 10h – 22h</dd></div>
+            <div><dt>Téléphone</dt><dd><a href="tel:+33259152697">02 59 15 26 97</a></dd></div>
+            <div><dt>E-mail</dt><dd><a href="mailto:roll.inlove@outlook.com">roll.inlove@outlook.com</a></dd></div>
+            <div><dt>Réseaux</dt><dd><a href="https://www.instagram.com/roll_in_love/" rel="noopener" target="_blank">Instagram</a> · <a href="https://www.facebook.com/p/Roll-in-love-61587426413608/" rel="noopener" target="_blank">Facebook</a></dd></div>
+          </dl>
+          <p data-reveal><a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Roll+in+Love+32+rue+Neuve+85160+Saint-Jean-de-Monts" rel="noopener" target="_blank">Ouvrir l'itinéraire <span aria-hidden="true">→</span><span class="visually-hidden"> (Google Maps, nouvel onglet)</span></a></p>
+          <p class="muted" data-reveal>En plein centre-ville, à quelques minutes de la plage. Salle de plain-pied, accessible en poussette.</p>
+        </div>
+
+        <div class="faq">
+          <h2 class="title-l" data-split>Questions fréquentes.</h2>
+          <div class="accordion" data-reveal>
+            <details class="accordion__item"><summary class="accordion__q">Les cinnamon rolls sont-ils faits sur place ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui. La pâte est pétrie, roulée et cuite sur place, rue Neuve, tous les jours. Rien de congelé, rien d'industriel.</p></details>
+            <details class="accordion__item"><summary class="accordion__q">Faut-il réserver ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Non, on ne prend pas de réservation : passez quand vous voulez, tous les jours de 10h à 22h. Le brunch se sert sur place de 11h à 13h30.</p></details>
+            <details class="accordion__item"><summary class="accordion__q">Peut-on commander des box pour un événement ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui : box originale de 4 rolls cannelle, ou box mixtes de 4, 6 ou 8 rolls, pour un anniversaire, un bureau ou une fête. Idéalement 48 h à l'avance, au 02 59 15 26 97 ou par le <a href="#contact">formulaire de contact</a>.</p></details>
+            <details class="accordion__item"><summary class="accordion__q">Proposez-vous des laits végétaux ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui, sur toutes les boissons, en supplément de 1 €. Il y a aussi une gamme sans café : matcha cérémonial bio, ubé latte, chocolats signature, thés Dammann et smoothies.</p></details>
+            <details class="accordion__item"><summary class="accordion__q">Peut-on venir en famille, avec une poussette ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui, le salon est spacieux et de plain-pied, pensé pour qu'on s'y installe confortablement, seul, à deux ou en famille.</p></details>
+            <details class="accordion__item"><summary class="accordion__q">La salle est-elle climatisée ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui, la salle est climatisée : on y est bien en toute saison.</p></details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+{{inc:footer}}
+</body>
+</html>

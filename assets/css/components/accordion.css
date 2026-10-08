@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Accordéon — <details>/<summary> natifs (fonctionne sans JS)
+   ========================================================================== */
+
+.accordion { border-top: 1.5px solid var(--beige); }
+
+.accordion__item { border-bottom: 1.5px solid var(--beige); }
+
+.accordion__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 60px;
+  padding-block: 0.9rem;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+.accordion__q::-webkit-details-marker { display: none; }
+
+.accordion__icon {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--glaze);
+  transition: background-color var(--dur-fast) linear, rotate 450ms var(--ease-out);
+}
+.accordion__icon::before,
+.accordion__icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.8rem;
+  height: 2px;
+  margin: -1px 0 0 -0.4rem;
+  border-radius: 2px;
+  background: var(--brown);
+}
+.accordion__icon::after { rotate: 90deg; transition: rotate 450ms var(--ease-out); }
+.accordion__item[open] .accordion__icon { background: var(--caramel); rotate: 180deg; }
+.accordion__item[open] .accordion__icon::after { rotate: 0deg; }
+
+.accordion__a {
+  padding: 0 3rem 1.2rem 0;
+  color: var(--ink-soft);
+  max-width: 44em;
+}
+.accordion__item[open] .accordion__a { animation: v-translate 450ms var(--ease-out) backwards, v-fade 450ms linear backwards; --ty: -0.4rem; }

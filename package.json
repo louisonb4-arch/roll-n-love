@@ -2,7 +2,9 @@
   "name": "roll-in-love",
   "private": true,
   "type": "module",
-  "dependencies": {
-    "@vercel/analytics": "^2.0.1"
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "assemble": "python3 tools/build.py",
+    "dev": "node tools/dev-server.mjs 8790"
   }
 }

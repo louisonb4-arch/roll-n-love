@@ -1,0 +1,90 @@
+/* ==========================================================================
+   Pages légales — mentions, confidentialité, CGU. Sobre et lisible :
+   titre de la marque, sommaire collant sur grand écran, texte à 68 car.
+   ========================================================================== */
+
+.legal__hero {
+  padding-block: clamp(40px, 8vw, 96px) clamp(28px, 5vw, 56px);
+  display: grid;
+  gap: 1rem;
+}
+.legal__hero h1 { font-size: clamp(2.8rem, 12vw, 6rem); }
+.legal__hero .lede { color: var(--ink-soft); max-width: 36em; }
+.legal__date { font-size: 0.88rem; font-weight: 700; color: var(--cinnamon); }
+
+.legal__body {
+  display: grid;
+  gap: 40px;
+  padding-bottom: clamp(80px, 12vw, 140px);
+}
+.legal__toc {
+  display: none;
+}
+.legal__toc ol { display: grid; gap: 0.3rem; counter-reset: toc; }
+.legal__toc a {
+  display: block;
+  padding: 0.35rem 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+.legal__toc a:hover { color: var(--brown); }
+
+.legal__article { max-width: 68ch; }
+.legal__article section { padding-block: 1.6rem; border-top: 1.5px solid var(--beige); scroll-margin-top: calc(var(--header-h) + 16px); }
+.legal__article section:first-child { border-top: 0; padding-top: 0; }
+.legal__article h2 { font-size: clamp(1.7rem, 6vw, 2.3rem); margin-bottom: 0.9rem; line-height: 1; }
+.legal__article h3 { font-size: 1.2rem; margin: 1.3rem 0 0.5rem; line-height: 1.1; }
+.legal__article p,
+.legal__article li { line-height: 1.65; }
+.legal__article p + p { margin-top: 0.8rem; }
+.legal__article ul { display: grid; gap: 0.4rem; margin: 0.8rem 0; }
+.legal__article ul li { position: relative; padding-left: 1.2rem; }
+.legal__article ul li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem;
+  top: 0.68em;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--caramel);
+}
+.legal__article a { font-weight: 700; text-decoration-color: var(--caramel); }
+
+.legal__dl { display: grid; margin: 0.6rem 0; border-top: 1.5px solid var(--beige); }
+.legal__dl > div {
+  display: grid;
+  grid-template-columns: minmax(8rem, 34%) 1fr;
+  gap: 0.8rem;
+  padding-block: 0.65rem;
+  border-bottom: 1.5px solid var(--beige);
+}
+.legal__dl dt { font-weight: 800; font-size: 0.93rem; }
+.legal__dl dd { font-size: 0.97rem; }
+
+.legal__table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.93rem; }
+.legal__table th, .legal__table td { text-align: left; vertical-align: top; padding: 0.6rem 0.5rem 0.6rem 0; border-bottom: 1.5px solid var(--beige); }
+.legal__table th { font-weight: 800; }
+.legal__scroll { overflow-x: auto; }
+
+/* Donnée manquante : un trou doit se voir, pas se combler par une supposition */
+.todo {
+  padding: 0.05em 0.35em;
+  border-radius: 5px;
+  background: var(--ruby);
+  font-weight: 800;
+}
+
+.legal__box {
+  margin-top: 1rem;
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius);
+  background: var(--glaze);
+}
+
+@media (min-width: 900px) {
+  .legal__body { grid-template-columns: 15rem 1fr; gap: 64px; }
+  .legal__toc { display: block; position: sticky; top: calc(var(--header-h) + 24px); align-self: start; }
+}

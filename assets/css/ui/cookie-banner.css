@@ -1,0 +1,44 @@
+/* ==========================================================================
+   Consentement — une seule finalité (mesure d'audience). Accepter et refuser
+   ont le même poids visuel (exigence CNIL). Rien n'est chargé avant un choix.
+   ========================================================================== */
+
+.consent {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 800;
+  display: grid;
+  gap: 12px;
+  max-width: 440px;
+  padding: 18px 18px 16px;
+  border-radius: 18px;
+  background: var(--brown);
+  color: var(--cream);
+  box-shadow: 0 24px 60px -24px rgba(30, 14, 4, 0.7);
+  translate: 0 calc(100% + 30px);
+  visibility: hidden;
+  transition: translate 600ms var(--ease-out), visibility 0s linear 600ms;
+}
+.consent.is-open { translate: 0 0; visibility: visible; transition: translate 600ms var(--ease-out), visibility 0s; }
+
+.consent__title { font-family: var(--font-display); font-size: 1.25rem; text-transform: uppercase; line-height: 1; }
+.consent__text { font-size: 0.92rem; line-height: 1.45; color: rgba(255, 238, 220, 0.86); }
+.consent__text a { color: var(--cream); font-weight: 700; }
+.consent__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.consent__btn {
+  min-height: 46px;
+  border-radius: 999px;
+  border: 1.5px solid var(--cream);
+  background: transparent;
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: background-color var(--dur-fast) linear, color var(--dur-fast) linear;
+}
+.consent__btn:hover { background: var(--cream); color: var(--brown); }
+
+@media (min-width: 700px) { .consent { left: auto; right: 24px; bottom: 24px; } }

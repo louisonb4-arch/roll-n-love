@@ -1,0 +1,203 @@
+/* ==========================================================================
+   La carte — onglets collants, une couleur par famille (les vraies couleurs
+   des boissons). Sans JS : toutes les familles s'affichent à la suite.
+   ========================================================================== */
+
+.carte { --flavor: var(--caramel); }
+[data-flavor="rolls"]     { --flavor: var(--caramel); }
+[data-flavor="chaud"]     { --flavor: #E7C3A0; }
+[data-flavor="glace"]     { --flavor: var(--ube); }
+[data-flavor="sandwichs"] { --flavor: var(--matcha); }
+[data-flavor="brunch"]    { --flavor: var(--yuzu); }
+[data-flavor="glaces"]    { --flavor: var(--ruby); }
+
+.carte__head {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: clamp(24px, 4vw, 44px);
+}
+.carte__head .lede { color: var(--ink-soft); }
+
+/* ----- Onglets ------------------------------------------------------------- */
+.carte__tabs {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 40;
+  margin-inline: calc(var(--gutter) * -1);
+  padding: 10px var(--gutter);
+  background: var(--cream);
+  transition: top 420ms var(--ease-out);
+}
+.site-header.is-hidden ~ main .carte__tabs { top: 0; }
+
+.carte__tablist {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-block: 2px;
+}
+.carte__tablist::-webkit-scrollbar { display: none; }
+
+.carte__tab {
+  flex: none;
+  scroll-snap-align: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-height: 44px;
+  padding: 0.55em 1em 0.45em;
+  border: 1.5px solid var(--beige);
+  border-radius: 999px;
+  background: var(--glaze);
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--dur-fast) linear, border-color var(--dur-fast) linear;
+}
+.carte__tab::before {
+  content: "";
+  width: 0.62em;
+  height: 0.62em;
+  border-radius: 50%;
+  background: var(--flavor);
+  box-shadow: inset 0 0 0 1px rgba(66, 32, 12, 0.18);
+}
+.carte__tab[aria-selected="true"] {
+  background: var(--flavor);
+  border-color: var(--brown);
+}
+.carte__tab[aria-selected="true"]::before { background: var(--brown); }
+
+/* ----- Familles ------------------------------------------------------------ */
+.carte__panel {
+  display: grid;
+  gap: clamp(22px, 4vw, 40px);
+  padding-top: clamp(22px, 4vw, 40px);
+  scroll-margin-top: calc(var(--header-h) + 70px);
+}
+.carte__panel[hidden] { display: none; }
+html.--js .carte__panel { animation: v-fade 380ms linear backwards; }
+
+.carte__intro { display: grid; gap: 0.6rem; }
+.carte__intro h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: clamp(2rem, 7.5vw, 3.2rem);
+}
+.carte__intro h3::before {
+  content: "";
+  width: 0.55em;
+  height: 0.55em;
+  flex: none;
+  border-radius: 50%;
+  background: var(--flavor);
+  translate: 0 -0.05em;
+}
+.carte__intro p { color: var(--ink-soft); max-width: 34em; }
+
+.carte__media {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: end;
+}
+.carte__media .polaroid:nth-child(1) { --tilt: -3deg; }
+.carte__media .polaroid:nth-child(2) { --tilt: 3deg; margin-bottom: 18px; }
+.carte__media .polaroid__img { aspect-ratio: 4 / 5; }
+.carte__media--cutout { grid-template-columns: 1fr; justify-items: center; }
+.carte__media--cutout img { width: min(100%, 420px); filter: drop-shadow(0 22px 26px rgba(66, 32, 12, 0.25)); }
+
+/* ----- Articles ------------------------------------------------------------ */
+.carte__group + .carte__group { margin-top: clamp(22px, 3vw, 34px); }
+.carte__group-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--brown);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.carte__group-title small {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: none;
+  color: var(--ink-soft);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 1rem;
+  padding-block: 0.8rem;
+  border-bottom: 1.5px dashed var(--beige);
+}
+.item__name {
+  font-family: var(--font-display);
+  font-size: 1.14rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.item__name .tag { margin-left: 0.35em; }
+.item__price {
+  font-family: var(--font-display);
+  font-size: 1.14rem;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-align: right;
+}
+.item__price small { font-size: 0.78em; color: var(--ink-soft); }
+.item__desc {
+  grid-column: 1 / -1;
+  margin-top: 0.22rem;
+  font-size: 0.93rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.carte__note {
+  margin-top: 1.2rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius);
+  background: var(--glaze);
+  font-size: 0.93rem;
+  color: var(--ink-soft);
+}
+.carte__note strong { color: var(--brown); }
+
+.carte__foot {
+  margin-top: clamp(28px, 5vw, 48px);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+@media (min-width: 900px) {
+  .carte__head { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 28px; align-items: end; }
+  .carte__head > :first-child { grid-column: 1 / 8; }
+  .carte__head .lede { grid-column: 8 / 13; }
+  .carte__tablist { flex-wrap: wrap; overflow: visible; }
+  .carte__panel {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 28px;
+    align-items: start;
+  }
+  .carte__intro { grid-column: 1 / 6; }
+  .carte__media { grid-column: 1 / 6; grid-row: 2 / 4; position: sticky; top: calc(var(--header-h) + 96px); }
+  .carte__list  { grid-column: 7 / 13; grid-row: 1 / 4; }
+  .carte__list--cols { columns: 2; column-gap: 28px; }
+  .carte__list--cols .carte__group { break-inside: avoid; }
+  .carte__list--cols .carte__group + .carte__group { margin-top: 0; padding-top: 0; }
+  .carte__list--cols .carte__group { margin-bottom: 30px; }
+}

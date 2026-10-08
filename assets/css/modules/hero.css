@@ -1,0 +1,148 @@
+/* ==========================================================================
+   Hero — « R◯LL » : le mot de la marque en grand, dont le O est un vrai
+   roll vu de dessus. L'intro s'y pose ; au scroll, le roll tourne.
+   Mobile d'abord : mot, slogan, action, statut, puis les polaroïds.
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  padding-top: clamp(18px, 4vw, 40px);
+  padding-bottom: clamp(56px, 9vw, 110px);
+  overflow: clip;
+}
+
+.hero__wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: clamp(14px, 2.4vw, 26px);
+}
+
+.hero__eyebrow { order: 0; }
+
+/* ----- Le mot : le vrai logo, dont le O devient un roll ------------------- */
+.hero__title { order: 1; margin: 0; line-height: 1; }
+
+/* Repères mesurés sur le logo détouré (1348 × 648) :
+   O dessiné  : x 285→808, y 3→492  · photo du roll : centre (548, 250), Ø 452 */
+.hero__mark {
+  position: relative;
+  display: block;
+  width: min(100%, 860px);
+  aspect-ratio: 1348 / 648;
+}
+.hero__logo,
+.hero__logo img { display: block; width: 100%; height: auto; }
+
+/* les lettres se déroulent depuis le O (ouverture, hero.js / site-intro.js) */
+html.--js-inview-enabled .hero__logo {
+  clip-path: inset(0.4% 40.1% 24.1% 21.1% round 50%);
+  transition: clip-path 1100ms var(--ease-roll);
+}
+html.--js-inview-enabled .hero__mark.is-unrolled .hero__logo {
+  clip-path: inset(0% 0% 0% 0% round 0%);
+}
+
+.hero__o {
+  position: absolute;
+  left: 23.89%;
+  top: 3.7%;
+  width: 33.53%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.hero__o-photo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 3px rgba(66, 32, 12, 0.35);
+}
+.hero__o-photo picture,
+.hero__o-photo img { width: 100%; height: 100%; }
+.hero__o-photo img {
+  object-fit: cover;
+  border-radius: 50%;
+  rotate: var(--o-turn, 0deg);       /* le roll tourne au scroll (hero.js) */
+}
+html.--js-inview-enabled .hero__o-photo {
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 900ms var(--ease-roll);
+}
+html.--js-inview-enabled .hero__mark.is-unrolled .hero__o-photo { clip-path: circle(50% at 50% 50%); }
+
+/* annotation du O : sous les deux L, la flèche remonte vers le roll */
+.hero__annot {
+  --ax: 61%;
+  --ay: 79%;
+  --arrow-w: clamp(2rem, 7.5vw, 3.6rem);
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+.hero__annot .annot__label { font-size: clamp(0.9rem, 3.3vw, 1.25rem); }
+
+/* ----- Le texte ------------------------------------------------------------ */
+.hero__body { order: 2; display: grid; gap: clamp(14px, 2vw, 22px); }
+
+.hero__tagline {
+  font-size: clamp(2.05rem, 8.6vw, 4rem);
+  line-height: 0.95;
+  max-width: 12ch;
+}
+
+.hero__lede { color: var(--ink-soft); max-width: 30em; }
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.4rem;
+}
+
+.hero__status { color: var(--brown); }
+.hero__status [data-status-text] { font-weight: 700; }
+.hero__status small { font-weight: 500; color: var(--ink-soft); font-size: 0.9rem; }
+
+/* ----- Les polaroïds ------------------------------------------------------- */
+.hero__stack {
+  order: 3;
+  position: relative;
+  height: clamp(330px, 88vw, 470px);
+  margin-top: clamp(18px, 4vw, 30px);
+}
+.hero__shot { position: absolute; width: 50%; }
+.hero__shot .polaroid__img { aspect-ratio: 4 / 5; }
+/* mobile : deux tirages qui se chevauchent sans se cacher leurs légendes */
+.hero__shot--1 { left: 0;  top: 0;   width: 55%; z-index: 2; }
+.hero__shot--2 { right: 0; top: 13%; width: 49%; z-index: 3; }
+.hero__shot--3 { display: none; }
+
+/* ----- Desktop ------------------------------------------------------------- */
+@media (min-width: 900px) {
+  .hero { padding-top: clamp(24px, 3vw, 48px); }
+  .hero__wrap {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(16px, 2vw, 28px);
+    row-gap: 0;
+    align-items: start;
+  }
+  .hero__eyebrow { grid-column: 1 / 8; grid-row: 1; margin-bottom: 1.4rem; }
+  .hero__title   { grid-column: 1 / 9; grid-row: 2; }
+  .hero__mark    { width: min(100%, 48vw, 820px); }
+  .hero__body    { grid-column: 1 / 7; grid-row: 3; margin-top: clamp(22px, 3vw, 40px); }
+  .hero__stack   {
+    grid-column: 8 / 13;
+    grid-row: 1 / 4;
+    height: 100%;
+    min-height: 600px;
+    margin-top: 0;
+  }
+  .hero__shot--1 { width: 58%; left: 0;   top: 0; }
+  .hero__shot--2 { width: 50%; right: 0;  top: 20%; z-index: 3; }
+  .hero__shot--3 { display: block; width: 47%; left: 10%; top: 63%; z-index: 2; }
+}
+
+/* Écrans larges mais peu hauts : on resserre pour garder le CTA visible */
+@media (min-width: 900px) and (max-height: 760px) {
+  .hero__mark { width: min(100%, 40vw, 640px); }
+  .hero__stack { min-height: 520px; }
+}

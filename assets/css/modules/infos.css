@@ -1,0 +1,44 @@
+/* ==========================================================================
+   Nous trouver + questions fréquentes
+   ========================================================================== */
+
+.infos__grid { display: grid; gap: clamp(48px, 8vw, 90px); }
+
+.infos__card { display: grid; gap: 1.2rem; align-content: start; }
+.infos__address {
+  font-family: var(--font-display);
+  font-size: clamp(2.3rem, 9vw, 4rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  font-style: normal;
+}
+.infos__address span { display: block; color: var(--cinnamon); font-size: 0.55em; margin-top: 0.25em; }
+
+.infos__list { display: grid; border-top: 1.5px solid var(--beige); }
+.infos__list > div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1rem;
+  padding-block: 0.85rem;
+  border-bottom: 1.5px solid var(--beige);
+}
+.infos__list dt {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: var(--cinnamon);
+  padding-top: 0.12em;
+}
+.infos__list dd { font-weight: 600; }
+.infos__list dd a { text-decoration-color: var(--caramel); }
+
+.infos__photo { position: relative; margin-top: 0.6rem; }
+.infos__photo .photo { aspect-ratio: 3 / 2; }
+
+.faq h2 { margin-bottom: clamp(18px, 3vw, 30px); }
+
+@media (min-width: 900px) {
+  .infos__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 28px; }
+  .infos__card { grid-column: 1 / 6; }
+  .faq { grid-column: 7 / 13; }
+}

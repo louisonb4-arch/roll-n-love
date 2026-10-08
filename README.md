@@ -1,112 +1,46 @@
-# Roll in Love — Site officiel
+# Roll in Love — site unifié
 
-Site vitrine + carte du coffee shop **Roll in Love**, 32 rue Neuve à Saint-Jean-de-Monts.
-Statique, sans framework ni étape de build : HTML, CSS et JavaScript écrits à la main.
+Coffee shop & cinnamon rolls, 32 rue Neuve, 85160 Saint-Jean-de-Monts — https://rollinlove.com
+Fusion de `roll-n-love` (site en ligne) et `roll-V2` (refonte « Le Glaçage »). Vanilla HTML/CSS/JS, aucune dépendance front, déployé sur Vercel.
 
-En ligne : <https://rollinlove.com>
+## DA — « Le tourbillon »
+- Le O du logo (coupe d'un cinnamon roll) est le signe : l'intro le fait atterrir dans le O du logo de la hero, où la vraie photo d'un roll s'ouvre.
+- Palette marque : crème `#FFEEDC`, chocolat `#42200C`, caramel `#D89048` (décor uniquement), cannelle `#9A4E1C` (accent texte).
+- Fraîcheur : couleurs réelles des boissons (ube `#C9B6EC`, ruby `#F6B9C6`, matcha `#BFD39A`, yuzu `#F8D56E`), une par famille de la carte.
+- Typo : Scripter (titres, prix, annotations) + Karla variable (texte). Auto-hébergées, subset FR.
+- Code Instagram : polaroïds et annotations manuscrites fléchées qui s'écrivent au trait.
+- Mouvement : jamais de rebond, jamais de zoom sur une photo (clip-path, masques, translations).
 
-## 📁 Structure
+## Contraste (WCAG)
+Brun/crème 12,8 · texte secondaire `#6B4A36` 7,0 · cannelle 5,3 · brun sur ube/ruby/matcha/yuzu ≥ 7,8. Caramel jamais en texte sur crème (2,3).
+axe-core : 0 violation sur toutes les pages (390 et 1440 px).
 
+## Structure
 ```
-roll-n-love/
-├── index.html              # Page d'accueil — SEULE SOURCE DE VÉRITÉ du contenu.
-│                           # Styles dans un <style> en tête, scripts en bas de <body>,
-│                           # police Scripter intégrée en base64 (évite un FOUT).
-├── mentions-legales.html   # Pages légales, partagent legal.css
-├── confidentialite.html
-├── legal.css               # Styles des seules pages légales
-├── css/intro.css           # Animation d'ouverture « Le roll se déroule »
-├── js/intro.js             # idem — composant isolé, aucune dépendance
-├── assets/
-│   ├── fonts/              # Scripter (woff + woff2), utilisées par legal.css
-│   └── images/             # Toutes les images du site, en WebP
-│       ├── favicon-32.png  # icônes et image de partage : PNG/JPEG, pas WebP
-│       ├── apple-touch-icon.png
-│       ├── og-image.jpg    # 1200×630, sans transparence
-│       └── src/            # sources non compressées, NON versionnées (voir plus bas)
-├── robots.txt
-├── sitemap.xml
-└── vercel.json             # en-têtes de sécurité et de cache
+src/*.html, src/_partials/   sources des pages (à modifier ici)
+*.html                       pages GÉNÉRÉES (ne pas modifier)
+assets/css/{commons,components,ui,modules}/  sources CSS → assets/css/site.css (généré, minifié)
+assets/js/{core,ui,modules}/ JS, chargé à la demande (data-ui / data-module), 1:1 avec le CSS
+api/contact.js               fonction serveur du formulaire « Nous écrire »
+tools/                       build, images, favicons/OG, serveur de dev
 ```
 
-## ⚠️ Où se modifie le contenu
-
-**Tout est dans `index.html`.** La carte, les prix, les avis, les horaires et les textes y
-sont écrits en dur. Il n'y a **ni back-office, ni fichier de données, ni système de
-traduction** : ils ont existé, mais ne pilotaient rien et ont été retirés le 7 août 2026
-(voir `LEGAL-TODO.md` § 5.2).
-
-Concrètement :
-
-- modifier un prix ou un produit → chercher son nom dans `index.html` ;
-- ajouter un avis → dupliquer un bloc `.testi-card` dans la rangée voulue ;
-- changer les horaires → deux endroits, le bloc visible **et** le JSON-LD en tête de page.
-
-Le site est **monolingue (français)**. Il n'y a pas de sélecteur de langue.
-
-## 🚀 Lancer en local
-
-Aucune dépendance à installer. Un simple serveur HTTP suffit :
-
+## Commandes
 ```bash
-cd /Users/louisonbobin/roll-n-love
-python3 -m http.server 8000
+python3 tools/build.py          # après toute modif de src/, assets/css/ ou assets/js/
+python3 tools/build-images.py   # après tout changement de photo (sources hors dépôt)
+python3 tools/build-brand.py    # favicons + image de partage
+node tools/dev-server.mjs 8790  # http://localhost:8790 (URL propres, 404, API)
 ```
+Revoir l'intro : `?intro` dans l'URL (sinon une fois par session).
 
-Puis <http://localhost:8000>.
+## Formulaire de contact — variables Vercel
+Pas de réservation chez Roll in Love : simple formulaire de contact (question, commande de box, autre).
+`MAIL_PROVIDER` (`brevo` par défaut, ou `resend`) · `BREVO_API_KEY` ou `RESEND_API_KEY` · `CONTACT_TO` · `CONTACT_FROM` (expéditeur vérifié).
+Sans elles : réponse 503 et le site propose téléphone/e-mail. Anti-spam : champ piège, délai ≥ 3 s, origine, 5 envois/10 min/IP.
 
-L'animation d'ouverture ne joue **qu'une fois par session**. Pour la revoir :
-ajouter `?intro` à l'URL, ou taper `RollInLoveIntro.replay()` dans la console.
-Elle ne joue pas du tout si le système est réglé sur « animations réduites ».
+## Checklist livraison
+RGPD (confidentialite) ✓ · CGU ✓ · mentions légales ✓ · images AVIF/WebP + srcset ✓ · Lighthouse mobile 94/97/100/100, desktop 99/94→100/100 ✓ · API hors front ✓ · contraste ✓ · HTTPS (HSTS + upgrade) ✓ · responsive 360→1440 ✓ · bandeau cookies (Accepter/Refuser égaux) ✓ · 404 ✓ · meta title/description ✓ · OG 1200×630 ✓ · favicons ✓ · sitemap/robots ✓ · alt ✓ · liens vérifiés ✓ · validation formulaire ✓ · anti-spam ✓ · Vercel Web Analytics après consentement ✓ · un seul CTA (« Nous trouver ») ✓
 
-## 🖼️ Régénérer les images
-
-Les sources non compressées vivent dans `assets/images/src/`, **volontairement hors git**
-(elles pèsent 18 Mo). Elles restent récupérables dans l'historique :
-
-```bash
-git show a7feaa8~1:rolls.png > assets/images/src/rolls.png
-```
-
-Les WebP sont dimensionnés à environ **2× la largeur d'affichage réellement mesurée** dans
-le navigateur, ce qui reste net sur écran haute densité sans transporter d'inutile. Les
-largeurs cibles et la qualité par image sont documentées dans le commit `7bd32d2`.
-
-> Les fichiers ne portent pas d'empreinte dans leur nom. `vercel.json` les met donc en
-> cache **30 jours** et non un an : une image remplacée sous le même nom met au pire un
-> mois à se propager. Pour un remplacement immédiat, changer aussi le nom du fichier.
-
-## 🌐 Déploiement
-
-Projet statique sur Vercel, aucune commande de build. À chaque `git push` sur `main`,
-Vercel redéploie.
-
-`vercel.json` gère les en-têtes de sécurité (`X-Frame-Options`, `X-Content-Type-Options`,
-`Referrer-Policy`, `Permissions-Policy`) et le cache : un an immuable pour les polices,
-30 jours pour les images, revalidation systématique pour le HTML.
-
-## ✅ Ce qui reste à faire
-
-- [ ] **Bloc hébergeur des mentions légales** — obligatoire (art. 6 III-1 LCEN), le site
-      est en ligne et les quatre champs sont vides. Voir `LEGAL-TODO.md` § 1.2.
-- [ ] **Capital social** et **directeur de la publication** — manquants, voir § 1.1.
-- [ ] Licence de la webfont Scripter à obtenir, ou remplacer la police.
-- [ ] `index.html` affiche « © 2025 » alors que les pages légales portent « © 2026 ».
-
-## 🔒 CSP — scripts inline hashés
-
-La `Content-Security-Policy` (dans `vercel.json`) autorise les deux scripts inline
-d'`index.html` par **hash sha256**. Si on modifie le moindre caractère d'un
-`<script>…</script>` inline, il faut recalculer son hash et le remplacer dans la CSP :
-
-```bash
-python3 -c "
-import re, hashlib, base64
-html = open('index.html', encoding='utf-8').read()
-for m in re.finditer(r'<script(?![^>]*src=)([^>]*)>(.*?)</script>', html, re.S):
-    if 'ld+json' in m.group(1): continue
-    print('sha256-' + base64.b64encode(hashlib.sha256(m.group(2).encode()).digest()).decode())
-"
-```
-
-Symptôme d'un hash périmé : onglets de la carte morts + erreur CSP dans la console.
+## À compléter (voir LEGAL-TODO.md)
+Capital social, RCS, directrice de la publication, médiateur, crédits photos & droit à l'image, licence web Scripter, source/date des avis, prestataire e-mail et durée de conservation.
