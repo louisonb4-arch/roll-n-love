@@ -34,7 +34,7 @@
         "email": "roll.inlove@outlook.com",
         "priceRange": "€",
         "servesCuisine": ["Cinnamon rolls", "Café", "Boissons glacées", "Sandwichs", "Brunch", "Glaces"],
-        "acceptsReservations": false,
+        "acceptsReservations": true,
         "menu": "https://rollinlove.com/#carte",
         "address": {
           "@type": "PostalAddress",
@@ -59,7 +59,7 @@
         "@type": "FAQPage",
         "mainEntity": [
           { "@type": "Question", "name": "Les cinnamon rolls sont-ils faits sur place ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. La pâte est pétrie, roulée et cuite sur place, rue Neuve, chaque jour d'ouverture. Rien de congelé, rien d'industriel." } },
-          { "@type": "Question", "name": "Faut-il réserver ?", "acceptedAnswer": { "@type": "Answer", "text": "Non, on ne prend pas de réservation : passez quand vous voulez, le vendredi, le samedi et le dimanche de 10h à 18h. Le brunch se sert sur place de 11h à 13h30." } },
+          { "@type": "Question", "name": "Faut-il réserver ?", "acceptedAnswer": { "@type": "Answer", "text": "Non pour une pause : passez quand vous voulez, le vendredi, le samedi et le dimanche de 10h à 18h. Oui pour le brunch, uniquement sur réservation la veille pour le lendemain, au 02 59 15 26 97." } },
           { "@type": "Question", "name": "Peut-on commander des box pour un événement ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui : box originale de 4 rolls cannelle, ou box mixtes de 4, 6 ou 8 rolls, pour un anniversaire, un bureau ou une fête. Idéalement 48 h à l'avance, au 02 59 15 26 97 ou à roll.inlove@outlook.com." } },
           { "@type": "Question", "name": "Proposez-vous des laits végétaux ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, sur toutes les boissons, en supplément de 1 €. Il y a aussi une gamme sans café : matcha cérémonial bio, ubé latte, chocolats signature, thés Dammann et smoothies." } },
           { "@type": "Question", "name": "Peut-on venir en famille, avec une poussette ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, le salon est spacieux et de plain-pied, pensé pour qu'on s'y installe confortablement, seul, à deux ou en famille." } },
@@ -94,7 +94,7 @@
 
         <div class="hero__body">
           <p class="hero__tagline display" data-split>Le roll fond,<br>le cœur aussi.</p>
-          <p class="lede hero__lede" data-reveal>Des cinnamon rolls roulés à la main chaque matin, glacés tièdes, à croquer avec un ubé latte glacé ou un chocolat signature. Sur place, dans un salon tout doux, ou à emporter.</p>
+          <p class="lede hero__lede" data-reveal>Des cinnamon rolls roulés à la main chaque matin, servis frais et réchauffés si vous le souhaitez, à croquer avec un ubé latte glacé ou un chocolat signature. Sur place, dans un salon tout doux, ou à emporter.</p>
           <div class="hero__actions" data-reveal>
             <a class="cta" href="#infos">
               <svg class="cta__swirl" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.6 12.2c.2-.6-.3-1.3-1-1.2-1 .1-1.5 1.3-1 2.2.7 1.3 2.6 1.3 3.5.1 1.2-1.6.4-4-1.5-4.6-2.4-.8-4.8 1-4.9 3.5-.1 3.2 3 5.4 6 4.6 3.8-1 5.4-5.5 3.6-8.8C15.5 4.6 10.3 3.6 6.8 6c-4 2.8-4.3 8.8-.8 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -132,7 +132,7 @@
         <div class="geste__head">
           <p class="eyebrow" data-reveal>Notre obsession</p>
           <h2 class="title-xl" id="geste-title" data-split>Roulé main, chaque matin.</h2>
-          <p class="lede geste__lede" data-reveal>Une pâte briochée qu'on laisse pousser lentement, du beurre, de la cannelle, un ruban qu'on enroule à la main. Puis le four, puis le glaçage tiède. C'est long. C'est ce qui change tout.</p>
+          <p class="lede geste__lede" data-reveal>Une pâte briochée qu'on laisse pousser lentement, du beurre, de la cannelle, un ruban qu'on enroule à la main. Puis le four, puis le glaçage. C'est long. C'est ce qui change tout.</p>
         </div>
 
         <div class="geste__media">
@@ -157,7 +157,7 @@
           </li>
           <li class="geste__step" data-reveal>
             <span class="geste__num" aria-hidden="true">03</span>
-            <div><h3>La cuisson</h3><p>Cuits sur place au fil de la journée, servis tièdes.</p></div>
+            <div><h3>La cuisson</h3><p>Cuits sur place, servis frais — et réchauffés si vous le souhaitez.</p></div>
           </li>
           <li class="geste__step" data-reveal>
             <span class="geste__num" aria-hidden="true">04</span>
@@ -193,7 +193,7 @@
         <div class="carte__panel" id="carte-rolls" data-flavor="rolls">
           <div class="carte__intro">
             <h3>Rolls & douceurs</h3>
-            <p>Roulés à la main chaque matin, cuits sur place, servis tièdes sous leur glaçage.</p>
+            <p>Roulés à la main chaque matin, cuits sur place, servis frais sous leur glaçage. On vous les réchauffe sur demande.</p>
           </div>
           <div class="carte__media">
             <figure class="polaroid"><div class="polaroid__img">{{pic:rolls-mms|Rolls briochés garnis de bonbons chocolatés colorés|(min-width: 900px) 18vw, 45vw}}</div><figcaption class="polaroid__caption">Création du moment</figcaption></figure>
@@ -202,7 +202,7 @@
           <div class="carte__list">
             <div class="carte__group">
               <p class="carte__group-title">Sucré</p>
-              <div class="item"><span class="item__name">Roll Original</span><span class="item__price">3,90 €</span><p class="item__desc">Roulé à la cannelle, glaçage tiède.</p></div>
+              <div class="item"><span class="item__name">Roll Original</span><span class="item__price">3,90 €</span><p class="item__desc">Roulé à la cannelle, nappé de glaçage.</p></div>
               <div class="item"><span class="item__name">Roll Création</span><span class="item__price">4,50 €</span><p class="item__desc">La création du moment — demandez-nous la sélection du jour.</p></div>
               <div class="item"><span class="item__name">Banana Bread</span><span class="item__price">3 €</span><p class="item__desc">Cake banane et pépites de chocolat.</p></div>
               <div class="item"><span class="item__name">Brownie Chocolat</span><span class="item__price">3 €</span><p class="item__desc">Brownie fondant au chocolat.</p></div>
@@ -372,15 +372,16 @@
             <p class="price-dot" aria-hidden="true">20 €<small>/ pers.</small></p>
           </div>
           <div class="brunch__text">
-            <span class="brunch__badge" data-reveal>Ven, sam & dim · 11h – 13h30</span>
+            <span class="brunch__badge" data-reveal>Sur réservation uniquement</span>
             <h3 data-split>Le brunch</h3>
-            <p class="lede" data-reveal>Toasts salés, œufs mayonnaise, fruits, pancakes, toppings et coulis. Servi avec une boisson chaude et une boisson froide.</p>
+            <p class="lede" data-reveal>Toasts salés, œufs mayonnaise, fruits, pancakes, toppings et coulis. Avec une boisson chaude et une boisson froide par personne.</p>
             <ul class="brunch__facts" data-reveal>
-              <li>20 € par personne</li>
+              <li>20 € par personne, boissons comprises</li>
+              <li>Réservation la veille pour le lendemain</li>
               <li>Sur place, du vendredi au dimanche, de 11h à 13h30</li>
               <li>En box à emporter, toute la journée d'ouverture</li>
             </ul>
-            <p class="brunch__fine" data-reveal>Sans réservation : installez-vous, on s'occupe du reste. Le plateau change avec la sélection du moment.</p>
+            <p class="brunch__fine" data-reveal>Réservez la veille au <a href="tel:+33259152697">02 59 15 26 97</a> ou en message sur <a href="https://www.instagram.com/roll_in_love/" rel="noopener" target="_blank">Instagram</a>. Le plateau change avec la sélection du moment.</p>
           </div>
         </div>
 
@@ -388,13 +389,13 @@
           <article class="ticket" data-reveal>
             <p class="ticket__kicker">Formule 01 · le midi</p>
             <h3>Le Plaisir</h3>
-            <p class="ticket__text">Un sandwich brioché salé, un roll sucré et une boisson.<br><small>Smoothie ou thé matcha : +1,50 €. Boisson en taille L : +1 €.</small></p>
+            <p class="ticket__text">Un sandwich brioché salé, un roll sucré et une boisson.<br><small>Ubé latte, thé matcha ou Choco Création : +1,50 €. Boisson en taille L : +1 €. Cocktails création hors formule.</small></p>
             <p class="price-dot ticket__price" aria-label="12 euros">12 €</p>
           </article>
           <article class="ticket" data-reveal>
             <p class="ticket__kicker">Formule 02 · de 16h à 18h</p>
             <h3>La Douceur</h3>
-            <p class="ticket__text">Un roll sucré tout juste glacé et la boisson qui va avec.<br><small>Smoothie ou thé matcha : +1,50 €. Boisson en taille L : +1 €.</small></p>
+            <p class="ticket__text">Un roll sucré tout juste glacé et la boisson qui va avec.<br><small>Ubé latte, thé matcha ou Choco Création : +1,50 €. Boisson en taille L : +1 €. Cocktails création hors formule.</small></p>
             <p class="price-dot ticket__price" aria-label="6 euros 50">6,50 €</p>
           </article>
         </div>
@@ -532,7 +533,7 @@
           <h2 class="title-l" data-split>Questions fréquentes.</h2>
           <div class="accordion" data-reveal>
             <details class="accordion__item"><summary class="accordion__q">Les cinnamon rolls sont-ils faits sur place ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui. La pâte est pétrie, roulée et cuite sur place, rue Neuve, chaque jour d'ouverture. Rien de congelé, rien d'industriel.</p></details>
-            <details class="accordion__item"><summary class="accordion__q">Faut-il réserver ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Non, on ne prend pas de réservation : passez quand vous voulez, le vendredi, le samedi et le dimanche de 10h à 18h. Le brunch se sert sur place de 11h à 13h30.</p></details>
+            <details class="accordion__item"><summary class="accordion__q">Faut-il réserver ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Non pour une pause : passez quand vous voulez, le vendredi, le samedi et le dimanche de 10h à 18h. Oui pour le brunch, uniquement sur réservation la veille pour le lendemain, au 02 59 15 26 97.</p></details>
             <details class="accordion__item"><summary class="accordion__q">Peut-on commander des box pour un événement ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui : box originale de 4 rolls cannelle, ou box mixtes de 4, 6 ou 8 rolls, pour un anniversaire, un bureau ou une fête. Idéalement 48 h à l'avance, au <a href="tel:+33259152697">02 59 15 26 97</a> ou à <a href="mailto:roll.inlove@outlook.com">roll.inlove@outlook.com</a>.</p></details>
             <details class="accordion__item"><summary class="accordion__q">Proposez-vous des laits végétaux ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui, sur toutes les boissons, en supplément de 1 €. Il y a aussi une gamme sans café : matcha cérémonial bio, ubé latte, chocolats signature, thés Dammann et smoothies.</p></details>
             <details class="accordion__item"><summary class="accordion__q">Peut-on venir en famille, avec une poussette ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui, le salon est spacieux et de plain-pied, pensé pour qu'on s'y installe confortablement, seul, à deux ou en famille.</p></details>
