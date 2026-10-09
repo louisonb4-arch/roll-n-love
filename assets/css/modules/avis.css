@@ -8,6 +8,9 @@
 .avis__head { display: grid; gap: 1rem; margin-bottom: clamp(26px, 5vw, 48px); }
 
 .avis__track {
+  overflow-y: hidden;              /* défile à l'horizontale seulement */
+  overscroll-behavior-x: contain;  /* ne tire pas la page sur les côtés */
+  touch-action: pan-x pan-y;       /* le geste vertical fait défiler la page */
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 84%;

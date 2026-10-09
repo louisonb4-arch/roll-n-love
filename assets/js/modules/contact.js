@@ -1,7 +1,9 @@
 /* ==========================================================================
    Nous écrire — formulaire de contact (pas de réservation chez Roll in Love).
    Validation dans le navigateur (confort) ET sur le serveur (sécurité :
-   api/contact.js refait tous les contrôles). Aucune clé ni adresse e-mail
+   api/contact.js refait tous les contrôles). Tant que l'envoi automatique
+   n'est pas configuré (réponse 503), la messagerie du visiteur s'ouvre avec
+   le message pré-rempli, adressé à roll.inlove@outlook.com. Aucune clé ni adresse e-mail
    dans ce fichier. Anti-spam : champ piège + délai minimal de remplissage
    (+ limite de fréquence côté serveur).
    ========================================================================== */
@@ -102,6 +104,19 @@ export default class Contact {
     this.status.textContent = text;
   }
 
+  /* Repli : ouvre la messagerie du visiteur, message pré-rempli. */
+  _mailto(data) {
+    const SUJETS = { question: 'Question', box: 'Commande de box', autre: 'Message' };
+    const subject = `${SUJETS[data.sujet] || 'Message'} — ${data.nom}`;
+    const body = `${data.message}\n\n${data.nom}${data.tel ? `\n${data.tel}` : ''}\n${data.email}`;
+    const href = `mailto:roll.inlove@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    this._say('', '');
+    this.status.dataset.state = 'ok';
+    this.status.innerHTML = 'Votre messagerie s\'ouvre avec le message prêt : il ne reste qu\'à l\'envoyer. '
+      + `Rien ne s'ouvre ? <a href="${href}">Cliquez ici</a> ou écrivez à <a href="mailto:roll.inlove@outlook.com">roll.inlove@outlook.com</a>.`;
+    window.location.href = href;
+  }
+
   async _onSubmit(e) {
     e.preventDefault();
     this._say('', '');
@@ -133,13 +148,19 @@ export default class Contact {
         this._say('Quelques champs sont à corriger.', 'error');
         return;
       }
+      if (res.status === 503) {
+        // envoi automatique pas encore branché : la messagerie du visiteur
+        // s'ouvre avec le message prêt, adressé à la maison
+        this._mailto(data);
+        return;
+      }
       if (res.status === 429) {
         this._say('Trop de messages depuis votre connexion. Réessayez dans quelques minutes, ou appelez-nous au 02 59 15 26 97.', 'error');
         return;
       }
       throw new Error(String(res.status));
     } catch (err) {
-      this._say('L\'envoi n\'a pas abouti. Appelez-nous au 02 59 15 26 97 ou écrivez à roll.inlove@outlook.com.', 'error');
+      this._mailto(data);
     } finally {
       this.submit.disabled = false;
       this.status.focus();

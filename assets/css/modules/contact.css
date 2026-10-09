@@ -97,6 +97,7 @@ textarea.field__input { min-height: 110px; resize: vertical; line-height: 1.45; 
   font-weight: 700;
 }
 .form__status:empty { display: none; }
+.form__status a { color: var(--brown); font-weight: 800; }
 .form__status[data-state="ok"] { background: var(--matcha); }
 .form__status[data-state="error"] { background: var(--ruby); }
 

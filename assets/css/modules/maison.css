@@ -51,6 +51,9 @@
 .salon__hint { font-size: 0.85rem; font-weight: 700; color: var(--ink-soft); }
 
 .salon__strip {
+  overflow-y: hidden;              /* défile à l'horizontale seulement */
+  overscroll-behavior-x: contain;  /* ne tire pas la page sur les côtés */
+  touch-action: pan-x pan-y;       /* le geste vertical fait défiler la page */
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 78%;

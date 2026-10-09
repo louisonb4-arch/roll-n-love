@@ -12,17 +12,17 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/scripter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/karla-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/site.css?v=5729b3885f">
-  <script src="/assets/js/core/head.js?v=5729b3885f"></script>
-  <script type="module" src="/assets/js/core/app.js?v=5729b3885f"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=46756ed1ac">
+  <script src="/assets/js/core/head.js?v=46756ed1ac"></script>
+  <script type="module" src="/assets/js/core/app.js?v=46756ed1ac"></script>
   <title>Roll in Love · Cinnamon rolls & café à Saint-Jean-de-Monts</title>
-  <meta name="description" content="Cinnamon rolls roulés main chaque matin, cafés, ubé latte, boissons glacées et brunch. 32 rue Neuve, Saint-Jean-de-Monts, tous les jours 10h–22h.">
+  <meta name="description" content="Cinnamon rolls roulés main, cafés, ubé latte, boissons glacées et brunch. 32 rue Neuve, Saint-Jean-de-Monts. Vendredi, samedi et dimanche, 10h–18h.">
   <link rel="canonical" href="https://rollinlove.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Roll in Love">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:title" content="Roll in Love — le roll fond, le cœur aussi">
-  <meta property="og:description" content="Cinnamon rolls roulés main, cafés et boissons glacées à Saint-Jean-de-Monts. Tous les jours, 10h–22h.">
+  <meta property="og:description" content="Cinnamon rolls roulés main, cafés et boissons glacées à Saint-Jean-de-Monts. Vendredi, samedi et dimanche, 10h–18h.">
   <meta property="og:url" content="https://rollinlove.com/">
   <meta property="og:image" content="https://rollinlove.com/assets/img/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -58,9 +58,9 @@
         },
         "openingHoursSpecification": [{
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "dayOfWeek": ["Friday", "Saturday", "Sunday"],
           "opens": "10:00",
-          "closes": "22:00"
+          "closes": "18:00"
         }],
         "sameAs": [
           "https://www.instagram.com/roll_in_love/",
@@ -70,8 +70,8 @@
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "Les cinnamon rolls sont-ils faits sur place ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. La pâte est pétrie, roulée et cuite sur place, rue Neuve, tous les jours. Rien de congelé, rien d'industriel." } },
-          { "@type": "Question", "name": "Faut-il réserver ?", "acceptedAnswer": { "@type": "Answer", "text": "Non, on ne prend pas de réservation : passez quand vous voulez, tous les jours de 10h à 22h. Le brunch se sert sur place de 11h à 13h30." } },
+          { "@type": "Question", "name": "Les cinnamon rolls sont-ils faits sur place ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. La pâte est pétrie, roulée et cuite sur place, rue Neuve, chaque jour d'ouverture. Rien de congelé, rien d'industriel." } },
+          { "@type": "Question", "name": "Faut-il réserver ?", "acceptedAnswer": { "@type": "Answer", "text": "Non, on ne prend pas de réservation : passez quand vous voulez, le vendredi, le samedi et le dimanche de 10h à 18h. Le brunch se sert sur place de 11h à 13h30." } },
           { "@type": "Question", "name": "Peut-on commander des box pour un événement ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui : box originale de 4 rolls cannelle, ou box mixtes de 4, 6 ou 8 rolls, pour un anniversaire, un bureau ou une fête. Idéalement 48 h à l'avance, au 02 59 15 26 97 ou par le formulaire de contact." } },
           { "@type": "Question", "name": "Proposez-vous des laits végétaux ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, sur toutes les boissons, en supplément de 1 €. Il y a aussi une gamme sans café : matcha cérémonial bio, ubé latte, chocolats signature, thés Dammann et smoothies." } },
           { "@type": "Question", "name": "Peut-on venir en famille, avec une poussette ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, le salon est spacieux et de plain-pied, pensé pour qu'on s'y installe confortablement, seul, à deux ou en famille." } },
@@ -97,10 +97,6 @@
         <a class="site-header__link" href="/#avis">Avis</a>
         <a class="site-header__link" href="/#infos">Infos</a>
       </nav>
-      <a class="cta" href="/#infos">
-        <svg class="cta__swirl" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.6 12.2c.2-.6-.3-1.3-1-1.2-1 .1-1.5 1.3-1 2.2.7 1.3 2.6 1.3 3.5.1 1.2-1.6.4-4-1.5-4.6-2.4-.8-4.8 1-4.9 3.5-.1 3.2 3 5.4 6 4.6 3.8-1 5.4-5.5 3.6-8.8C15.5 4.6 10.3 3.6 6.8 6c-4 2.8-4.3 8.8-.8 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        Nous trouver
-      </a>
       <button class="burger" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">
         <span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
@@ -113,13 +109,13 @@
       <li class="site-menu__item" style="--i:1"><a class="site-menu__link" href="/#formules"><span>Formules & box</span></a></li>
       <li class="site-menu__item" style="--i:2"><a class="site-menu__link" href="/#maison"><span>La maison</span></a></li>
       <li class="site-menu__item" style="--i:3"><a class="site-menu__link" href="/#avis"><span>Avis</span></a></li>
-      <li class="site-menu__item" style="--i:4"><a class="site-menu__link" href="/#contact"><span>Nous écrire</span></a></li>
+      <li class="site-menu__item" style="--i:4"><a class="site-menu__link" href="/#infos"><span>Infos & horaires</span></a></li>
+      <li class="site-menu__item" style="--i:5"><a class="site-menu__link" href="/#contact"><span>Nous écrire</span></a></li>
     </ul>
     <div class="site-menu__foot">
-      <p class="status" data-status><span class="status__dot" aria-hidden="true"></span><span><span data-status-text>Tous les jours</span> · <span data-status-detail>10h – 22h</span></span></p>
+      <p class="status" data-status><span class="status__dot" aria-hidden="true"></span><span><span data-status-text>Ven, sam & dim</span> · <span data-status-detail>10h – 18h</span></span></p>
       <p>32 rue Neuve, 85160 Saint-Jean-de-Monts</p>
       <p><a href="tel:+33259152697">02 59 15 26 97</a> · <a href="https://www.instagram.com/roll_in_love/" rel="noopener" target="_blank">Instagram</a></p>
-      <a class="cta cta--light" href="/#infos">Nous trouver</a>
     </div>
   </div>
 
@@ -154,7 +150,7 @@
           </div>
           <p class="status hero__status" data-reveal data-status>
             <span class="status__dot" aria-hidden="true"></span>
-            <span><span data-status-text>Tous les jours</span> <small>· <span data-status-detail>10h – 22h</span> · 32 rue Neuve</small></span>
+            <span><span data-status-text>Ven, sam & dim</span> <small>· <span data-status-detail>10h – 18h</span> · 32 rue Neuve</small></span>
           </p>
         </div>
 
@@ -422,13 +418,13 @@
             <p class="price-dot" aria-hidden="true">20 €<small>/ pers.</small></p>
           </div>
           <div class="brunch__text">
-            <span class="brunch__badge" data-reveal>Tous les jours · 11h – 13h30</span>
+            <span class="brunch__badge" data-reveal>Ven, sam & dim · 11h – 13h30</span>
             <h3 data-split>Le brunch</h3>
             <p class="lede" data-reveal>Toasts salés, œufs mayonnaise, fruits, pancakes, toppings et coulis. Servi avec une boisson chaude et une boisson froide.</p>
             <ul class="brunch__facts" data-reveal>
               <li>20 € par personne</li>
-              <li>Sur place, tous les jours de 11h à 13h30</li>
-              <li>En box à emporter, toute la journée</li>
+              <li>Sur place, du vendredi au dimanche, de 11h à 13h30</li>
+              <li>En box à emporter, toute la journée d'ouverture</li>
             </ul>
             <p class="brunch__fine" data-reveal>Sans réservation : installez-vous, on s'occupe du reste. Le plateau change avec la sélection du moment.</p>
           </div>
@@ -492,7 +488,7 @@
             <dl class="maison__facts" data-reveal>
               <div class="maison__fact"><dt class="visually-hidden">Ouverture</dt><dd><b>2026</b><span>ouverture rue Neuve</span></dd></div>
               <div class="maison__fact"><dt class="visually-hidden">Fabrication</dt><dd><b>100 %</b><span>fait maison, sur place</span></dd></div>
-              <div class="maison__fact"><dt class="visually-hidden">Horaires</dt><dd><b>7 j / 7</b><span>de 10h à 22h</span></dd></div>
+              <div class="maison__fact"><dt class="visually-hidden">Horaires</dt><dd><b>Ven → dim</b><span>de 10h à 18h</span></dd></div>
               <div class="maison__fact"><dt class="visually-hidden">Confort</dt><dd><b>Au frais</b><span>salle climatisée</span></dd></div>
             </dl>
           </div>
@@ -629,9 +625,9 @@
           <p class="eyebrow" data-reveal>Nous trouver</p>
           <h2 class="visually-hidden" id="infos-title">Adresse, horaires et contact</h2>
           <address class="infos__address" data-reveal>32 rue Neuve<span>85160 Saint-Jean-de-Monts</span></address>
-          <p class="status" data-reveal data-status><span class="status__dot" aria-hidden="true"></span><span><span data-status-text>Tous les jours</span> · <span data-status-detail>10h – 22h</span></span></p>
+          <p class="status" data-reveal data-status><span class="status__dot" aria-hidden="true"></span><span><span data-status-text>Ven, sam & dim</span> · <span data-status-detail>10h – 18h</span></span></p>
           <dl class="infos__list" data-reveal>
-            <div><dt>Horaires</dt><dd>Tous les jours, 10h – 22h</dd></div>
+            <div><dt>Horaires</dt><dd>Vendredi, samedi, dimanche · 10h – 18h<br><span class="muted">Fermé du lundi au jeudi</span></dd></div>
             <div><dt>Téléphone</dt><dd><a href="tel:+33259152697">02 59 15 26 97</a></dd></div>
             <div><dt>E-mail</dt><dd><a href="mailto:roll.inlove@outlook.com">roll.inlove@outlook.com</a></dd></div>
             <div><dt>Réseaux</dt><dd><a href="https://www.instagram.com/roll_in_love/" rel="noopener" target="_blank">Instagram</a> · <a href="https://www.facebook.com/p/Roll-in-love-61587426413608/" rel="noopener" target="_blank">Facebook</a></dd></div>
@@ -643,8 +639,8 @@
         <div class="faq">
           <h2 class="title-l" data-split>Questions fréquentes.</h2>
           <div class="accordion" data-reveal>
-            <details class="accordion__item"><summary class="accordion__q">Les cinnamon rolls sont-ils faits sur place ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui. La pâte est pétrie, roulée et cuite sur place, rue Neuve, tous les jours. Rien de congelé, rien d'industriel.</p></details>
-            <details class="accordion__item"><summary class="accordion__q">Faut-il réserver ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Non, on ne prend pas de réservation : passez quand vous voulez, tous les jours de 10h à 22h. Le brunch se sert sur place de 11h à 13h30.</p></details>
+            <details class="accordion__item"><summary class="accordion__q">Les cinnamon rolls sont-ils faits sur place ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui. La pâte est pétrie, roulée et cuite sur place, rue Neuve, chaque jour d'ouverture. Rien de congelé, rien d'industriel.</p></details>
+            <details class="accordion__item"><summary class="accordion__q">Faut-il réserver ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Non, on ne prend pas de réservation : passez quand vous voulez, le vendredi, le samedi et le dimanche de 10h à 18h. Le brunch se sert sur place de 11h à 13h30.</p></details>
             <details class="accordion__item"><summary class="accordion__q">Peut-on commander des box pour un événement ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui : box originale de 4 rolls cannelle, ou box mixtes de 4, 6 ou 8 rolls, pour un anniversaire, un bureau ou une fête. Idéalement 48 h à l'avance, au 02 59 15 26 97 ou par le <a href="#contact">formulaire de contact</a>.</p></details>
             <details class="accordion__item"><summary class="accordion__q">Proposez-vous des laits végétaux ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui, sur toutes les boissons, en supplément de 1 €. Il y a aussi une gamme sans café : matcha cérémonial bio, ubé latte, chocolats signature, thés Dammann et smoothies.</p></details>
             <details class="accordion__item"><summary class="accordion__q">Peut-on venir en famille, avec une poussette ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui, le salon est spacieux et de plain-pied, pensé pour qu'on s'y installe confortablement, seul, à deux ou en famille.</p></details>
@@ -675,7 +671,7 @@
             <ul>
               <li>32 rue Neuve</li>
               <li>85160 Saint-Jean-de-Monts</li>
-              <li>Tous les jours, 10h – 22h</li>
+              <li>Ven, sam & dim · 10h – 18h</li>
               <li><a href="tel:+33259152697">02 59 15 26 97</a></li>
             </ul>
           </div>

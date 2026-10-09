@@ -1,39 +1,57 @@
 /* ==========================================================================
    Horaires — une seule source de vérité côté navigateur.
-   Doit rester identique au bloc « Horaires » des pages et au JSON-LD de
+   Doit rester identique aux blocs « Horaires » des pages et au JSON-LD de
    index.html (openingHoursSpecification).
-   Tous les jours, 10h00 – 22h00, heure de Paris.
+   Vendredi, samedi, dimanche : 10h00 – 18h00, heure de Paris.
+   Fermé du lundi au jeudi.
    ========================================================================== */
 
-export const HOURS = { open: 10 * 60, close: 22 * 60 };   // minutes depuis minuit
+// 0 = dimanche … 6 = samedi ; minutes depuis minuit
+export const HOURS = {
+  5: [10 * 60, 18 * 60],
+  6: [10 * 60, 18 * 60],
+  0: [10 * 60, 18 * 60],
+};
 
-/* Heure et minute à Paris, quel que soit le fuseau du visiteur. */
+const DAYS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+
+/* Jour et minute à Paris, quel que soit le fuseau du visiteur. */
 const parisNow = () => {
-  const parts = new Intl.DateTimeFormat('fr-FR', {
-    timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Paris', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
   }).formatToParts(new Date());
-  const get = (t) => parseInt(parts.find((p) => p.type === t).value, 10);
-  return get('hour') * 60 + get('minute');
+  const get = (t) => parts.find((p) => p.type === t).value;
+  const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+  return { day, min: parseInt(get('hour'), 10) * 60 + parseInt(get('minute'), 10) };
 };
 
 const fmt = (m) => `${Math.floor(m / 60)}h${m % 60 ? String(m % 60).padStart(2, '0') : ''}`;
 
+/* Prochaine ouverture, aujourd'hui compris si l'heure n'est pas passée. */
+const nextOpening = (day, min) => {
+  for (let i = 0; i < 8; i++) {
+    const d = (day + i) % 7;
+    const h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && min >= h[0]) continue;
+    const when = i === 0 ? "aujourd'hui" : i === 1 ? 'demain' : DAYS[d];
+    return `ouvre ${when} à ${fmt(h[0])}`;
+  }
+  return '';
+};
+
 export const status = () => {
-  const now = parisNow();
-  const open = now >= HOURS.open && now < HOURS.close;
-  if (open) {
-    const left = HOURS.close - now;
+  const { day, min } = parisNow();
+  const h = HOURS[day];
+  if (h && min >= h[0] && min < h[1]) {
+    const left = h[1] - min;
     return {
       open: true,
-      text: left <= 60 ? `Ouvert · ferme à ${fmt(HOURS.close)}` : 'Ouvert maintenant',
-      detail: `jusqu'à ${fmt(HOURS.close)}`,
+      text: left <= 60 ? `Ouvert · ferme à ${fmt(h[1])}` : 'Ouvert maintenant',
+      detail: `jusqu'à ${fmt(h[1])}`,
     };
   }
-  return {
-    open: false,
-    text: 'Fermé pour le moment',
-    detail: `ouvre ${now < HOURS.open ? "aujourd'hui" : 'demain'} à ${fmt(HOURS.open)}`,
-  };
+  return { open: false, text: 'Fermé pour le moment', detail: nextOpening(day, min) };
 };
 
 /* Remplit tous les [data-status] de la page, puis chaque minute. */
