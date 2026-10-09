@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* Serveur de développement — reproduit le comportement Vercel utile au site :
-   URL propres (/cgu → cgu.html), 404.html avec statut 404, et la fonction
-   /api/contact exécutée telle quelle.
+   URL propres (/cgu → cgu.html), 404.html avec statut 404, plus rien d'autre
+   (le site n'a plus de fonction serveur).
      node tools/dev-server.mjs [port]                                          */
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
@@ -21,15 +21,11 @@ const exists = async (p) => { try { return (await stat(p)).isFile(); } catch { r
 
 createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
-  if (url.pathname === '/api/contact') {
-    const { default: handler } = await import(join(ROOT, 'api', 'contact.js'));
-    return handler(req, res);
-  }
   let path = normalize(decodeURIComponent(url.pathname)).replace(/^(\.\.[/\\])+/, '');
   if (path.endsWith('/')) path += 'index.html';
   let file = join(ROOT, path);
   if (!extname(file) && await exists(`${file}.html`)) file = `${file}.html`;
-  if (/[/\\](src|tools|api|\.git)[/\\]/.test(file.slice(ROOT.length - 1))) file = '';
+  if (/[/\\](src|tools|\.git)[/\\]/.test(file.slice(ROOT.length - 1))) file = '';
   if (file && await exists(file)) {
     res.writeHead(200, { 'Content-Type': TYPES[extname(file)] || 'application/octet-stream', 'Cache-Control': 'no-store' });
     return res.end(await readFile(file));

@@ -10,8 +10,7 @@ Marqués `[à fournir]` / `[à confirmer]` en rose sur le site lui-même.
 6. Auteur des photos + accord droit à l'image (gérantes, clients visibles).
 7. Licence web de la police Scripter (UmkaType).
 8. Avis clients : source et date de chaque avis (art. L111-7-2 C. conso).
-9. Formulaire de contact : prestataire d'envoi retenu (Brevo par défaut) et durée de conservation (3 mois proposés).
-10. Box : confirmer qu'elles se commandent bien à l'avance (48 h indiqué, repris de l'ancien site).
+9. Box : confirmer qu'elles se commandent bien à l'avance (48 h indiqué, repris de l'ancien site).
 
 ---
 

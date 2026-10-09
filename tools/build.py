@@ -46,7 +46,6 @@ CSS_ORDER = [
     'modules/maison.css',
     'modules/avis.css',
     'modules/vitrine.css',
-    'modules/contact.css',
     'modules/infos.css',
     'modules/legal.css',
     'modules/notfound.css',
