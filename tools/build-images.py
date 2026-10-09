@@ -22,6 +22,7 @@ LIB = os.path.expanduser('~/Desktop/Projets/Actifs/Roll in Love/Photos')
 IG = os.path.join(LIB, 'Instagram-Facebook')
 V2 = os.path.expanduser('~/rollinlove-site/assets/images')
 SRC = os.path.join(os.path.dirname(__file__), 'sources', 'instagram')
+CRE = os.path.join(os.path.dirname(__file__), 'sources', 'creations')
 OUT = os.path.join(os.path.dirname(__file__), '..', 'assets', 'img')
 
 W_STD = (480, 800, 1200)
@@ -71,6 +72,10 @@ MANIFEST = [
     ('ig-ruby-yuzu', f'{SRC}/ruby-yuzu.jpg', 4 / 5, (0.5, 0.5), W_SMALL, None),
     ('ig-mojito-ruby', f'{SRC}/mojito-ruby.jpg', 4 / 5, (0.5, 0.5), W_SMALL, None),
     ('ig-brunch', f'{SRC}/brunch.jpg', 4 / 5, (0.5, 0.5), W_SMALL, None),
+    # créations de la carte (affiches de la maison, recadrées sur la boisson)
+    ('matcha-snow', os.path.join(CRE, 'matcha-snow.jpg'), None, None, W_STD, (322, 560, 778, 1130)),
+    ('creme-brulee-latte', os.path.join(CRE, 'creme-brulee-latte.jpg'), None, None, W_STD, (140, 630, 700, 1330)),
+    ('marshmallow-dream', os.path.join(CRE, 'marshmallow-dream.jpg'), None, None, W_STD, (120, 590, 680, 1290)),
     ('choco-kitkat', f'{IG}/632957247_17847440943684224_4603716757140653260_n.jpg', 4 / 5, (0.5, 0.5), W_STD, None),
 ]
 

@@ -397,6 +397,38 @@
   ],
   "alpha": false
  },
+ "matcha-snow": {
+  "widths": [
+   456
+  ],
+  "ratio": [
+   456,
+   570
+  ],
+  "alpha": false
+ },
+ "creme-brulee-latte": {
+  "widths": [
+   480,
+   560
+  ],
+  "ratio": [
+   560,
+   700
+  ],
+  "alpha": false
+ },
+ "marshmallow-dream": {
+  "widths": [
+   480,
+   560
+  ],
+  "ratio": [
+   560,
+   700
+  ],
+  "alpha": false
+ },
  "choco-kitkat": {
   "widths": [
    480,
