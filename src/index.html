@@ -2,8 +2,8 @@
 <html lang="fr" data-page="home">
 <head>
 {{inc:head}}
-  <title>Roll in Love · Cinnamon rolls & café à Saint-Jean-de-Monts</title>
-  <meta name="description" content="Cinnamon rolls roulés main, cafés, ubé latte, boissons glacées et brunch. 32 rue Neuve, Saint-Jean-de-Monts. Vendredi, samedi et dimanche, 10h–18h.">
+  <title>Roll in Love · Coffee shop & cinnamon rolls à Saint-Jean-de-Monts</title>
+  <meta name="description" content="Coffee shop à Saint-Jean-de-Monts : cinnamon rolls roulés main, cafés, ubé latte, boissons glacées et brunch. 32 rue Neuve, du vendredi au dimanche, 10h–18h.">
   <link rel="canonical" href="https://rollinlove.com/">
   <meta name="google-site-verification" content="1HU73LkAu3v9KV0P-alTa1D-fOWAgXicY6zH3j-pWv8">
   <meta property="og:type" content="website">
@@ -22,39 +22,7 @@
   {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "CafeOrCoffeeShop",
-        "@id": "https://rollinlove.com/#commerce",
-        "name": "Roll in Love",
-        "description": "Coffee shop de cinnamon rolls roulés à la main et cuits sur place chaque jour, cafés, boissons glacées, sandwichs briochés, brunch et glaces.",
-        "url": "https://rollinlove.com/",
-        "logo": "https://rollinlove.com/assets/img/logo-800.webp",
-        "image": "https://rollinlove.com/assets/img/og-image.jpg",
-        "telephone": "+33259152697",
-        "email": "roll.inlove@outlook.com",
-        "priceRange": "€",
-        "servesCuisine": ["Cinnamon rolls", "Café", "Boissons glacées", "Sandwichs", "Brunch", "Glaces"],
-        "acceptsReservations": true,
-        "menu": "https://rollinlove.com/#carte",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "32 rue Neuve",
-          "postalCode": "85160",
-          "addressLocality": "Saint-Jean-de-Monts",
-          "addressRegion": "Vendée",
-          "addressCountry": "FR"
-        },
-        "openingHoursSpecification": [{
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Friday", "Saturday", "Sunday"],
-          "opens": "10:00",
-          "closes": "18:00"
-        }],
-        "sameAs": [
-          "https://www.instagram.com/roll_in_love/",
-          "https://www.facebook.com/p/Roll-in-love-61587426413608/"
-        ]
-      },
+{{inc:ld-commerce}},
       {
         "@type": "FAQPage",
         "mainEntity": [
@@ -194,6 +162,7 @@
           <div class="carte__intro">
             <h3>Rolls & douceurs</h3>
             <p>Roulés à la main chaque matin, cuits sur place, servis frais sous leur glaçage. On vous les réchauffe sur demande.</p>
+            <p><a class="link" href="/cinnamon-rolls">Nos rolls et les box en détail <span aria-hidden="true">→</span></a></p>
           </div>
           <div class="carte__media">
             <figure class="polaroid"><div class="polaroid__img">{{pic:rolls-mms|Rolls briochés garnis de bonbons chocolatés colorés|(min-width: 900px) 18vw, 45vw}}</div><figcaption class="polaroid__caption">Création du moment</figcaption></figure>
@@ -215,6 +184,7 @@
           <div class="carte__intro">
             <h3>Boissons chaudes</h3>
             <p>Cafés, créations de la maison, matcha cérémonial bio, thés Dammann et chocolats signature.</p>
+            <p><a class="link" href="/boissons">Le matcha, l'ubé latte et les chocolats en détail <span aria-hidden="true">→</span></a></p>
           </div>
           <div class="carte__media">
             <figure class="polaroid"><div class="polaroid__img">{{pic:cappuccino-mains|Deux mains autour d'une tasse de cappuccino saupoudrée de cacao|(min-width: 900px) 18vw, 45vw}}</div><figcaption class="polaroid__caption">Cappuccino</figcaption></figure>
@@ -262,6 +232,7 @@
           <div class="carte__intro">
             <h3>Boissons glacées</h3>
             <p>Créations glacées, cafés glacés, ubé latte, matcha, smoothies et sodas artisanaux de Vendée.</p>
+            <p><a class="link" href="/boissons#classiques">Toutes les boissons, chaudes et glacées <span aria-hidden="true">→</span></a></p>
           </div>
           <div class="carte__media">
             <figure class="polaroid"><div class="polaroid__img">{{pic:ube-verre|Ubé latte glacé dans un verre bulle, dégradé violet et blanc|(min-width: 900px) 18vw, 45vw}}</div><figcaption class="polaroid__caption">Ubé latte glacé</figcaption></figure>
@@ -391,6 +362,7 @@
               <li>En box à emporter, toute la journée d'ouverture</li>
             </ul>
             <p class="brunch__fine" data-reveal>Réservez la veille au <a href="tel:+33259152697">02 59 15 26 97</a> ou en message sur <a href="https://www.instagram.com/roll_in_love/" rel="noopener" target="_blank">Instagram</a>. Le plateau change avec la sélection du moment.</p>
+            <p data-reveal><a class="link" href="/brunch">Tout savoir sur le brunch <span aria-hidden="true">→</span></a></p>
           </div>
         </div>
 
@@ -421,6 +393,7 @@
               <div class="box__row"><span class="box__name">Box mixte × 8</span><span class="box__price">30 €</span><span class="box__rolls" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
             </div>
             <p class="box__fine" data-reveal>Une grosse commande, une question ? <a href="mailto:roll.inlove@outlook.com">roll.inlove@outlook.com</a></p>
+            <p data-reveal><a class="link" href="/cinnamon-rolls#box">Les box en détail <span aria-hidden="true">→</span></a></p>
           </div>
           <div class="box__media">
             <figure class="polaroid" data-reveal="roll" style="--tilt:-3deg">
@@ -520,23 +493,10 @@
     </section>
 
     <!-- ===================================================== INFOS + FAQ -->
-    <section class="section infos" id="infos" data-module-delay aria-labelledby="infos-title">
+    <section class="section infos" id="infos" data-module-delay aria-labelledby="venir-title">
       <svg class="wave wave--flip" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 56V30C150 6 300 2 470 16s320 36 500 30 320-34 470-30V56Z"/></svg>
       <div class="wrap infos__grid">
-        <div class="infos__card">
-          <p class="eyebrow" data-reveal>Nous trouver</p>
-          <h2 class="visually-hidden" id="infos-title">Adresse, horaires et contact</h2>
-          <address class="infos__address" data-reveal>32 rue Neuve<span>85160 Saint-Jean-de-Monts</span></address>
-          <p class="status" data-reveal data-status><span class="status__dot" aria-hidden="true"></span><span><span data-status-text>Ven, sam & dim</span> · <span data-status-detail>10h – 18h</span></span></p>
-          <dl class="infos__list" data-reveal>
-            <div><dt>Horaires</dt><dd>Vendredi, samedi, dimanche · 10h – 18h<br><span class="muted">Fermé du lundi au jeudi</span></dd></div>
-            <div><dt>Téléphone</dt><dd><a href="tel:+33259152697">02 59 15 26 97</a></dd></div>
-            <div><dt>E-mail</dt><dd><a href="mailto:roll.inlove@outlook.com">roll.inlove@outlook.com</a></dd></div>
-            <div><dt>Réseaux</dt><dd><a href="https://www.instagram.com/roll_in_love/" rel="noopener" target="_blank">Instagram</a> · <a href="https://www.facebook.com/p/Roll-in-love-61587426413608/" rel="noopener" target="_blank">Facebook</a></dd></div>
-          </dl>
-          <p data-reveal><a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Roll+in+Love+32+rue+Neuve+85160+Saint-Jean-de-Monts" rel="noopener" target="_blank">Ouvrir l'itinéraire <span aria-hidden="true">→</span><span class="visually-hidden"> (Google Maps, nouvel onglet)</span></a></p>
-          <p class="muted" data-reveal>En plein centre-ville, à quelques minutes de la plage. Salle de plain-pied, accessible en poussette.</p>
-        </div>
+{{inc:venir}}
 
         <div class="faq">
           <h2 class="title-l" data-split>Questions fréquentes.</h2>

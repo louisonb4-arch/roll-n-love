@@ -440,5 +440,40 @@
    1280
   ],
   "alpha": false
+ },
+ "pause-choco": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "ratio": [
+   1365,
+   1706
+  ],
+  "alpha": false
+ },
+ "salon-canape": {
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "ratio": [
+   1440,
+   1800
+  ],
+  "alpha": false
+ },
+ "matcha-fraise": {
+  "widths": [
+   320,
+   360
+  ],
+  "ratio": [
+   360,
+   450
+  ],
+  "alpha": false
  }
 }

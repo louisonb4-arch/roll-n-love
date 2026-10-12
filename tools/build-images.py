@@ -6,7 +6,8 @@ Lit les originaux de la bibliothèque de la marque (hors dépôt, trop lourds) e
 écrit dans assets/img/ des déclinaisons AVIF + WebP en 3 largeurs, recadrées
 par point focal. Relancer après tout changement de photo :
 
-    python3 tools/build-images.py
+    python3 tools/build-images.py              # toutes les images
+    python3 tools/build-images.py clé1 clé2    # seulement ces clés (manifest complété)
 
 Chaque entrée : clé de sortie, fichier source, ratio (largeur/hauteur, None =
 ratio d'origine), point focal (fractions 0–1), largeurs voulues.
@@ -65,6 +66,10 @@ MANIFEST = [
     ('rolls-daim', f'{IG}/639468935_17848861188684224_9172572896023649567_n.jpg', 4 / 5, (0.5, 0.6), W_STD, None),
     ('plaque-salon', f'{LIB}/a6fbb717-166a-43ac-8814-7f00038b0b62.JPG', 4 / 5, (0.5, 0.6), W_STD, None),
     ('gobelet-main', f'{V2}/gobelet-main.jpg', 4 / 5, (0.5, 0.5), W_STD, None),
+    # pages rubriques (photos publiées par la maison sur Instagram)
+    ('pause-choco', f'{IG}/670839447_17860061544684224_6823924772361822188_n.jpg', 4 / 5, (0.5, 0.55), W_STD, None),
+    ('matcha-fraise', f'{SRC}/matcha-fraise.jpg', 4 / 5, (0.5, 0.4), W_SMALL, None),
+    ('salon-canape', f'{IG}/632147202_17846685759684224_5280252074026078680_n.jpg', 4 / 5, (0.5, 0.6), W_STD, None),
     # vitrine Instagram : derniers posts publics de @roll_in_love (640 px max)
     ('ig-jeux-rolls', f'{SRC}/jeux-rolls.jpg', 4 / 5, (0.5, 0.5), W_SMALL, None),
     ('ig-oreo-kitkat', f'{SRC}/oreo-kitkat.jpg', 4 / 5, (0.5, 0.5), W_SMALL, None),
@@ -94,10 +99,18 @@ def crop_focal(im, ratio, focal):
     return im.crop((x0, y0, x0 + nw, y0 + nh))
 
 
-def main():
+def main(only=()):
     os.makedirs(OUT, exist_ok=True)
     report = {}
+    if only:
+        with open(os.path.join(OUT, 'manifest.json')) as f:
+            report = json.load(f)
+        unknown = set(only) - {m[0] for m in MANIFEST}
+        if unknown:
+            sys.exit(f'Clés inconnues : {sorted(unknown)}')
     for key, src, ratio, focal, widths, box in MANIFEST:
+        if only and key not in only:
+            continue
         if not os.path.exists(src):
             print('MANQUANT', key, src, file=sys.stderr)
             continue
@@ -127,4 +140,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(tuple(sys.argv[1:]))
