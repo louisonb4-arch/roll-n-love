@@ -12,9 +12,9 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/scripter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/karla-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/site.css?v=c3b16b3c42">
-  <script src="/assets/js/core/head.js?v=c3b16b3c42"></script>
-  <script type="module" src="/assets/js/core/app.js?v=c3b16b3c42"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=cff94de888">
+  <script src="/assets/js/core/head.js?v=cff94de888"></script>
+  <script type="module" src="/assets/js/core/app.js?v=cff94de888"></script>
   <title>Café, matcha & ubé latte à Saint-Jean-de-Monts · Roll in Love</title>
   <meta name="description" content="Matcha cérémonial bio, ubé latte, chocolats signature, cafés et créations glacées, rue Neuve à Saint-Jean-de-Monts. Laits amande, avoine ou coco.">
   <link rel="canonical" href="https://rollinlove.com/boissons">
@@ -37,6 +37,8 @@
         "@type": "CafeOrCoffeeShop",
         "@id": "https://rollinlove.com/#commerce",
         "name": "Roll in Love",
+        "slogan": "Le roll fond, le cœur aussi.",
+        "foundingDate": "2026",
         "description": "Coffee shop de cinnamon rolls roulés à la main et cuits sur place chaque jour, cafés, boissons glacées, sandwichs briochés, brunch et glaces.",
         "url": "https://rollinlove.com/",
         "logo": "https://rollinlove.com/assets/img/logo-800.webp",
@@ -46,7 +48,7 @@
         "priceRange": "€",
         "servesCuisine": ["Cinnamon rolls", "Café", "Boissons glacées", "Sandwichs", "Brunch", "Glaces"],
         "acceptsReservations": true,
-        "menu": "https://rollinlove.com/#carte",
+        "hasMenu": "https://rollinlove.com/#carte",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "32 rue Neuve",
@@ -61,6 +63,10 @@
           "longitude": -2.072809
         },
         "hasMap": "https://maps.google.com/?cid=289621163477902124",
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Salle climatisée", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Salle de plain-pied, accessible en poussette", "value": true }
+        ],
         "openingHoursSpecification": [{
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Friday", "Saturday", "Sunday"],
@@ -115,6 +121,17 @@
             { "@type": "Offer", "name": "Taille M", "price": "5.50", "priceCurrency": "EUR" },
             { "@type": "Offer", "name": "Taille L", "price": "6.50", "priceCurrency": "EUR" }
           ] }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "Proposez-vous des laits végétaux ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui : amande, avoine ou coco, sur toutes les boissons, en supplément de 1 €."}},
+          {"@type": "Question", "name": "Qu'est-ce que l'ubé latte ?", "acceptedAnswer": {"@type": "Answer", "text": "Une boisson faite de poudre d'ubé, une igname violette très présente dans les desserts des Philippines, mélangée au lait. Elle est douce, d'un violet franc, et ne contient pas de café. Chaude ou glacée, 5 €."}},
+          {"@type": "Question", "name": "Quelles boissons sans café ?", "acceptedAnswer": {"@type": "Answer", "text": "Le matcha (chaud, glacé ou en Matcha Snow), l'ubé latte, le chocolat chaud et les chocolats signature, le chai latte, les thés et thés Dammann, les smoothies, la citronnade, le thé glacé et les boissons de Vendée."}},
+          {"@type": "Question", "name": "Le matcha est-il bio ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. C'est un matcha de qualité cérémoniale, le Seijaku, issu de l'agriculture biologique."}},
+          {"@type": "Question", "name": "Quelles tailles proposez-vous ?", "acceptedAnswer": {"@type": "Answer", "text": "Les chocolats signature existent en M (5,50 €) et en L (6,50 €), tout comme la citronnade, le thé glacé et les smoothies. Dans les formules, la taille L coûte 1 € de plus."}},
+          {"@type": "Question", "name": "Peut-on emporter sa boisson ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Sur place dans le salon, ou à emporter, avec un roll si le cœur vous en dit."}}
         ]
       }
     ]
@@ -373,6 +390,7 @@
           <h2 class="title-l" data-split>Questions sur les boissons.</h2>
           <div class="accordion" data-reveal>
             <details class="accordion__item"><summary class="accordion__q">Proposez-vous des laits végétaux ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui : amande, avoine ou coco, sur toutes les boissons, en supplément de 1 €.</p></details>
+            <details class="accordion__item"><summary class="accordion__q">Qu'est-ce que l'ubé latte ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Une boisson faite de poudre d'ubé, une igname violette très présente dans les desserts des Philippines, mélangée au lait. Elle est douce, d'un violet franc, et ne contient pas de café. Chaude ou glacée, 5 €.</p></details>
             <details class="accordion__item"><summary class="accordion__q">Quelles boissons sans café ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Le matcha (chaud, glacé ou en Matcha Snow), l'ubé latte, le chocolat chaud et les chocolats signature, le chai latte, les thés et thés Dammann, les smoothies, la citronnade, le thé glacé et les boissons de Vendée.</p></details>
             <details class="accordion__item"><summary class="accordion__q">Le matcha est-il bio ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Oui. C'est un matcha de qualité cérémoniale, le Seijaku, issu de l'agriculture biologique.</p></details>
             <details class="accordion__item"><summary class="accordion__q">Quelles tailles proposez-vous ?<span class="accordion__icon" aria-hidden="true"></span></summary><p class="accordion__a">Les chocolats signature existent en M (5,50 €) et en L (6,50 €), tout comme la citronnade, le thé glacé et les smoothies. Dans les formules, la taille L coûte 1 € de plus.</p></details>

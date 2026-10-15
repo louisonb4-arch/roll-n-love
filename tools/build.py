@@ -11,12 +11,15 @@ Roll in Love — assemblage du site (aucune dépendance, Python 3).
       {{pic:clé|texte alternatif|sizes|attributs}}  par un <picture> AVIF + WebP
          (srcset, width/height exacts depuis assets/img/manifest.json)
       {{inc:nom}}  par src/_partials/nom.html (en-tête, pied de page…)
+      {{faq}}  par le nœud JSON-LD FAQPage construit depuis l'accordéon de la
+         page (questions et réponses visibles) : une seule source, aucun écart
       {{v}}  par l'empreinte du CSS et du JS (les URL changent à chaque
          modification : le cache long de vercel.json ne sert jamais de vieux
          fichiers).
 Relancer après toute modification de src/, assets/css/ ou assets/js/.
 """
 import hashlib
+import html as htmllib
 import json
 import os
 import re
@@ -112,6 +115,31 @@ def picture(spec, manifest):
             f'width="{width}" height="{height}" alt="{alt_attr}" decoding="async" {attrs.strip()}></picture>')
 
 
+FAQ_RE = re.compile(
+    r'<details class="accordion__item"><summary class="accordion__q">(.*?)'
+    r'<span class="accordion__icon"[^>]*></span></summary><p class="accordion__a">(.*?)</p></details>',
+    re.S)
+
+
+def plain(fragment):
+    text = htmllib.unescape(re.sub(r'<[^>]+>', '', fragment))
+    return re.sub(r'\s+', ' ', text).strip()
+
+
+def faq_ld(page, name):
+    pairs = FAQ_RE.findall(page)
+    if not pairs:
+        sys.exit(f'{name} : {{{{faq}}}} sans accordéon de questions')
+    items = [
+        '          ' + json.dumps({'@type': 'Question', 'name': plain(q),
+                                    'acceptedAnswer': {'@type': 'Answer', 'text': plain(a)}},
+                                   ensure_ascii=False, separators=(', ', ': '))
+        for q, a in pairs
+    ]
+    return ('      {\n        "@type": "FAQPage",\n        "mainEntity": [\n'
+            + ',\n'.join(items) + '\n        ]\n      }')
+
+
 def partial(name):
     with open(os.path.join(SRC, '_partials', f'{name}.html'), encoding='utf-8') as f:
         return f.read().rstrip('\n')
@@ -127,6 +155,8 @@ def build_pages(version):
             html = f.read()
         html = re.sub(r'\{\{inc:([\w-]+)\}\}', lambda m: partial(m.group(1)), html)
         html = re.sub(r'\{\{pic:(.*?)\}\}', lambda m: picture(m.group(1), manifest), html, flags=re.S)
+        if '{{faq}}' in html:
+            html = html.replace('{{faq}}', faq_ld(html, name))
         html = html.replace('{{v}}', version)
         left = re.findall(r'\{\{.*?\}\}', html)
         if left:

@@ -12,9 +12,9 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/scripter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/karla-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/site.css?v=c3b16b3c42">
-  <script src="/assets/js/core/head.js?v=c3b16b3c42"></script>
-  <script type="module" src="/assets/js/core/app.js?v=c3b16b3c42"></script>
+  <link rel="stylesheet" href="/assets/css/site.css?v=cff94de888">
+  <script src="/assets/js/core/head.js?v=cff94de888"></script>
+  <script type="module" src="/assets/js/core/app.js?v=cff94de888"></script>
   <title>Cinnamon rolls maison à Saint-Jean-de-Monts · Roll in Love</title>
   <meta name="description" content="Cinnamon rolls roulés main et cuits sur place, rue Neuve à Saint-Jean-de-Monts : l'original à 3,90 €, la création du moment et des box de 4 à 8 rolls.">
   <link rel="canonical" href="https://rollinlove.com/cinnamon-rolls">
@@ -37,6 +37,8 @@
         "@type": "CafeOrCoffeeShop",
         "@id": "https://rollinlove.com/#commerce",
         "name": "Roll in Love",
+        "slogan": "Le roll fond, le cœur aussi.",
+        "foundingDate": "2026",
         "description": "Coffee shop de cinnamon rolls roulés à la main et cuits sur place chaque jour, cafés, boissons glacées, sandwichs briochés, brunch et glaces.",
         "url": "https://rollinlove.com/",
         "logo": "https://rollinlove.com/assets/img/logo-800.webp",
@@ -46,7 +48,7 @@
         "priceRange": "€",
         "servesCuisine": ["Cinnamon rolls", "Café", "Boissons glacées", "Sandwichs", "Brunch", "Glaces"],
         "acceptsReservations": true,
-        "menu": "https://rollinlove.com/#carte",
+        "hasMenu": "https://rollinlove.com/#carte",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "32 rue Neuve",
@@ -61,6 +63,10 @@
           "longitude": -2.072809
         },
         "hasMap": "https://maps.google.com/?cid=289621163477902124",
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Salle climatisée", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Salle de plain-pied, accessible en poussette", "value": true }
+        ],
         "openingHoursSpecification": [{
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Friday", "Saturday", "Sunday"],
@@ -111,6 +117,16 @@
           { "@type": "MenuItem", "name": "Box mixte, 4 rolls", "offers": { "@type": "Offer", "price": "16.00", "priceCurrency": "EUR" } },
           { "@type": "MenuItem", "name": "Box mixte, 6 rolls", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "EUR" } },
           { "@type": "MenuItem", "name": "Box mixte, 8 rolls", "offers": { "@type": "Offer", "price": "30.00", "priceCurrency": "EUR" } }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "Les cinnamon rolls sont-ils faits maison ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. La pâte est pétrie, roulée et cuite sur place, rue Neuve, chaque jour d'ouverture. Rien de congelé, rien d'industriel."}},
+          {"@type": "Question", "name": "Sont-ils servis chauds ?", "acceptedAnswer": {"@type": "Answer", "text": "Ils sont servis frais, sous leur glaçage. Si vous les préférez tièdes, on vous les réchauffe sur demande."}},
+          {"@type": "Question", "name": "Toutes les créations sont-elles à la cannelle ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. La création du moment change au fil des semaines, et toutes ne sont pas à la cannelle : demandez celle du jour au comptoir."}},
+          {"@type": "Question", "name": "Comment commander une box ?", "acceptedAnswer": {"@type": "Answer", "text": "Au 02 59 15 26 97 ou à roll.inlove@outlook.com, idéalement 48 h à l'avance : box originale de 4 rolls à la cannelle (14 €), ou box mixte de 4, 6 ou 8 rolls (16, 24 ou 30 €)."}},
+          {"@type": "Question", "name": "Peut-on les emporter ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, à l'unité comme en box, du vendredi au dimanche de 10h à 18h. Ou sur place, dans le salon, avec une boisson."}}
         ]
       }
     ]

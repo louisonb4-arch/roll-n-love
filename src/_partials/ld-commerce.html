@@ -2,6 +2,8 @@
         "@type": "CafeOrCoffeeShop",
         "@id": "https://rollinlove.com/#commerce",
         "name": "Roll in Love",
+        "slogan": "Le roll fond, le cœur aussi.",
+        "foundingDate": "2026",
         "description": "Coffee shop de cinnamon rolls roulés à la main et cuits sur place chaque jour, cafés, boissons glacées, sandwichs briochés, brunch et glaces.",
         "url": "https://rollinlove.com/",
         "logo": "https://rollinlove.com/assets/img/logo-800.webp",
@@ -11,7 +13,7 @@
         "priceRange": "€",
         "servesCuisine": ["Cinnamon rolls", "Café", "Boissons glacées", "Sandwichs", "Brunch", "Glaces"],
         "acceptsReservations": true,
-        "menu": "https://rollinlove.com/#carte",
+        "hasMenu": "https://rollinlove.com/#carte",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "32 rue Neuve",
@@ -26,6 +28,10 @@
           "longitude": -2.072809
         },
         "hasMap": "https://maps.google.com/?cid=289621163477902124",
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Salle climatisée", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Salle de plain-pied, accessible en poussette", "value": true }
+        ],
         "openingHoursSpecification": [{
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Friday", "Saturday", "Sunday"],

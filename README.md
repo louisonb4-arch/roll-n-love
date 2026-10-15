@@ -32,6 +32,8 @@ Pas de page glaces / sandwichs / matcha seule / box seule : offre trop mince pou
 src/*.html, src/_partials/   sources des pages (à modifier ici)
 src/_partials/ld-commerce    JSON-LD du commerce + du site : UNE source pour toutes les pages
 src/_partials/venir          bloc « Nous trouver » (adresse, horaires, contact), partagé
+{{faq}} dans un JSON-LD     FAQPage généré depuis l'accordéon visible de la page (build.py)
+llms.txt                     résumé factuel pour les agents IA (sans prix ; ignoré par Google)
 *.html                       pages GÉNÉRÉES (ne pas modifier)
 assets/css/{commons,components,ui,modules}/  sources CSS → assets/css/site.css (généré, minifié)
 assets/js/{core,ui,modules}/ JS, chargé à la demande (data-ui / data-module), 1:1 avec le CSS
@@ -51,7 +53,7 @@ Revoir l'intro : `?intro` dans l'URL (sinon une fois par session).
 
 ## Contact
 Pas de réservation ni de formulaire : téléphone (02 59 15 26 97) et e-mail (roll.inlove@outlook.com) dans « Nous trouver », le menu et le pied de page.
-Horaires : vendredi, samedi, dimanche 10h–18h (une seule source pour le statut en direct : `assets/js/core/hours.js`, à garder alignée avec `src/_partials/ld-commerce.html`, `src/_partials/venir.html`, le pied de page et les textes des rubriques).
+Horaires : vendredi, samedi, dimanche 10h–18h (une seule source pour le statut en direct : `assets/js/core/hours.js`, à garder alignée avec `src/_partials/ld-commerce.html`, `src/_partials/venir.html`, le pied de page, les FAQ, les textes des rubriques et `llms.txt`).
 
 ## Checklist livraison
 RGPD (confidentialite) ✓ · CGU ✓ · mentions légales ✓ · images AVIF/WebP + srcset ✓ · Lighthouse mobile 94/97/100/100, desktop 99/94→100/100 ✓ · aucune clé ni API côté navigateur (le site n'en utilise pas) ✓ · contraste ✓ · HTTPS (HSTS + upgrade) ✓ · responsive 360→1440 ✓ · bandeau cookies (Accepter/Refuser égaux) ✓ · 404 ✓ · meta title/description ✓ · OG 1200×630 ✓ · favicons ✓ · sitemap/robots ✓ · alt ✓ · liens vérifiés ✓ · Vercel Web Analytics après consentement ✓ · un seul CTA (« Nous trouver », dans la hero) ✓ · formulaire retiré à la demande du client (pas d'anti-spam/validation à prévoir)

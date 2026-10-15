@@ -20,7 +20,10 @@
 .hero__eyebrow { order: 0; }
 
 /* ----- Le mot : le vrai logo, dont le O devient un roll ------------------- */
-.hero__title { order: 1; margin: 0; line-height: 1; }
+/* Le H1 (masqué) porte le texte ; le logo et l'annotation sont décoratifs.
+   Police, taille (2em du h1 natif) et approche reprises du h1 : l'annotation
+   en hérite, le rendu reste identique au pixel. */
+.hero__title { order: 1; margin: 0; line-height: 1; font: 400 2em/1 var(--font-display); letter-spacing: 0.01em; text-transform: uppercase; }
 
 /* Repères mesurés sur le logo détouré (1348 × 648) :
    O dessiné  : x 285→808, y 3→492  · photo du roll : centre (548, 250), Ø 452 */
