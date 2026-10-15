@@ -67,6 +67,8 @@ MANIFEST = [
     ('plaque-salon', f'{LIB}/a6fbb717-166a-43ac-8814-7f00038b0b62.JPG', 4 / 5, (0.5, 0.6), W_STD, None),
     ('gobelet-main', f'{V2}/gobelet-main.jpg', 4 / 5, (0.5, 0.5), W_STD, None),
     # pages rubriques (photos publiées par la maison sur Instagram)
+    # détail du plateau brunch : recadrage de la photo publiée en story par la maison
+    ('brunch-detail', f'{V2}/brunch-plateau.jpg', None, None, W_STD, (480, 560, 1200, 1460)),
     ('pause-choco', f'{IG}/670839447_17860061544684224_6823924772361822188_n.jpg', 4 / 5, (0.5, 0.55), W_STD, None),
     ('matcha-fraise', f'{SRC}/matcha-fraise.jpg', 4 / 5, (0.5, 0.4), W_SMALL, None),
     ('salon-canape', f'{IG}/632147202_17846685759684224_5280252074026078680_n.jpg', 4 / 5, (0.5, 0.6), W_STD, None),

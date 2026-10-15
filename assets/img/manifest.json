@@ -475,5 +475,16 @@
    450
   ],
   "alpha": false
+ },
+ "brunch-detail": {
+  "widths": [
+   480,
+   720
+  ],
+  "ratio": [
+   720,
+   900
+  ],
+  "alpha": false
  }
 }
